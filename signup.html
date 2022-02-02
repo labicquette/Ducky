@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ducky - Créer un compte</title>
+  </head>
+  <body>
+    <h2>Créer un compte</h2>
+    <form class="ducky-form" action="index.html" method="post">
+      <div class="text-label">
+        <label for="lastname">Prénom :</label>
+        <input type="text" name="lastname" id="lastname">
+      </div>
+      <div class="text-label">
+        <label for="firstname">Nom :</label>
+        <input type="text" name="firstname" id="firstname">
+      </div>
+      <div class="text-label">
+        <label for="username">Identifiant :</label>
+        <input type="text" name="username" id="username">
+      </div>
+      <div class="text-label">
+        <label for="password">Mot de passe :</label>
+        <input type="text" name="password" id="password">
+      </div>
+      <div class="text-label">
+        <label for="confirmpassword">Confirmer mot de passe</label>
+        <input type="text" name="confirmpassword" id="confirmpassword">
+      </div>
+      <div class="text-label checkbox">
+        <input type="checkbox" name="cgu" id="cgu">
+        <label for="cgu">J'ai lu et accepté les <a href="cgu.html">conditions générales d'utilisation</a>.</label>
+      </div>
+      <div class="text-label button">
+        <input type="submit" name="create" id="create" value="Créer un compte">
+        <input type="button" name="quit" id="quit" value="Annuler">
+      </div>
+    </form>
+  </body>
+</html>
