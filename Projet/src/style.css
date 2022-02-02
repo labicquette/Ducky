@@ -1,0 +1,51 @@
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+main {
+    background-color: #ddddff;
+    margin: 0;
+    padding: 2% 5% 2% 5%;
+}
+
+.block {
+    border-style: none;
+    background-color: white;
+    margin: 1% 25% 1% 25%;
+    padding: 2% 10% 2% 10%;
+    text-align: center;
+}
+
+.text-label {
+    margin: 2% 0 2% 0;
+}
+
+.text-label label {
+    text-align: left;
+    font-size: 100%;
+}
+
+.text-label input {
+    display: block;
+    width: 100%;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: blue;
+}
+
+#connexion {
+    border-style: none;
+    border-radius: 5%;
+    background-color: blue;
+    padding: 2% 5% 2% 5%;
+}
+
+#ducky-logo {
+    width: 30%;
+    text-align: center;
+}
