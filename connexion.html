@@ -1,6 +1,25 @@
 <!DOCTYPE html>
-<htrul>
+<html>
     <head>
         <link href="style.css" rel="stylesheet"/>
     </head>
-</htrul>
+    <body>
+        <main>
+            <h1>Ouvrir une session</h1>
+            <form action="/connexion" method="POST"> 
+                <div class="field"> 
+                    <label for="login">Login</label>
+                    <input id="pseudo" name="pseudo" type="id" />
+                </div>
+                <div class ="field">
+                    <label for="password">Mot de passe</label>
+                    <input id="password" name="password" type="password"/>
+                </div>
+                <div class ="connexion">
+                <button type="submit">Connexion</button>
+                <button type="submit" href="main.html">Annuler</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
