@@ -23,7 +23,8 @@ class App extends Component {
             Learn React
           </a> 
             <Card symbol="je sais pas" affichage={true}/> 
-            <MainPage connect="je suis connecte"/>
+            <MainPage connect="connexion"/>
+            <MainPage connect="peut etre"/>
         </header>
       </div>
     );

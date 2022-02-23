@@ -1,23 +1,22 @@
 import React from 'react'
 
 function MainPage(connection){
-    const [connected, setConnection] = React.useState(false)
+    const [connected, setConnection] = React.useState(true)
     
     function Connection(){
-        //setConnection(!connected)
-        return connection.connect
+        setConnection(!connected)
     }
 
+    function Connected(){
+        return <p>page de tweet</p>
+    }
 
     return <div className="MainPage">
-        <button type = "button" onClick={Connection()}>
-            {connected ? Connected() : Connection()}
+        <button onClick={Connection}>{connected ? Connected() : Connection()}
         </button>
         </div>
 }
 
-function Connected(){
-    return <p>page de tweet</p>
-}
+
 
 export default MainPage;
