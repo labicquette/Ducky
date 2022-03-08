@@ -75,4 +75,24 @@ export class UserBanDAO {
         return userBans;
     }
 
+    /**
+     * @param {Date} time 
+     * @returns user ban by time
+     */
+    getByTime(time) {
+        let userBans = [];
+        //
+        return userBans;
+    }
+
+    /**
+     * @param {Date} endTime
+     * @returns bans finished by the specified time
+     */
+    getByEndTime(endTime) {
+        let userBans = [];
+        //
+        return userBans;
+    }
+
 }
