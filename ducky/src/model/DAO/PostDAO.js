@@ -4,6 +4,8 @@ import { PostLikeDAO } from "./PostLikeDAO";
 import { PostReportDAO } from "./PostReportDAO";
 import { PostShareDAO } from "./PostShareDAO";
 import { PostViewDAO } from "./PostViewDAO";
+import { PostHashtagDAO } from "./PostHashtagDAO";
+import { PostMentionnedUserDAO } from "./PostMentionnedUserDAO";
 
 export class PostDAO {
 
@@ -130,6 +132,16 @@ export class PostDAO {
     }
 
     /**
+     * @param {int} postId 
+     * @returns list of post hashtags
+     */
+    getHashtags(postId) {
+        let postHashtags = [];
+        //
+        return postHashtags;
+    }
+
+    /**
      * @param {list} hashtags list of hashtags
      * @returns list of posts with hashtags
      */
@@ -137,6 +149,16 @@ export class PostDAO {
         let posts = [];
         //
         return posts;
+    }
+
+    /**
+     * @param {int} postId 
+     * @returns list of post mentionned user
+     */
+    getMentionnedUsers(postId) {
+        let postMentionnedUsers = [];
+        //
+        return postMentionnedUsers;
     }
 
     /**
