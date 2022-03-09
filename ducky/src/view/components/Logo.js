@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class Logo extends React.Component {
+export default class Logo extends React.Component {
     render() {
         return (
-            <img src='../ducky.png' alt='Ducky' title='Ducky' />
+            <img src='/duck.svg' alt='Ducky' title='Ducky' height="100px"/>
         );
     }
 }

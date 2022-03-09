@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Logo from './view/components/Logo';
 import './App.css';
 import './style.css'
-import Card from './Cards.js'
 import MainPage from './MainPage';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a> 
-            <Card symbol="je sais pas" affichage={true}/> 
-            <MainPage connect="connexion"/>
-            <MainPage connect="peut etre"/>
-        </header>
+        <div className="Flex-App-Container">
+          <div className="Left-Banner" role="banner">
+            
+            <Logo className="Logo"/>
+            a gauche
+          </div>
+          
+          <div className="App-header">
+              <div className="flex-container">
+              <MainPage connect="connexion"/>
+              <MainPage connect="peut etre"/>
+              </div>
+          </div>
+          <div className="Left-Banner">
+          a droite
+          </div>
+        </div>
       </div>
     );
   }
