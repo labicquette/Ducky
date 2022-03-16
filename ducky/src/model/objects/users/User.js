@@ -3,14 +3,20 @@ export const AccountStatus = {
     private: 'private',
     banished: 'banished',
     deleted: 'deleted'
-}
+};
 
 export const OnlineStatus = {
     online: 'online',
     offline: 'offline'
-}
+};
 
-export class User {
+export const UserSex = {
+    m: 'Homme',
+    f: 'Femme',
+    o: 'Autre'
+};
+
+export default class User {
 
     constructor(id,
                 username,
