@@ -1,7 +1,6 @@
 import React from 'react';
 
 export class SignIn extends React.Component {
-<<<<<<< HEAD
         
     constructor(props) {
         super(props);
@@ -11,12 +10,6 @@ export class SignIn extends React.Component {
             password: '',
             errorMessage: ''
         };
-=======
-    render() {
-        return(
-            <div> Sign in </div>
-        )
->>>>>>> e55dd240cf839ff67a4c605eb9ae36522a2eabc2
     }
 
     render() {
