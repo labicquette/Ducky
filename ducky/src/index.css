@@ -79,14 +79,14 @@ code {
 	margin: 10px 0 10px 0;
 }
 
-.sign-up-navigation-bar {
+.sign-button-bar {
 	margin-top: 20px;
 	display: flex;
 	flex-direction: row;
 	align-content: center;
 }
 
-.sign-up-navigation-bar input {
+.sign-button-bar input {
 	margin-left: 10px;
 }
 

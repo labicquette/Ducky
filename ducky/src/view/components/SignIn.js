@@ -66,7 +66,7 @@ export class SignIn extends React.Component {
                     </div>
                 </div>
                 {errorContent}
-                <div className='sign-up-navigation-bar'>
+                <div className='sign-button-bar'>
                     <input
                         type='button'
                         value='Mot de passe oublié'

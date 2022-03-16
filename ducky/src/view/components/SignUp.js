@@ -107,7 +107,7 @@ export class SignUp extends React.Component {
                 <SignTop title='Réjoignez Ducky !' />
                 {content}
                 {errorContent}
-                <div className='sign-up-navigation-bar'>
+                <div className='sign-button-bar'>
                     <input
                         type='button'
                         value='Précédent'
