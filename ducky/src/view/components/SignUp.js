@@ -6,6 +6,7 @@ import SignUpContacts from './SignUpContacts';
 import SignUpIdentifiants from './SignUpIdentifiants';
 
 import User, { UserSex } from '../../model/objects/users/User';
+import { SignTop } from './SignTop';
 
 export class SignUp extends React.Component {
 
@@ -103,15 +104,7 @@ export class SignUp extends React.Component {
 
         return (
             <div className='sign'>
-                <div className='sign-top'>
-                    <img
-                        src={require('../../ressources/ducky.png')}
-                        className='sign-logo'
-                        alt='Ducky'
-                        title='Ducky'
-                        />
-                    <h2>Réjoignez Ducky !</h2>                    
-                </div>
+                <SignTop title='Réjoignez Ducky !' />
                 {content}
                 {errorContent}
                 <div className='sign-up-navigation-bar'>

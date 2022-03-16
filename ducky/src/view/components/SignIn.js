@@ -1,4 +1,5 @@
 import React from 'react';
+import { SignTop } from './SignTop';
 
 export class SignIn extends React.Component {
         
@@ -24,15 +25,7 @@ export class SignIn extends React.Component {
 
         return (
             <div className='sign'>
-                <div className='sign-top'>
-                    <img
-                        src={require('../../ressources/ducky.png')}
-                        className='sign-logo'
-                        alt='Ducky'
-                        title='Ducky'
-                        />
-                    <h2>Nous sommes très heureux de vous revoir !</h2>                    
-                </div>
+                <SignTop title='Nous sommes très heureux de vous revoir !' />
                 <div className='sign-content'>
                     <h3>Tout se passe sur Ducky !</h3>
                     <div className='form-sign-input-label'>
