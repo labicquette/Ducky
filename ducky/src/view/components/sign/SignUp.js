@@ -5,7 +5,7 @@ import SingUpLocalisation from './SignUpLocalisation';
 import SignUpContacts from './SignUpContacts';
 import SignUpIdentifiants from './SignUpIdentifiants';
 
-import User, { UserSex } from '../../model/objects/users/User';
+import User, { UserSex } from '../../../model/objects/users/User';
 import { SignTop } from './SignTop';
 
 export class SignUp extends React.Component {

@@ -1,5 +1,5 @@
 import React from "react";
-import CountrySelect from "./CountrySelect";
+import CountrySelect from "../common/CountrySelect";
 
 export default class SingUpLocalisation extends React.Component {
 

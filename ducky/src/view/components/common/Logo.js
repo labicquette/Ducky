@@ -4,7 +4,7 @@ export default class Logo extends React.Component {
     render() {
         return (
             <img 
-                src={require('../../ressources/ducky.png')} 
+                src={require('../../../ressources/ducky.png')} 
                 alt='Ducky' 
                 title='Ducky'
                 />

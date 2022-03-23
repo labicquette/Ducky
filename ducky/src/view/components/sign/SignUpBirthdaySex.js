@@ -1,6 +1,6 @@
 import React from "react";
-import DayMonthYear from "./DayMonthYear";
-import Sex from "./Sex";
+import DayMonthYear from "../common/DayMonthYear";
+import Sex from "../common/Sex";
 
 export default class SignUpBirthdaySex extends React.Component {
 

@@ -10,7 +10,7 @@ export class SignTop extends React.Component {
         return (
             <div className='sign-top'>
                 <img
-                    src={require('../../ressources/ducky.png')}
+                    src={require('../../../ressources/ducky.png')}
                     className='sign-logo'
                     alt='Ducky'
                     title='Ducky'

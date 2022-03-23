@@ -1,15 +1,9 @@
 import React from "react";
 import User from "./model/objects/users/User";
-import { SignUp } from "./view/components/SignUp";
-import { SignIn } from "./view/components/SignIn";
-import { SignForgotPassword } from "./view/components/SignInForgotPassword";
-import { MainPage } from "./view/components/MainPage";
-import { MainPageHeader } from "./view/components/MainPageHeader";
-import { MainPageContent } from "./view/components/MainPageContent";
-import { MainPageHeaderNavigationBar } from "./view/components/MainPageHeaderNavigationBar";
-import { MainPageHeaderSearchBar } from "./view/components/MainPageHeaderSearchBar";
-import Logo from "./view/components/Logo";
-import { MainPageHeaderNavigationBarItem } from "./view/components/MainPageHeaderNavigationBarItem";
+import { SignUp } from "./view/components/sign/SignUp";
+import { SignIn } from "./view/components/sign/SignIn";
+import { SignForgotPassword } from "./view/components/sign/SignInForgotPassword";
+import { MainPage } from "./view/components/mainpage/MainPage";
 
 
 export default class App extends React.Component {
