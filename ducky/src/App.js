@@ -1,8 +1,16 @@
 import React from "react";
+import User from "./model/objects/users/User";
 import { SignUp } from "./view/components/SignUp";
 import { SignIn } from "./view/components/SignIn";
-import User from "./model/objects/users/User";
 import { SignForgotPassword } from "./view/components/SignInForgotPassword";
+import { MainPage } from "./view/components/MainPage";
+import { MainPageHeader } from "./view/components/MainPageHeader";
+import { MainPageContent } from "./view/components/MainPageContent";
+import { MainPageHeaderNavigationBar } from "./view/components/MainPageHeaderNavigationBar";
+import { MainPageHeaderSearchBar } from "./view/components/MainPageHeaderSearchBar";
+import Logo from "./view/components/Logo";
+import { MainPageHeaderNavigationBarItem } from "./view/components/MainPageHeaderNavigationBarItem";
+
 
 export default class App extends React.Component {
 
@@ -11,7 +19,7 @@ export default class App extends React.Component {
 		
 		this.state = {
 			mode: 0,
-			connected: false,
+			connected: true,
 			user: new User()
 		};
 
@@ -80,7 +88,7 @@ export default class App extends React.Component {
 		}
 		else {
 			content = (
-				<h1>Bienvenue sur Ducky !</h1>
+				<MainPage />
 			);
 		}
 
