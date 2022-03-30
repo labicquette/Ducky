@@ -1,8 +1,8 @@
 import React from "react";
-import { MainPageContent } from "./MainPageContent";
-import { MainPageHeader } from "./MainPageHeader";
+import { FeedContent } from "./FeedContent";
+import { FeedNavigation } from "./FeedNavigation";
 
-export class MainPage extends React.Component {
+export class Feed extends React.Component {
 
     constructor(props) {
         super(props);
@@ -51,8 +51,8 @@ export class MainPage extends React.Component {
 
     render() {
         return (
-            <div className='main-page'>
-                <MainPageHeader
+            <div className='feed'>
+                <FeedNavigation
                     handleSearchBarChange={(e) => this.handleSearchBarChange(e)}   
                     onClickHome={() => this.onClickHome()}
                     onClickFriends={() => this.onClickFriends()}
@@ -60,7 +60,7 @@ export class MainPage extends React.Component {
                     onClickNotifications={() => this.onClickNotifications()}
                     onClickProfil={() => this.onClickProfil()}
                     onClickMore={() => this.onClickMore()} />
-                <MainPageContent
+                <FeedContent
                     contentId={this.state.contentId} />
             </div>
         );

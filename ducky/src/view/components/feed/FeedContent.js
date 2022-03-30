@@ -1,9 +1,9 @@
 import React from "react";
-import { MainPageContentHome } from "./MainPageContentHome";
-import { MainPageContentMessages } from "./MainPageContentMessages";
-import { MainPageContentStories } from "./MainPageContentStories";
+import { FeedContentHome } from "./FeedContentHome";
+import { FeedContentMessages } from "./FeedContentMessages";
+import { FeedContentStories } from "./FeedContentStories";
 
-export class MainPageContent extends React.Component {
+export class FeedContent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,20 +14,20 @@ export class MainPageContent extends React.Component {
         switch(this.props.contentId) {
             case 1: // messages
                 content = (
-                    <MainPageContentMessages />
+                    <FeedContentMessages />
                 );
                 break;
             case 2: // stories
                 content = (
-                    <MainPageContentStories />
+                    <FeedContentStories />
                 );
-            default:
+            default: // home
                 content = (
-                    <MainPageContentHome />
+                    <FeedContentHome stories={[]} posts={[]} />
                 );
         }
         return (
-            <div className='main-page-content'>
+            <div className='feed-content'>
                 {content}
             </div>
         );

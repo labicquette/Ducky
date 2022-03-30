@@ -3,7 +3,7 @@ import User from "./model/objects/users/User";
 import { SignUp } from "./view/components/sign/SignUp";
 import { SignIn } from "./view/components/sign/SignIn";
 import { SignForgotPassword } from "./view/components/sign/SignInForgotPassword";
-import { MainPage } from "./view/components/mainpage/MainPage";
+import { Feed } from "./view/components/feed/Feed";
 
 
 export default class App extends React.Component {
@@ -64,7 +64,7 @@ export default class App extends React.Component {
 						/>
 					);
 					break;
-				default:
+				default: // sign in
 					subcontent = (
 						<SignIn 
 							username={this.state.user.username} 
@@ -82,7 +82,9 @@ export default class App extends React.Component {
 		}
 		else {
 			content = (
-				<MainPage />
+				<div className='feed'>
+					<Feed />
+				</div>
 			);
 		}
 

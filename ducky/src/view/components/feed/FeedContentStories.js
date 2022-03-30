@@ -1,6 +1,6 @@
 import React from "react";
 
-export class MainPageContentStories extends React.Component {
+export class FeedContentStories extends React.Component {
 
     constructor(props) {
         super(props);
@@ -8,7 +8,7 @@ export class MainPageContentStories extends React.Component {
 
     render() {
         return (
-            <div className='main-page-content-item main-page-content-stories'>
+            <div className='feed-content-item feed-content-stories'>
 
             </div>
         );
