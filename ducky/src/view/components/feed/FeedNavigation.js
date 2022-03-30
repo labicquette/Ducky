@@ -18,7 +18,6 @@ export class FeedNavigation extends React.Component {
                             alt='Ducky' 
                             title='Ducky'
                             />
-                        <h1>Ducky</h1> 
                     </div>
                     <div className='feed-navigation-search-bar'>
                         <input

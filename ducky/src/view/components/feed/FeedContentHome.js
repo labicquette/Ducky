@@ -14,9 +14,9 @@ export class FeedContentHome extends React.Component {
             <div className='feed-content-item feed-content-home'>
                 <div className='feed-content-item-left'>
                     <div className='feed-content-item-left-top'>
-                        <h1>Accueil</h1>
+                        <h2>Accueil</h2>
                     </div>
-                    <div className='feed-content-home-main'>
+                    <div className='feed-content-item-left-main'>
                         <div className='feed-content-post-edit-container'>
                             <PostEdit />
                         </div>

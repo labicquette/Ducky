@@ -23,7 +23,7 @@ export class FeedContent extends React.Component {
                 );
             default: // home
                 content = (
-                    <FeedContentHome stories={[]} posts={[]} />
+                    <FeedContentHome stories={[1,2,3,4,5]} posts={[1,2,3,4,5]} />
                 );
         }
         return (

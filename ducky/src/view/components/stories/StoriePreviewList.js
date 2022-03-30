@@ -10,11 +10,11 @@ export class StoriePreviewList extends React.Component {
     render() {
         return (
             <div className='storie-preview-list-container'>
-                <h3>Stories</h3>
                 <div className='storie-preview-list'>
                     <div className='storie-preview-container'>
                         <div className='storie-preview-content'>
-
+                            <img
+                                src={require('../../../ressources/profil_test.png')} />
                         </div>
                         <div className='storie-preview-title'>
                             <span>Créer une nouvelle storie</span>
