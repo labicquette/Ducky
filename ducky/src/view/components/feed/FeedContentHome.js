@@ -12,11 +12,11 @@ export class FeedContentHome extends React.Component {
     render() {
         return (
             <div className='feed-content-item feed-content-home'>
-                <div className='feed-content-item-left'>
-                    <div className='feed-content-item-left-top'>
-                        <h2>Accueil</h2>
+                <div className='feed-content-home-left'>
+                    <div className='feed-content-item-top'>
+                        <h3>Fil d'actualité</h3>
                     </div>
-                    <div className='feed-content-item-left-main'>
+                    <div className='feed-content-home-left-main'>
                         <div className='feed-content-post-edit-container'>
                             <PostEdit />
                         </div>
@@ -28,8 +28,38 @@ export class FeedContentHome extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='feed-content-item-right'>
-
+                <div className='feed-content-home-right'>
+                    <div className='feed-content-home-right-item'>
+                        <div className='feed-content-user-infos'>
+                            <img
+                                src={require('../../../ressources/profil_test.png')} 
+                                className='feed-content-user-infos-image'/>
+                            <div className='feed-content-user-infos-names'>
+                                <h4>Ben Kabongo</h4>
+                                <h5>@benkabongo25</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='feed-content-home-right-item'>
+                        <h4>Statistiques</h4>
+                        <div>
+                            Aucune statistiques
+                        </div>
+                        <input
+                            className='feed-content-home-right-action-button'
+                            type='button'
+                            value='Afficher les statistiques' />
+                    </div>
+                    <div className='feed-content-home-right-item'>
+                        <h4>Suggestions</h4>
+                        <div className='feed-content-home-suggestion-list-container'>
+                            Aucune suggestion
+                        </div>
+                        <input
+                            className='feed-content-home-right-action-button'
+                            type='button'
+                            value='Voir plus de suggestion' />
+                    </div>
                 </div>
             </div>
         );

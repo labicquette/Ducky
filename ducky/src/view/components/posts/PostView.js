@@ -57,10 +57,36 @@ export class PostView extends React.Component {
             </div>
         );
 
+        let postTextContent = (
+            <div className='post-view-content-content-body-text'>
+                <p>{this.props.post.text}</p>
+            </div>
+        );
+
+        let postPollContent = null;
+        if (this.props.post.poll) {
+            postPollContent =(
+                <div className='post-view-content-content-body-poll-container'>
+
+                </div>
+            );
+        }
+
+        let postMediaContent = null;
+        if (this.props.post.media.length > 0) {
+            postMediaContent = (
+                <div className='post-view-content-content-body-media-container'>
+
+                </div>
+            );
+        }
+
         let postReplyToContent = null;
         if (this.props.post.replyTo) {
             postReplyToContent = (
-                <PostViewSimple post={this.props.post.replyTo}/>
+                <div className='post-view-content-content-body-post-replyto-container'>        
+                    <PostViewSimple post={this.props.post.replyTo}/>
+                </div>
             );
         }
 
@@ -88,15 +114,10 @@ export class PostView extends React.Component {
                             </div>
                         </div>
                         <div className='post-view-content-content-body'>
-                            <div className='post-view-content-content-body-text'>
-                                <p>{this.props.post.text}</p>
-                            </div>
-                            <div className='post-view-content-content-body-media-container'>
-
-                            </div>
-                            <div className='post-view-content-content-body-post-replyto-container'>
-                                {postReplyToContent}
-                            </div>
+                            {postTextContent}
+                            {postPollContent}
+                            {postMediaContent}
+                            {postReplyToContent}                            
                         </div>
                     </div>
 

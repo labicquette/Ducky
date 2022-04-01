@@ -139,7 +139,7 @@ body {
 }
 
 
-/* POST */
+/* POSTS EDITOR */
 
 .post-edit-container {
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
@@ -178,8 +178,7 @@ body {
 
 .post-edit-text:hover,
 .post-edit-text:focus {
-	border: none;
-	
+	border: none;	
 }
 
 .post-edit-actions-bar {
@@ -220,17 +219,16 @@ body {
 	cursor: pointer;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: white;
-	color: black;
+	background-color: black;
+	color: white;
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 	border: none;
-	margin-left: 20vw;
+	position: absolute;
+	right: 25vw;
 }
 
-.post-edit-action-text-button:hover,
-.post-edit-action-text-button:focus {
-	color: white;
-	background-color: black;
+.post-edit-action-text-button:hover {
+	opacity: .9;
 }
 
 
@@ -241,13 +239,14 @@ body {
 	top: 0;
 	left: 0;
 	z-index: 10;
-	width: 20vw;
-	height: 100vh;
+	width: 100%;
+	height: 5vh;
+	overflow: hidden;
 	display: flex;
-	flex-direction: column;
-	border-right: solid 1px lightgray;
+	flex-direction: row;
 	padding: 1% 2% 1% 2%;
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	background-color: rgba(248, 248, 248, 1);
 }
 
 .feed-navigation-logo {
@@ -257,8 +256,10 @@ body {
 }
 
 .feed-navigation-logo img {
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 13vw;
 }
 
 .feed-navigation-search-bar-input {
@@ -266,13 +267,18 @@ body {
 	font-size: 16px;
 	outline: none;
 	padding: 10px 10px 10px 10px;
-	width: 100%;
+	width: 400px;
 	color: black;
 	border: solid 1px lightgray;
+	position: absolute;
+	left: 17vw;
 }
 
 .feed-navigation-menu {
-	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	right: 15vw;
 }
 
 .feed-navigation-menu-item {
@@ -280,7 +286,7 @@ body {
 	flex-direction: row;
 	align-items: center;
 	padding: 10px 10px 10px 10px;
-	border-bottom: solid 1px lightgray;
+	margin-left: 10px;
 	width: 100%;
 }
 
@@ -289,31 +295,15 @@ body {
 	border-radius: 8px;
 }
 
-
 .feed-navigation-menu-item-image {
-	width: 30px;
-}
-
-.feed-navigation-menu-item-titles {
-	display: flex;
-	flex-direction: column;
-	margin-left: 4px;
-	width: 100%;
-}
-
-.feed-navigation-menu-item-title {
-	margin: 0;
-}
-
-.feed-navigation-menu-item-subtitle {
-	margin: 0;
-	font-weight: normal;
+	width: 25px;
 }
 
 .feed-content {
 	position: relative;
-	left: 24vw;
-	width: 70vw;
+	top: 12vh;
+	left: 12vw;
+	width: 76vw;
 	height: 100vh;
 }
 
@@ -322,31 +312,77 @@ body {
 	flex-direction: row;
 }
 
-.feed-content-item-left {
-	display: flex;
-	flex-direction: column;
-	border-right: solid 1px lightgray;
-	height: fit-content;
-	width: 50vw;
-	background-color: rgba(255, 255, 255, .5);
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
-	padding: 0 20px 0 20px;
-}
-
 .feed-content-item-left-top {
 	width: 100%;
 	height: 8vh;
 	padding-left: 20px;
-	background-color: rgba(255, 255, 255, .7);
 }
 
-.feed-content-item-left-main {
+.feed-content-home-left {
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+	width: 50vw;
+	padding: 0 20px 0 20px;
+}
+
+.feed-content-home-left-main {
 	
 }
 
-.feed-content-item-right {
-
+.feed-content-home-right {
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	height: fit-content;
+	padding: 10px 10px 10px 10px;
+	width: 100%;
 }
+
+.feed-content-home-right-item {
+	border-bottom: 1px solid lightgray;
+	padding: 10px 10px 10px 10px;
+}
+
+.feed-content-user-infos {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.feed-content-user-infos-image {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.feed-content-user-infos-names {
+	display: flex;
+	flex-direction: column;
+}
+
+.feed-content-user-infos-names h4 {
+	margin: 0;
+}
+
+.feed-content-user-infos-names h5 {
+	margin: 0;
+}
+
+.feed-content-home-right-action-button {
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: white;
+	color: black;
+}
+
+.feed-content-home-right-action-button:hover {
+	text-decoration: underline;
+}
+
 
 .feed-content-storie-preview-list-container {
 	margin-bottom: 20px;
@@ -405,7 +441,7 @@ body {
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 	padding: 10px 20px 10px 20px;
 	margin: 20px 0 20px 0;
-	transition: transform .2s;
+	transition: transform .5s;
 }
 
 .post-view-container:hover {
@@ -491,13 +527,22 @@ body {
 	margin: 0px 2px 0px 2px;
 }
 
+.post-view-content-content-body {
+
+}
+
+.post-view-content-content-body-text {
+
+}
+
+.post-view-content-content-body-media-container {
+
+}
+
 .post-view-content-content-body-post-replyto-container {
 	width: 100%;
 }
 
-.post-view-content-content-body {
-
-}
 
 .post-view-actions-bar {
 

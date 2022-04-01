@@ -1,12 +1,5 @@
 export class PollItem {
 
-    /**
-     * Poll item
-     * @param {int} id 
-     * @param {int} pollId 
-     * @param {int} text 
-     * @param {float} proportion
-     */
     constructor(id,
                 pollId,
                 text,
@@ -19,6 +12,7 @@ export class PollItem {
         this.proportion = proportion;
 
         this.voters = [];
+        this.selected = false; // set true if selected by current user
     }
 
     addVoter(userId) {
