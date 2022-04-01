@@ -16,7 +16,7 @@ export const UserSex = {
     o: 'Autre'
 };
 
-export default class User {
+export class User {
 
     constructor(id,
                 username,
@@ -39,6 +39,7 @@ export default class User {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.names = this.firstname + ' ' + this.lastname;
         this.sex = sex;
         this.phone = phone;
         this.mail = mail;

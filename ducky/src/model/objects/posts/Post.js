@@ -1,7 +1,3 @@
-/**
- * post status
- * public, private, banished, deleted
- */
 export const PostStatus = {
     public: 'public',
     private: 'private',
@@ -11,44 +7,44 @@ export const PostStatus = {
 
 export class Post {
 
-    /**
-     * Post
-     * @param {int} id 
-     * @param {int} userId 
-     * @param {int} replyToId 
-     * @param {Date} time 
-     * @param {string} text 
-     * @param {string} status 
-     */
     constructor(id,
-                userId,
-                replyToId,
+                user,
+                replyTo,
                 time,
                 text,
-                status
+                location,
+                status,
+                postPrologue
                 ) {
 
         this.id = id;
-        this.userId = userId;
-        this.replyToId = replyToId;
+        this.user = user;
+        this.replyTo = replyTo;
         this.time = time;
         this.text = text;
+        this.location = location;
+
+        // Post prologue info
+        this.postPrologue = postPrologue;   // e.g: @benkabongo25 a commenté
 
         // Post status
         this.status = status;
         this.banInformations = null; // specified if the post is banned
             
         // Post content
-        this.poll = null; // specified if the post contains poll
-        this.media = []; // media
-        this.hashtags = []; // post hashtags
-        this.mentionnedUsers = []; // mentionned users
+        this.poll = null;           // specified if the post contains poll
+        this.media = [];            // media
+        this.hashtags = [];         // post hashtags
+        this.mentionnedUsers = [];  // mentionned users
 
         // Post interaction
         this.likes   = []; // likes
         this.views   = []; // views
         this.shares  = []; // shares
         this.reports = []; // reports
+
+        // Post replies
+        this.replies = [];
     }
 
     addMedia(media) {
@@ -63,20 +59,8 @@ export class Post {
         this.mentionnedUsers.push(userId);
     }
 
-    get likesCount() {
-        return this.likes.length;
-    }
-
-    get viewsCount() {
-        return this.views.length;
-    }
-
-    get sharesCount() {
-        return this.shares.length;
-    }
-
-    get reportsCount() {
-        return this.reports.length;
+    addReply(post) {
+        this.replies.push(post);
     }
 
     addLike(postLike) {
@@ -98,5 +82,8 @@ export class Post {
     setBanInformations(postBan) {
         this.banInformations = postBan;
     }
-    
+ 
+    setPostPrologue(postPrologue) {
+        this.postPrologue = postPrologue;
+    }
 }

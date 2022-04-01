@@ -18,22 +18,18 @@ export class FeedNavigation extends React.Component {
                             alt='Ducky' 
                             title='Ducky'
                             />
-                    </div>
-                    <div className='feed-navigation-search-bar'>
-                        <input
-                            className='feed-navigation-search-bar-input'
-                            id='search'
-                            name='search'
-                            type='text'
-                            placeholder='Rechercher'
-                            onChange={(e) => this.props.handleChange(e)} />
-                    </div>    
+                    </div>   
                 </div>
                 <div className='feed-navigation-menu'>                    
                     <FeedNavigationMenuItem
                         title='Accueil'
                         subtitle="Fil d'actualité"
                         src={require('../../../ressources/icons/home.png')} 
+                        onClick={() => this.props.onClickHome()} />
+                    <FeedNavigationMenuItem
+                        title='Explorer'
+                        subtitle="Rechercher dans Ducky"
+                        src={require('../../../ressources/icons/search.png')} 
                         onClick={() => this.props.onClickHome()} />
                     <FeedNavigationMenuItem
                         title='Ben Kabongo'

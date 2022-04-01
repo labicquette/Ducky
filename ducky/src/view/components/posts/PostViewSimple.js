@@ -1,28 +1,13 @@
 import React from "react";
 import { PostStatus } from "../../../model/objects/posts/Post";
-import { PostViewSimple } from "./PostViewSimple";
 
-export class PostView extends React.Component {
+export class PostViewSimple extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
     render() {
-        let postPrologueContent = null;
-        if (this.props.post.postPrologue) {
-            postPrologueContent = (
-                <div className='post-view-prologue'>
-                    <span>
-                        <a className='post-view-prologue-username'>
-                            {this.props.post.postPrologue.user.names}
-                        </a>
-                        {this.props.post.postPrologue.comment}
-                    </span>
-                </div>
-            );
-        }
-
         let postLocationContent = null;
         if (this.props.post.location) {
             postLocationContent = (
@@ -57,16 +42,8 @@ export class PostView extends React.Component {
             </div>
         );
 
-        let postReplyToContent = null;
-        if (this.props.post.replyTo) {
-            postReplyToContent = (
-                <PostViewSimple post={this.props.post.replyTo}/>
-            );
-        }
-
         return (
             <div className='post-view-container'> 
-                {postPrologueContent}
                 <div className='post-view-content'>
                     <img
                         src={this.props.post.user.profilePicture}
@@ -91,21 +68,8 @@ export class PostView extends React.Component {
                             <div className='post-view-content-content-body-text'>
                                 <p>{this.props.post.text}</p>
                             </div>
-                            <div className='post-view-content-content-body-media-container'>
-
-                            </div>
-                            <div className='post-view-content-content-body-post-replyto-container'>
-                                {postReplyToContent}
-                            </div>
                         </div>
                     </div>
-
-                </div>
-                <div className='post-view-actions-bar'>
-
-                </div>
-                <div className='post-view-replies-preview'>
-
                 </div>
             </div>
         );

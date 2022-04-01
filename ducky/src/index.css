@@ -286,6 +286,7 @@ body {
 
 .feed-navigation-menu-item:hover {
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border-radius: 8px;
 }
 
 
@@ -353,21 +354,31 @@ body {
 
 /* STORIES */
 
+.storie-preview-list-container {
+	
+}
+
 .storie-preview-list {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	overflow: hidden;
 }
 
 .storie-preview-container {
-	width: 10vw;
-	height: 15vw;
+	width: 1000px;
+	height: 250px;
 	margin: 0 2px 0 2px;
 	border: solid 1px lightgray;
 	border-radius: 5px;
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 	display: grid;
 	grid-template-rows: 3fr 1fr;
+	transition: transform .2s;
+}
+
+.storie-preview-container:hover {
+	transform: scale(1.2);
 }
 
 .storie-preview-content {
@@ -388,9 +399,110 @@ body {
 /* POSTS */
 
 .post-view-container {
-	height: 30vh;
 	margin: 4px 2px 4px 2px;
 	border: solid 1px lightgray;
 	border-radius: 5px;
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	padding: 10px 20px 10px 20px;
+	margin: 20px 0 20px 0;
+	transition: transform .2s;
+}
+
+.post-view-container:hover {
+	background-color: rgba(240, 240, 240, .5);
+}
+
+.post-view-prologue {
+	border-bottom: 1px solid lightgray;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.post-view-prologue-image {
+	border-radius: 50%;
+	width: 30px;
+}
+
+.post-view-prologue-username {
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+	margin: 0 2px 0 2px;
+}
+
+.post-view-content {
+	display: flex;
+	flex-direction: row;
+}
+
+.post-view-content-user-profile-picture {
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+}	
+
+.post-view-content-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-view-content-content-header {
+
+}
+
+.post-view-content-content-header-user-infos {
+
+}
+
+.post-view-content-content-header-user-infos-names {
+	font-weight: bold;
+	margin-right: 2px;
+	padding-right: 2px;
+}
+
+.post-view-content-content-header-user-infos-names:hover {
+	text-decoration: underline;
+}
+
+.post-view-content-content-header-user-infos-username {
+	font-weight: bold;
+	color: gray;
+}
+
+.post-view-content-content-header-post-infos {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0px 3px 0px 3px;
+}
+
+.post-view-content-content-post-infos-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.post-view-content-content-post-infos-item-image {
+	width: 20px;
+	margin: 0px 2px 0px 2px;
+}
+
+.post-view-content-content-body-post-replyto-container {
+	width: 100%;
+}
+
+.post-view-content-content-body {
+
+}
+
+.post-view-actions-bar {
+
+}
+
+.post-view-replies-preview {
+
 }

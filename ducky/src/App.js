@@ -1,5 +1,5 @@
 import React from "react";
-import User from "./model/objects/users/User";
+import { User } from "./model/objects/users/User";
 import { SignUp } from "./view/components/sign/SignUp";
 import { SignIn } from "./view/components/sign/SignIn";
 import { SignForgotPassword } from "./view/components/sign/SignInForgotPassword";

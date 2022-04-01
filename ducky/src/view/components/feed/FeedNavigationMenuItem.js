@@ -15,14 +15,14 @@ export class FeedNavigationMenuItem extends React.Component {
                     src={this.props.src}
                     onClick={this.props.onClick} /> 
                 <div className='feed-navigation-menu-item-titles'>  
-                    <h4 
+                    <h3 
                         className='feed-navigation-menu-item-title'>
                         {this.props.title}
-                    </h4>     
-                    <h5
+                    </h3>     
+                    <h4
                         className='feed-navigation-menu-item-subtitle'>
                         {this.props.subtitle}
-                    </h5>  
+                    </h4>  
                 </div>      
             </div>
         ); 

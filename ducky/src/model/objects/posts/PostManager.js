@@ -1,6 +1,3 @@
-/**
- * post manager
- */
  export class PostManager {
 
     constructor(postId, userId, time) {
