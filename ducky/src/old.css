@@ -1,0 +1,72 @@
+.feed-navigation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 20vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	border-right: solid 1px lightgray;
+	padding: 1% 2% 1% 2%;
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+}
+
+.feed-navigation-logo {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.feed-navigation-logo img {
+	width: 60px;
+	height: 60px;
+}
+
+.feed-navigation-search-bar-input {
+	border-radius: 3px;
+	font-size: 16px;
+	outline: none;
+	padding: 10px 10px 10px 10px;
+	width: 100%;
+	color: black;
+	border: solid 1px lightgray;
+}
+
+.feed-navigation-menu {
+	margin-top: 20px;
+}
+
+.feed-navigation-menu-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 10px 10px 10px 10px;
+	border-bottom: solid 1px lightgray;
+	width: 100%;
+}
+
+.feed-navigation-menu-item:hover {
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border-radius: 8px;
+}
+
+.feed-navigation-menu-item-image {
+	width: 30px;
+}
+
+.feed-navigation-menu-item-titles {
+	display: flex;
+	flex-direction: column;
+	margin-left: 4px;
+	width: 100%;
+}
+
+.feed-navigation-menu-item-title {
+	margin: 0;
+}
+
+.feed-navigation-menu-item-subtitle {
+	margin: 0;
+	font-weight: normal;
+}
