@@ -3,9 +3,9 @@ import { MessageBase, MessageType } from "./MessageBase";
 export class Message extends MessageBase {
 
     constructor(id,
-                byUserId,
-                toUserId,
-                replyToId,
+                byUser,
+                toUser,
+                replyTo,
                 time,
                 text,
                 status,
@@ -13,14 +13,14 @@ export class Message extends MessageBase {
                 ) {
 
         super(id,
-            byUserId,
+            byUser,
             MessageType.simple,
-            replyToId,
+            replyTo,
             time,
             text,
             status
         );
-        this.toUserId = toUserId;
+        this.toUser = toUser;
         this.viewStatus = viewStatus;
     }
 }

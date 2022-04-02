@@ -17,29 +17,19 @@ export const MessageViewStatus = {
 
 export class MessageBase {
 
-    /**
-     * message class base
-     * @param {int} id 
-     * @param {int} byUserId 
-     * @param {string} type simple or group message
-     * @param {int} replyToId 
-     * @param {Date} time 
-     * @param {string} text 
-     * @param {string} status 
-     */
     constructor(id,
-                byUserId,
+                byUser,
                 type,
-                replyToId,
+                replyTo,
                 time,
                 text,
                 status
                 ) {
 
         this.id = id;
-        this.byUserId = byUserId;
+        this.byUser = byUser;
         this.type = type,
-        this.replyToId = replyToId;
+        this.replyTo = replyTo;
         this.time = time;
         this.text = text;
         this.status = status;
@@ -52,10 +42,6 @@ export class MessageBase {
 
         // Message interactions
         this.likes = [];
-    }
-
-    get likesCount() {
-        return this.likes.length;
     }
 
     addMedia(media) {

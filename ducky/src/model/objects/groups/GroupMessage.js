@@ -3,45 +3,29 @@ import { MessageBase, MessageType } from "../messages/MessageBase";
 export class GroupMessage extends MessageBase {
 
     constructor(id,
-                byUserId,
-                toGroupId,
-                replyToId,
+                byUser,
+                toGroup,
+                replyTo,
                 time,
                 text,
                 status
                 ) {
 
         super(id,
-            byUserId,
+            byUser,
             MessageType.group,
-            replyToId,
+            replyTo,
             time,
             text,
             status
         );
-        this.toGroupId = toGroupId;
+        this.toGroup = toGroup;
 
         // Group message interaction
         this.likes = [];
         this.views = [];
         this.receptions = [];
         this.distributions = []; 
-    }
-
-    get likesCount() {
-        return this.likes.length;
-    }
-
-    get viewsCount() {
-        return this.views.length;
-    }
-
-    get receptionsCount() {
-        return this.receptions.length;
-    }
-
-    get distributionsCount() {
-        return this.distributions.length;
     }
 
     addLike(groupMessageLike) {

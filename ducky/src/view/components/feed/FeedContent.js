@@ -6,6 +6,7 @@ import { FeedContentStories } from "./FeedContentStories";
 import { Post } from "../../../model/objects/posts/Post";
 import { PostPrologue } from "../../../model/objects/posts/PostPrologue";
 import { User } from "../../../model/objects/users/User";
+import { Messages, MessagesStatus } from "../../../model/objects/messages/Messages";
 
 export class FeedContent extends React.Component {
 
@@ -21,7 +22,7 @@ export class FeedContent extends React.Component {
             'Ben',
             'Kabongo'
         );
-        user.profilePicture = require('../../../ressources/profil_test.png')
+        user.profilePicture = require('../../../ressources/profil_test.png');
 
         let postPrologue = new PostPrologue(user, 'a commenté');
 
@@ -56,12 +57,32 @@ export class FeedContent extends React.Component {
             postPrologue
         );
 
+        let messages = new Messages(
+            'abcdefghijklmnopqrstuvwxyz',
+            require('../../../ressources/profil_test.png'),
+            'Ben Kabongo',
+            new Date('15 Mars 2022'),
+            MessagesStatus.send
+        );
+
+
+        // 
+
 
         let content = null;
         switch(this.props.contentId) {
             case 1: // messages
                 content = (
-                    <FeedContentMessages />
+                    <FeedContentMessages 
+                        messagesList={[messages, messages, messages, messages, messages, messages,
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, messages, messages, messages, 
+                            messages, messages, messages, messages, ]} />
                 );
                 break;
             case 2: // stories

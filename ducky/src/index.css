@@ -307,15 +307,15 @@ body {
 	height: 100vh;
 }
 
-.feed-content-item {
-	display: flex;
-	flex-direction: row;
-}
-
-.feed-content-item-left-top {
+.feed-content-item-top {
 	width: 100%;
 	height: 8vh;
 	padding-left: 20px;
+}
+
+.feed-content-home {
+	display: flex;
+	flex-direction: row;
 }
 
 .feed-content-home-left {
@@ -550,4 +550,113 @@ body {
 
 .post-view-replies-preview {
 
+}
+
+/* MESSAGES */
+
+.feed-content-messages {
+
+}
+
+.feed-content-messages-main {
+	display: flex;
+	flex-direction: row;
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	height: 80vh;
+}
+
+.feed-content-messages-left {
+	width: 35vw;
+}
+
+.feed-content-messages-right {
+	width: 100%;
+}
+
+.feed-content-messages-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	margin-top: 20vh;
+}
+
+.feed-content-messages-empty-image {
+	width: 150px;
+}
+
+.feed-content-messages-empty span {
+	color: gray;
+}
+
+.feed-content-messages-empty-button {
+	color: white;
+	background-color: black;
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+	font-weight: bold;
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+}
+
+.messages-preview-list-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-right: 1px solid lightgray;
+	height: 100%;
+}
+
+.messages-preview-list-title {
+	border-bottom: 1px solid lightgray;
+	width: 100%;
+	text-align: center;
+}
+
+.messages-preview-list-content {
+	overflow-y: auto;
+	width: 100%;
+}
+
+.messages-preview-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid lightgray;
+	padding: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+.messages-preview-container:hover {
+	background-color: rgba(240, 240, 240, .8);
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+}
+
+.messages-preview-image {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.messages-preview-infos {
+	margin-left: 3px;
+}
+
+.messages-preview-infos-title {
+	font-weight: bold;
+}
+
+.messages-preview-infos-status {
+	color: gray;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.messages-preview-infos-status-image {
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
 }
