@@ -1,4 +1,6 @@
 import React from "react";
+import { NotificationListView } from "../notifications/NotificationListView";
+import { FeedMoreMenu } from "./FeedMoreMenu";
 
 export class FeedNavigation extends React.Component {
 
@@ -51,19 +53,21 @@ export class FeedNavigation extends React.Component {
                             src={require('../../../ressources/icons/message.png')}
                              /> 
                     </div>
-                    <div className='feed-navigation-menu-item'>
+                    <div className='feed-navigation-menu-item feed-notifications-container'>
                         <input 
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/notification.png')}
                              /> 
+                        <NotificationListView notifications={this.props.notifications} />
                     </div>
-                    <div className='feed-navigation-menu-item'>
+                    <div className='feed-navigation-menu-item feed-more-menu-container'>
                         <input 
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/more.png')}
                              /> 
+                        <FeedMoreMenu />
                     </div>
                 </div>
                 <div className='feed-navigation-actions-bar'>

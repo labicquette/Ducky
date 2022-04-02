@@ -8,7 +8,7 @@ export class Feed extends React.Component {
         super(props);
         this.state = {
             search: '',
-            contentId: 2, 
+            contentId: 0, 
         };
 
         this.handleSearchBarChange.bind(this);
@@ -59,7 +59,8 @@ export class Feed extends React.Component {
                     onClickMessages={() => this.onClickMessages()}
                     onClickNotifications={() => this.onClickNotifications()}
                     onClickProfil={() => this.onClickProfil()}
-                    onClickMore={() => this.onClickMore()} />
+                    onClickMore={() => this.onClickMore()} 
+                    notifications={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}/>
                 <FeedContent
                     contentId={this.state.contentId} />
             </div>
