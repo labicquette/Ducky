@@ -7,6 +7,7 @@ import { Post } from "../../../model/objects/posts/Post";
 import { PostPrologue } from "../../../model/objects/posts/PostPrologue";
 import { User } from "../../../model/objects/users/User";
 import { Messages, MessagesStatus } from "../../../model/objects/messages/Messages";
+import { Stories } from "../../../model/objects/stories/Stories";
 
 export class FeedContent extends React.Component {
 
@@ -61,10 +62,20 @@ export class FeedContent extends React.Component {
             'abcdefghijklmnopqrstuvwxyz',
             require('../../../ressources/profil_test.png'),
             'Ben Kabongo',
-            new Date('15 Mars 2022'),
+            new Date('02 April 2022 13:49'),
             MessagesStatus.send
         );
 
+        let stories = new Stories(
+            'abcdefghijklmnopqrstuvwxyz',
+            require('../../../ressources/profil_test.png'),
+            'Ben Kabongo',
+            new Date('02 April 2022 13:49'),
+            false,
+            false
+        )
+
+        stories.addStorie([1, 2, 3])
 
         // 
 
@@ -87,8 +98,10 @@ export class FeedContent extends React.Component {
                 break;
             case 2: // stories
                 content = (
-                    <FeedContentStories />
+                    <FeedContentStories 
+                        storiesList={[stories, stories, stories, stories, stories, stories]}/>
                 );
+                break;
             default: // home
                 content = (
                     <FeedContentHome 

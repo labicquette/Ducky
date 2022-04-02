@@ -8,7 +8,7 @@ export class Feed extends React.Component {
         super(props);
         this.state = {
             search: '',
-            contentId: 1, 
+            contentId: 2, 
         };
 
         this.handleSearchBarChange.bind(this);
