@@ -774,3 +774,53 @@ body {
 	height: 15px;
 	margin-right: 5px;
 }
+
+.feed-content-friends {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.feed-content-friends-top {
+	width: max-content;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.feed-content-friends-top-image {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+
+.feed-content-friends-main {
+	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border-radius: 8px;
+	height: 75vh;
+	width: 35vw;
+}
+
+.follows-view-list-titles-bar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1px solid lightgray;
+}
+
+.follows-view-list-title {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 10px 10px 10px 10px;
+}
+
+.follows-view-list-title-select {
+	border-bottom: 3px solid black;
+}
+
+.follows-view-list-title-value {
+	font-weight: bold;
+}

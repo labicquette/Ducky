@@ -16,7 +16,8 @@ export class FeedNavigation extends React.Component {
                         type='button'
                         src={require('../../../ressources/ducky.png')}
                         alt='Ducky'
-                        title='Ducky' />
+                        title='Ducky'
+                        onClick={this.props.handleHome} />
                 </div>   
                 <div className='feed-navigation-search-bar'>
                     <input
@@ -30,28 +31,28 @@ export class FeedNavigation extends React.Component {
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/home.png')}
-                             /> 
+                            onClick={this.props.handleHome} /> 
                     </div>
                     <div className='feed-navigation-menu-item'>
                         <input 
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/profil.png')}
-                             /> 
+                            onClick={this.props.handleProfil} /> 
                     </div>
                     <div className='feed-navigation-menu-item'>
                         <input 
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/friends.png')}
-                             /> 
+                            onClick={this.props.handleFriends} /> 
                     </div>
                     <div className='feed-navigation-menu-item'>
                         <input 
                             className='feed-navigation-menu-item-image'
                             type='image'
                             src={require('../../../ressources/icons/message.png')}
-                             /> 
+                            onClick={this.props.handleMessages} /> 
                     </div>
                     <div className='feed-navigation-menu-item feed-notifications-container'>
                         <input 
@@ -67,7 +68,11 @@ export class FeedNavigation extends React.Component {
                             type='image'
                             src={require('../../../ressources/icons/more.png')}
                              /> 
-                        <FeedMoreMenu />
+                        <FeedMoreMenu 
+                            handleSuggestions={() => this.props.handleSuggestions()} 
+                            handleStatistics={() => this.props.handleStatistics()} 
+                            handleParameters={() => this.props.handleParameters()}
+                            handleLogOut={() => this.props.handleLogOut()} />
                     </div>
                 </div>
                 <div className='feed-navigation-actions-bar'>

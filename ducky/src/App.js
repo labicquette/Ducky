@@ -20,6 +20,7 @@ export default class App extends React.Component {
 		this.forgotPassword.bind(this);
 		this.setMode.bind(this);
 		this.signIn.bind(this);
+		this.handleLogOut.bind(this);
 	}
 
 	signIn(username, password) {
@@ -41,6 +42,10 @@ export default class App extends React.Component {
 	forgotPassword(username) {
 		// forgot password gestion
 		this.setMode(2);
+	}
+
+	handleLogOut() {
+
 	}
 
 	render() {
@@ -83,7 +88,7 @@ export default class App extends React.Component {
 		else {
 			content = (
 				<div className='feed'>
-					<Feed />
+					<Feed handleLogOut={() => this.handleLogOut()}/>
 				</div>
 			);
 		}

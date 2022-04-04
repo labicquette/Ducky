@@ -8,6 +8,7 @@ import { PostPrologue } from "../../../model/objects/posts/PostPrologue";
 import { User } from "../../../model/objects/users/User";
 import { Messages, MessagesStatus } from "../../../model/objects/messages/Messages";
 import { Stories } from "../../../model/objects/stories/Stories";
+import { FeedContentFriends } from "./FeedContentFriends";
 
 export class FeedContent extends React.Component {
 
@@ -82,7 +83,15 @@ export class FeedContent extends React.Component {
 
         let content = null;
         switch(this.props.contentId) {
-            case 1: // messages
+
+            case 'stories':
+                content = (
+                    <FeedContentStories 
+                        storiesList={[stories, stories, stories, stories, stories, stories]}/>
+                );
+                break;
+
+            case 'messages':
                 content = (
                     <FeedContentMessages 
                         messagesList={[messages, messages, messages, messages, messages, messages,
@@ -96,12 +105,25 @@ export class FeedContent extends React.Component {
                             messages, messages, messages, messages, ]} />
                 );
                 break;
-            case 2: // stories
-                content = (
-                    <FeedContentStories 
-                        storiesList={[stories, stories, stories, stories, stories, stories]}/>
-                );
+
+            case 'profil':
                 break;
+
+            case 'friends':
+                content = (
+                    <FeedContentFriends />
+                )
+                break;
+
+            case 'suggestions':
+                break;
+
+            case 'statistics':
+                break;
+
+            case 'parameters':
+                break;
+
             default: // home
                 content = (
                     <FeedContentHome 

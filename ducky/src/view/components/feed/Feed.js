@@ -8,16 +8,11 @@ export class Feed extends React.Component {
         super(props);
         this.state = {
             search: '',
-            contentId: 0, 
+            contentId: 'home', 
         };
 
         this.handleSearchBarChange.bind(this);
-        this.onClickHome.bind(this);
-        this.onClickFriends.bind(this);
-        this.onClickMessages.bind(this);
-        this.onClickNotifications.bind(this);
-        this.onClickProfil.bind(this);
-        this.onClickMore.bind(this);
+        this.setContentId.bind(this);
     }
 
     handleSearchBarChange(event) {
@@ -25,28 +20,8 @@ export class Feed extends React.Component {
         this.setState({search: event.value});
     }
 
-    onClickHome() {
-
-    }
-
-    onClickFriends() {
-
-    }
-
-    onClickMessages() {
-
-    }
-
-    onClickNotifications() {
-
-    }
-
-    onClickProfil() {
-
-    }
-
-    onClickMore() {
-
+    setContentId(id) {
+        this.setState({contentId: id});
     }
 
     render() {
@@ -54,15 +29,18 @@ export class Feed extends React.Component {
             <div className='feed'>
                 <FeedNavigation
                     handleSearchBarChange={(e) => this.handleSearchBarChange(e)}   
-                    onClickHome={() => this.onClickHome()}
-                    onClickFriends={() => this.onClickFriends()}
-                    onClickMessages={() => this.onClickMessages()}
-                    onClickNotifications={() => this.onClickNotifications()}
-                    onClickProfil={() => this.onClickProfil()}
-                    onClickMore={() => this.onClickMore()} 
+                    handleHome={() => this.setContentId('home')}
+                    handleMessages={() => this.setContentId('messages')}
+                    handleProfil={() => this.setContentId('profil')}
+                    handleFriends={() => this.setContentId('friends')}
+                    handleSuggestions={() => this.setContentId('suggestions')}
+                    handleStatistics={() => this.setContentId('statistics')}
+                    handleParameters={() => this.setContentId('parameters')}
+                    handleLogOut={() => this.props.handleLogOut()}
                     notifications={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}/>
                 <FeedContent
-                    contentId={this.state.contentId} />
+                    contentId={this.state.contentId} 
+                    onClickStories={() => this.setContentId('stories')}/>
             </div>
         );
     }
