@@ -1,5 +1,5 @@
 const express = require("express");
-const Users = require("./entities/users.js");
+const Users = require("./users.js");
 
 function init(db) {
     const router = express.Router();
