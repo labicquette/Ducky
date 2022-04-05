@@ -2,9 +2,9 @@ express = require('express');
 const app = express();
 const port = 4444;
 
-const posts = require("./entities/posts")
-
-
+const posts = require("./entities/posts");
+const users = require("./entities/users");
+const login = require("./entities/login");
 
 // On utilise JSON
 app.use(express.json());
@@ -18,10 +18,8 @@ app.use((req, res, next) => {
 
 
 app.use("/posts", posts);
-
-app.get("/posts",(req, res) => {
-  res.send("hello there");
-});
+app.use("/users", users);
+app.use("/login", login);
 
 
 
