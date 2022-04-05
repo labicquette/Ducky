@@ -1,25 +1,10 @@
+const express = require("express")
+let router = express.Router();
 
-class Posts {
-    constructor(db){
-    this.db = db
-    }
+router.get("", (req, res) => {
+    res.send("hello there its posts")
+});
 
-    create(params){
-        return new Promise((resolve, reject) => {
-            let postid = 1;
-            if(false){
-                reject();
-            } else{
-                resolve(postid);
-            }
-        });
-    }
-}
 
-function init(db){
-const router = express.Router();
-}
-
-    
-
+module.exports = router 
 

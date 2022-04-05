@@ -1,11 +1,11 @@
 {
-  "name": "touitere",
+  "name": "ducky",
   "version": "1.0.0",
-  "description": "Mon app touitère côté serveur",
+  "description": "Mon app Ducky côté serveur",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "serve": "node src/index.js"
+    "server": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
