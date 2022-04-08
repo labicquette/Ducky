@@ -1,7 +1,7 @@
 export class PollItemVote {
 
-    constructor(userId, time) {
-        this.userId = userId;
+    constructor(user_id, time) {
+        this.user_id = user_id;
         this.time = time;
     }
 }
@@ -47,13 +47,13 @@ export class Poll {
     }
 
     updateProporitionsItems() {
-        votesCount = 0;
+        votes_count = 0;
         for (let item of this.items)
-            votesCount += item.votes.length;
+            votes_count += item.votes.length;
 
-        if (votesCount > 0) {
+        if (votes_count > 0) {
             for (let item of this.items)
-                item.proportion = item.votes.length / votesCount;
+                item.proportion = item.votes.length / votes_count;
         }
     }
 }

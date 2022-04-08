@@ -3,7 +3,7 @@ export class StorieGroupMember {
     constructor(user_id, time, deleted) {
         this.user_id = user_id;
         this.time = time;
-        this.deleted = deleted;
+        this.deleted = deleted || false;
     }
 }
 
