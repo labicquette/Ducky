@@ -3,12 +3,13 @@ import { FeedContentHome } from "./FeedContentHome";
 import { FeedContentMessages } from "./FeedContentMessages";
 import { FeedContentStories } from "./FeedContentStories";
 
-import { Post } from "../../../model/objects/posts/Post";
+import { Post } from "../../../model/objects/Post";
 import { PostPrologue } from "../../../model/objects/posts/PostPrologue";
-import { User } from "../../../model/objects/users/User";
+import { User } from "../../../model/objects/User";
 import { Messages, MessagesStatus } from "../../../model/objects/messages/Messages";
 import { Stories } from "../../../model/objects/stories/Stories";
 import { FeedContentFriends } from "./FeedContentFriends";
+import { FeedContentProfil } from "./FeedContentProfil";
 
 export class FeedContent extends React.Component {
 
@@ -25,6 +26,13 @@ export class FeedContent extends React.Component {
             'Kabongo'
         );
         user.profilePicture = require('../../../ressources/profil_test.png');
+        user.biography = '🌚 Viens voir la vie en vrai \n' +
+        '🎂 25 décembre \n' +
+        '🎓Étudiant à Sorbonne Université \n' +
+        '😎 Veni vidi vici \n' +
+        'www.facebook.com/benkabongo25';
+        user.followers = [1, 2, 3, 4, 5];
+        user.following = [1, 2, 3, 4, 5, 6];
 
         let postPrologue = new PostPrologue(user, 'a commenté');
 
@@ -107,11 +115,18 @@ export class FeedContent extends React.Component {
                 break;
 
             case 'profil':
+                content = (
+                    <FeedContentProfil 
+                        user={user}
+                        posts={[post, post, post, post]} />
+                );
                 break;
 
             case 'friends':
                 content = (
-                    <FeedContentFriends />
+                    <FeedContentFriends 
+                        followers={[1, 2, 3, 4, 5]} 
+                        followings={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]} />
                 )
                 break;
 

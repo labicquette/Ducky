@@ -1,5 +1,5 @@
 import React from "react";
-import { PostStatus } from "../../../model/objects/posts/Post";
+import { PostStatus } from "../../../model/objects/Post";
 
 export class PostViewSimple extends React.Component {
 

@@ -1,9 +1,10 @@
 body {
   	margin: 0;
   	padding: 0;
-  	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  	font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen",
     	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     	sans-serif;
+	font-size: 14px;
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -16,24 +17,24 @@ body {
 
 .sign-page-root {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	margin: 0;
 	padding: 0;
-	height: max-content;
-	background-color: beige;
+	height: 100vh;
+	background-color: rgba(240, 240, 240, .5);
 }
 
 .sign {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 100%;
+	width: 40vw;
 	padding: 3% 7% 3% 7%;
-	margin: 10% 20% 10% 20%;
+	margin-top: 10vh;
 	background-color: white;
 	border-radius: 8px;
-	box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+	border: 1px solid lightgray;
 }
 
 .sign-top {
@@ -54,7 +55,7 @@ body {
 }
 
 .sign-content h3 {
-	font-size: 18px;
+	font-size: 16px;
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -64,8 +65,8 @@ body {
 	width: 100%;
 	border: 1px solid lightgray;
 	border-radius: 7px;
-	font-size: 16px;
-	padding: 10px 20px 10px 20px;
+	font-size: 14px;
+	padding: 1% 2% 1% 2%;
 	outline: none;
 	background: none;
 	background-color: white;
@@ -73,8 +74,8 @@ body {
 
 .form-sign-input-label {
 	color: black;
-	font-size: 16px;
-	margin: 10px 0 10px 0;
+	font-size: 14px;
+	margin: 5% 0 5% 0;
 }
 
 .sign-button-bar {
@@ -99,9 +100,8 @@ body {
 	padding: 10px 20px 10px 20px;
 	border-radius: 20px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 	border: none;
 }
 
@@ -118,6 +118,7 @@ body {
 .negative {
 	background-color: white;
 	color: black;
+	border: 2px solid lightgray;
 }
 
 .select-label {
@@ -142,7 +143,7 @@ body {
 /* POSTS EDITOR */
 
 .post-edit-container {
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	border-radius: 8px;
 	margin-top: 10px;
 	margin-bottom: 20px;
@@ -165,7 +166,7 @@ body {
 }
 
 .post-edit-text {
-	font-size: 18px;
+	font-size: 16px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
@@ -217,11 +218,11 @@ body {
 	padding: 10px 20px 10px 20px;
 	border-radius: 10px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	background-color: black;
 	color: white;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	border: none;
 	position: absolute;
 	right: 25vw;
@@ -241,7 +242,7 @@ body {
 	font-size: 14px;
 	border-radius: 8px;
 	min-width: 200px;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	background-color: white;
 }
 
@@ -266,7 +267,7 @@ body {
 }
 
 .feed-more-menu-item:hover {
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	background-color: rgba(248, 248, 248, 1);
 	border-radius: 8px;
 }
@@ -292,7 +293,7 @@ body {
 	right: 15vw;
 	min-width: 30vw;
 	background-color: rgba(255, 255, 255, 1);
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	border-radius: 8px;
 }
 
@@ -337,7 +338,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	padding: 1% 2% 1% 2%;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	background-color: rgba(248, 248, 248, 1);
 }
 
@@ -356,7 +357,7 @@ body {
 
 .feed-navigation-search-bar-input {
 	border-radius: 3px;
-	font-size: 16px;
+	font-size: 14px;
 	outline: none;
 	padding: 10px 10px 10px 10px;
 	width: 20vw;
@@ -383,7 +384,7 @@ body {
 }
 
 .feed-navigation-menu-item:hover {
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	border-radius: 8px;
 }
 
@@ -423,7 +424,7 @@ body {
 }
 
 .feed-content-home-right {
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	height: fit-content;
 	padding: 10px 10px 10px 10px;
 	width: 100%;
@@ -465,7 +466,7 @@ body {
 	width: 100%;
 	text-align: center;
 	padding: 10px 10px 10px 10px;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	background-color: white;
 	color: black;
@@ -499,14 +500,13 @@ body {
 	margin: 0 2px 0 2px;
 	border: solid 1px lightgray;
 	border-radius: 5px;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 	display: grid;
 	grid-template-rows: 3fr 1fr;
 	transition: transform .2s;
 }
 
 .storie-preview-container:hover {
-	transform: scale(1.2);
+	background-color: rgba(240, 240, 240, .5);
 }
 
 .storie-preview-content {
@@ -530,7 +530,7 @@ body {
 	margin: 4px 2px 4px 2px;
 	border: solid 1px lightgray;
 	border-radius: 5px;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	padding: 10px 20px 10px 20px;
 	margin: 20px 0 20px 0;
 	transition: transform .5s;
@@ -546,6 +546,7 @@ body {
 	flex-direction: row;
 	align-items: center;
 	margin-bottom: 5px;
+	padding: 5px 5px 5px 5px;
 }
 
 .post-view-prologue-image {
@@ -610,13 +611,19 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-weight: bold;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .post-view-content-content-post-infos-item-image {
 	width: 20px;
-	margin: 0px 2px 0px 2px;
+	margin-right: 2px;
+	display: none;
+}
+
+
+.post-view-content-content-post-infos-item span {
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 .post-view-content-content-body {
@@ -653,7 +660,7 @@ body {
 .feed-content-stories-main {
 	display: flex;
 	flex-direction: row;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	height: 80vh;
 }
 
@@ -696,7 +703,7 @@ body {
 	padding: 10px 10px 10px 10px;
 	margin: 10px 10px 10px 10px;
 	font-weight: bold;
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 }
 
 .feed-content-messages-empty-button:hover,
@@ -741,7 +748,7 @@ body {
 .messages-preview-container:hover,
 .stories-preview2-container:hover {
 	background-color: rgba(240, 240, 240, .8);
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 }
 
 .messages-preview-image,
@@ -775,10 +782,17 @@ body {
 	margin-right: 5px;
 }
 
+
+
 .feed-content-friends {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	height: 100%;
+}
+
+.feed-content-friends-main {
+	height: 100%;
 }
 
 .feed-content-friends-top {
@@ -796,7 +810,7 @@ body {
 }
 
 .feed-content-friends-main {
-	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
+	border: 1px solid lightgray;
 	border-radius: 8px;
 	height: 75vh;
 	width: 35vw;
@@ -823,4 +837,192 @@ body {
 
 .follows-view-list-title-value {
 	font-weight: bold;
+}
+
+.follows-view-list-content {
+	height: 65vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 0 5px 0 5px;
+}
+
+
+.follow-view-item-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.follow-view-item-image {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+.follow-view-item-names {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.follow-view-item-names-names {
+	font-weight: bold;
+}
+
+.follow-view-item-menu-image {
+	width: 15px;
+	height: 15px;
+}
+
+.follow-view-item-menu-content {
+	display: none;
+}
+
+.follow-view-item-action-item {
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.follow-view-item-action-item:hover {
+	opacity: 0.7;
+}
+
+.follow-view-item-action-item-postive {
+	color: black;
+	background-color: white;
+}
+
+.follow-view-item-action-item-negative {
+	color: white;
+	background-color: black;
+}
+
+
+
+.feed-content-profil {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.user-profil-view-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50vw;
+}
+
+.user-profil-view-header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.user-profil-view-header-image {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	margin: 0px 100px 0px 100px;
+}
+
+.user-profil-view-header-infos {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.user-profil-view-header-infos-names {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-profil-view-header-infos-names-names {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.user-profil-view-header-infos-names-username {
+	color: gray;
+	font-size: 15px;
+}
+
+.user-profil-view-header-infos-counters {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.user-profil-view-header-infos-counters-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 10px;
+}
+
+.user-profil-view-header-infos-counters-item .value {
+	font-weight: bold;
+}
+
+.user-profil-view-header-infos-bibliography {
+	white-space: pre-line;
+	margin-top: 20px;
+}
+
+.user-profil-view-header-infos-bibliography h4 {
+	margin: 0;
+}
+
+.user-profil-view-header-infos-actions {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.user-profil-view-header-infos-action-item {
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	margin-right: 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.user-profil-view-header-infos-action-item:hover {
+	opacity: 0.7;
+}
+
+.user-profil-view-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.user-profil-view-content-navigation {
+	display: flex;
+	flex-direction: row;
+	align-items: center;	
+	width: 100%;
+	border-top: 1px solid lightgray;
+	margin-top: 20px;
+}
+
+.user-profil-view-content-navigation-item {
+	width: 100%;
+	text-align: center;
+	height: 100%;
+}
+
+.user-profil-view-content-navigation-item span {
+	font-weight: bold;
+	font-size: 14px;
+	margin-top: 20px;
 }

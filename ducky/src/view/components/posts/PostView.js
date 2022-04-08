@@ -1,5 +1,5 @@
 import React from "react";
-import { PostStatus } from "../../../model/objects/posts/Post";
+import { PostStatus } from "../../../model/objects/Post";
 import { PostViewSimple } from "./PostViewSimple";
 
 export class PostView extends React.Component {
@@ -109,7 +109,9 @@ export class PostView extends React.Component {
                             </div>
                             <div className='post-view-content-content-header-post-infos'>
                                 {postLocationContent}
+                                <span> · </span>
                                 {postAudienceContent}
+                                <span> · </span>
                                 {postTimeContent}
                             </div>
                         </div>
