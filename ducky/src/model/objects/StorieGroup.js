@@ -1,15 +1,9 @@
-export const StorieGroupMemberStatus = {
-    member: 'member',
-    deleted: 'deleted',
-    left: 'left'
-};
-
 export class StorieGroupMember {
 
-    constructor(user_id, time, status) {
+    constructor(user_id, time, deleted) {
         this.user_id = user_id;
         this.time = time;
-        this.status = status;
+        this.deleted = deleted;
     }
 }
 
@@ -26,7 +20,6 @@ export class StorieGroup {
         this.description = description;
         this.creationTime = creationTime;
         this.deleted = false;
-
         this.members = [];
     }
 }

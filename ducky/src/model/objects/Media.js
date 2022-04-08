@@ -1,8 +1,8 @@
 export const MediaType = {
-    audio: 'Audio',
-    document: 'Document',
-    image: 'Image',
-    video: 'Vdieo'
+    audio: 'audio',
+    document: 'document',
+    image: 'image',
+    video: 'video'
 }
 
 export class Media {
