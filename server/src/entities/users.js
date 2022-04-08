@@ -1,67 +1,25 @@
-class Users {
-  constructor(db) {
-    this.db = db
-    // suite plus tard avec la BD
-  }
+const express = require("express")
+let router = express.Router();
 
-  create(login, password, lastname, firstname) {
-    return new Promise((resolve, reject) => {
-      let userid = 1; // À remplacer par une requête bd
-      if(false) {
-        //erreur
-        reject();
-      } else {
-        resolve(userid);
-      }
-    });
-  }
+router.get("", (req, res) => {
+    res.send("return list of users");
+});
 
-  get(userid) {
-    return new Promise((resolve, reject) => {
-      const user = {
-         login: "pikachu",
-         password: "1234",
-         lastname: "chu",
-         firstname: "pika"
-      }; // À remplacer par une requête bd
+router.post("", (req,res)  => {
+    res.send("new user");
+});
 
-      if(false) {
-        //erreur
-        reject();
-      } else {
-        if(userid == 1) {
-          resolve(user);
-        } else {
-          resolve(null);
-        }
-      }
-    });
-  }
+router.delete("/:userid", (req, res) => {
+    res.send("user deleted");
+});
 
-  async exists(login) {
-    return new Promise((resolve, reject) => {
-      if(false) {
-        //erreur
-        reject();
-      } else {
-        resolve(true);
-      }
-    });
-  }
+router.get("/:userid", (req, res) =>{
+    res.send("get 1 user");
+});
 
-  checkpassword(login, password) {
-    return new Promise((resolve, reject) => {
-      let userid = 1; // À remplacer par une requête bd
-      if(false) {
-        //erreur
-        reject();
-      } else {
-        resolve(userid);
-      }
-    });
-  }
+router.patch("/:userid", (req, res)=>{
+    //requete bd patch 
+    res.send("patched user");
+});
 
-}
-
-exports.default = Users;
-
+module.exports = router 

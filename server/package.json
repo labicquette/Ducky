@@ -1,11 +1,11 @@
 {
-  "name": "touitere",
+  "name": "ducky",
   "version": "1.0.0",
-  "description": "Mon app touitère côté serveur",
+  "description": "Mon app Ducky côté serveur",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "serve": "node src/index.js"
+    "server": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mocha": "^8.3.0",
+    "nedb": "^1.8.0",
     "path": "^0.12.7"
   }
 }

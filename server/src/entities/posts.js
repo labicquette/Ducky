@@ -1,25 +1,26 @@
+const express = require("express")
+let router = express.Router();
 
-class Posts {
-    constructor(db){
-    this.db = db
-    }
+router.get("", (req, res) => {
+    res.send("return list of posts");
+});
 
-    create(params){
-        return new Promise((resolve, reject) => {
-            let postid = 1;
-            if(false){
-                reject();
-            } else{
-                resolve(postid);
-            }
-        });
-    }
-}
+router.post("", (req,res)  => {
+    res.send("new post");
+});
 
-function init(db){
-const router = express.Router();
-}
+router.delete("/:postid", (req, res) => {
+    res.send("post deleted");
+});
 
-    
+router.get("/:postid", (req, res) =>{
+    res.send("get 1 post");
+});
 
+router.patch("/:postid", (req, res)=>{
+    //requete bd patch 
+    res.send("patched post");
+});
+
+module.exports = router 
 
