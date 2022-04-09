@@ -4,6 +4,17 @@ import { PostViewList } from "../posts/PostViewList";
 export class UserProfilView extends React.Component {
 
     render() {
+        let privateContent= null;
+        if (this.props.user.private) {
+            privateContent = (
+                <div className='user-profil-view-header-infos-private'>
+                    <img 
+                        className='user-profil-view-header-infos-private-image' 
+                        src={require('../../../ressources/icons/private.png')} />
+                </div>
+            );
+        }
+
         let actionsContent;
         if (this.props.me) {
             actionsContent = (
@@ -52,16 +63,19 @@ export class UserProfilView extends React.Component {
             <div className='user-profil-view-container'>
                 <div className='user-profil-view-header'>
                     <img
-                        src={this.props.user.profilePicture} 
+                        src={this.props.user.profil_picture_src} 
                         className='user-profil-view-header-image' />
                     <div className='user-profil-view-header-infos'>
-                        <div className='user-profil-view-header-infos-names'>
-                            <span className='user-profil-view-header-infos-names-names'>
-                                {this.props.user.names}
-                            </span>
-                            <span className='user-profil-view-header-infos-names-username'>
-                                {this.props.user.username}
-                            </span>
+                        <div className='user-profil-view-header-infos-names-private'>
+                            <div className='user-profil-view-header-infos-names'>
+                                <span className='user-profil-view-header-infos-names-names'>
+                                    {this.props.user.names}
+                                </span>
+                                <span className='user-profil-view-header-infos-names-username'>
+                                    {this.props.user.username}
+                                </span>
+                            </div>
+                            {privateContent}
                         </div>
                         <div className='user-profil-view-header-infos-counters'>
                             <div className='user-profil-view-header-infos-counters-item'>
@@ -69,17 +83,20 @@ export class UserProfilView extends React.Component {
                                 <span>Publications</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.props.user.followers.length}</span>
+                                <span className='value'>{0}</span>
                                 <span>Abonnés</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.props.user.followings.length}</span>
+                                <span className='value'>{0}</span>
                                 <span>Abonnements</span>
                             </div>
                         </div>
-                        <div className='user-profil-view-header-infos-bibliography'>
+                        <div className='user-profil-view-header-infos-biography'>
                             <h4>Intro</h4>
-                            {this.props.user.biography}
+                            {
+                                (this.props.user.biography) ? 
+                                this.props.user.biography : 'Aucune biographie.'
+                            }
                         </div>
                         {actionsContent}
                     </div>

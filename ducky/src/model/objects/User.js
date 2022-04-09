@@ -11,7 +11,7 @@ export class User {
                 firstname, 
                 lastname, 
                 sex, 
-                profile_picture_src,
+                profil_picture_src,
                 phone, 
                 mail, 
                 city,
@@ -27,7 +27,7 @@ export class User {
         this.lastname = lastname;
         this.names = this.firstname + ' ' + this.lastname;
         this.sex = sex;
-        this.profile_picture_src = profile_picture_src;
+        this.profil_picture_src = profil_picture_src;
         this.phone = phone;
         this.mail = mail;
         this.city = city;
@@ -62,6 +62,15 @@ export class User {
         this.stories_groups = [];
         this.posts          = [];
         this.posts_by       = [];
+    }
+
+    static fromJSON(userObject) {
+        let user = new User();
+        for (let att in userObject) {
+            user[att] = userObject[att];
+            user.names = userObject.firstname + ' ' + userObject.lastname;
+        }
+        return user;
     }
 
     setBan(start, end, reason) {

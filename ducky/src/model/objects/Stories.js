@@ -1,6 +1,6 @@
 export class StorieView {
 
-    constructor(storie, view) {
+    constructor(storie, view, time) {
         this.storie = storie;
         this.view = view;
         this.time = time;

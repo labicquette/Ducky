@@ -7,7 +7,8 @@ export class PostEdit extends React.Component {
             <div className='post-edit-container'>
                 <div className='post-edit-profil'>
                     <img
-                        src={require('../../../ressources/profil_test.png')} />
+                        src={this.props.user.profil_picture_src} 
+                        className='post-edit-profil-image'/>
                 </div>
                 <div className='post-edit-sub-container'>
                     <div className='post-edit-text-container'>

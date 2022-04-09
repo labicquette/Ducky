@@ -8,7 +8,7 @@ export class FeedContentFriends extends React.Component {
             <div className='feed-content-item feed-content-friends'> 
                 <div className='feed-content-item-top feed-content-friends-top'>
                     <img 
-                        src={require('../../../ressources/profil_test.png')}
+                        src={this.props.user.profil_picture_src}
                         className='feed-content-friends-top-image'/>
                     <h3>Abonnés et Abonnements</h3>
                 </div>

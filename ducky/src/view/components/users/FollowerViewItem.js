@@ -14,11 +14,15 @@ export class FollowerViewItem extends React.Component {
         return (
             <div className='follow-view-item-container'>
                 <img
-                    src={require('../../../ressources/profil_test.png')}
+                    src={this.props.follower.profil_picture_src}
                     className='follow-view-item-image' />
                 <div className='follow-view-item-names'>
-                    <span className='follow-view-item-names-names'>{'Ben Kabongo'}</span>
-                    <span className='follow-view-item-names-username'>{'benkabongo25'}</span>
+                    <span className='follow-view-item-names-names'>
+                        {this.props.follower.names}
+                    </span>
+                    <span className='follow-view-item-names-username'>
+                        {this.props.follower.username}
+                    </span>
                 </div>
                 <div className='follow-view-item-actions'>
                     <input

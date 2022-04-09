@@ -14,7 +14,7 @@ export class StoriePreviewList extends React.Component {
                     <div className='storie-preview-container'>
                         <div className='storie-preview-content'>
                             <img
-                                src={require('../../../ressources/profil_test.png')} />
+                                src={this.props.user.profil_picture_src} />
                         </div>
                         <div className='storie-preview-title'>
                             <span>Créer une nouvelle storie</span>
