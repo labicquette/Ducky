@@ -6,24 +6,34 @@ let router = express.Router();
 
 
 router.get("", (req, res) => {
-    db.users.get().then((user) => res.send({user: user}));
+    db.users.getUsers(req.body).
+    then((users) => res.send(users))
+    .catch((error) => res.send(error));
 });
 
 router.post("", (req,res)  => {
-    db.users.create().then((user) => res.status(201).send({user: user}));
+    db.users.create(req.body)
+    .then((user) => res.status(201).send({user: user.username}))
+    .catch((error) => res.send(error));
 });
 
-router.delete("/:userid", (req, res) => {
-    res.send("user deleted");
+router.delete("/:username", (req, res) => {
+    db.users.delete({username: req.params.username})
+    .then((status) => res.status(201).send(status))
+    .catch((error) => res.send(error));
 });
 
-router.get("/:userid", (req, res) =>{
-    res.send("get 1 user");
+router.get("/:username", (req, res) =>{
+    db.users.getUser({username: req.params.username})
+    .then((user) => res.status(201).send(user))
+    .catch((error) => res.send(error));
 });
 
-router.patch("/:userid", (req, res)=>{
+router.patch("/:username", (req, res)=>{
     //requete bd patch 
-    res.send("patched user");
+    db.users.update(req.params.username, req.body)
+    .then((user)=> res.sendStatus(201).send(user))
+    .catch((error) => res.send(error));
 });
 
 return router

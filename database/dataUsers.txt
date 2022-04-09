@@ -1,0 +1,7 @@
+{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
+{"$$indexCreated":{"fieldName":"phone","unique":true,"sparse":false}}
+{"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
+{"$$indexCreated":{"fieldName":"sex","unique":true,"sparse":false}}
+{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
+{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
+{"username":"labicquette","sex":"pacha","_id":"HNKaWMBAlfYGUUDx"}

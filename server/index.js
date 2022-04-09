@@ -15,8 +15,11 @@ const Users = require("./entities/users");
 //const Login = require("./entities/login");
 
 const db = {} 
-db.users = new DataStore({ filename: '../../database/dataUsers.txt', autoload: true });
-db.posts = new DataStore({ filename: '../../database/dataPosts.txt', autoload: true });
+db.users = new DataStore({filename: '../database/dataUsers.txt', autoload: true});
+db.users.ensureIndex({fieldName: 'username',fieldName: 'mail',fieldName:'phone', unique: true})
+
+
+db.posts = new DataStore({filename: '../database/dataPosts.txt', autoload: true});
 
 dbInterface = {}
 dbInterface.users = new Users(db)
