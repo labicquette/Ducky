@@ -1,5 +1,5 @@
 import React from "react";
-import { MessagesStatus } from "../../../model/objects/messages/Messages";
+import { MessagesStatus } from "../../../model/objects/Messages";
 import { dateDifference } from "../../../model/utils";
 
 export class MessagesPreview extends React.Component {

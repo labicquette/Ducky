@@ -18,10 +18,10 @@ export class FeedContentHome extends React.Component {
                     </div>
                     <div className='feed-content-home-left-main'>
                         <div className='feed-content-post-edit-container'>
-                            <PostEdit />
+                            <PostEdit user={this.props.user} />
                         </div>
                         <div className='feed-content-storie-preview-list-container'>
-                            <StoriePreviewList stories={this.props.stories} />
+                            <StoriePreviewList user={this.props.user} stories={this.props.stories} />
                         </div>
                         <div className='feed-content-post-view-list-container'>
                             <PostViewList posts={this.props.posts}/>
@@ -32,11 +32,11 @@ export class FeedContentHome extends React.Component {
                     <div className='feed-content-home-right-item'>
                         <div className='feed-content-user-infos'>
                             <img
-                                src={require('../../../ressources/profil_test.png')} 
+                                src={this.props.user.profil_picture_src} 
                                 className='feed-content-user-infos-image'/>
                             <div className='feed-content-user-infos-names'>
-                                <h4>Ben Kabongo</h4>
-                                <h5>@benkabongo25</h5>
+                                <h4>{this.props.user.names}</h4>
+                                <h5>{'@' + this.props.user.username}</h5>
                             </div>
                         </div>
                     </div>

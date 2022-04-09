@@ -2,13 +2,13 @@ import React from "react";
 import { FeedContentHome } from "./FeedContentHome";
 import { FeedContentMessages } from "./FeedContentMessages";
 import { FeedContentStories } from "./FeedContentStories";
-
-import { Post } from "../../../model/objects/posts/Post";
-import { PostPrologue } from "../../../model/objects/posts/PostPrologue";
-import { User } from "../../../model/objects/users/User";
-import { Messages, MessagesStatus } from "../../../model/objects/messages/Messages";
-import { Stories } from "../../../model/objects/stories/Stories";
 import { FeedContentFriends } from "./FeedContentFriends";
+import { FeedContentProfil } from "./FeedContentProfil";
+
+import { User } from "../../../model/objects/User";
+import { Post } from "../../../model/objects/Post";
+import { Messages, MessagesStatus } from "../../../model/objects/Messages";
+import { Stories } from "../../../model/objects/Stories";
 
 export class FeedContent extends React.Component {
 
@@ -18,46 +18,29 @@ export class FeedContent extends React.Component {
 
     render() {
         // Test
-        let user = new User(
-            'abcdefghijklmnopqrstuvwxyz',
-            'benkabongo25',
-            'Ben',
-            'Kabongo'
-        );
-        user.profilePicture = require('../../../ressources/profil_test.png');
+        let numbers = [];
+        for (let i=0; i < 1000; i++) numbers.push(i);
 
-        let postPrologue = new PostPrologue(user, 'a commenté');
+        let users = require('../../../ressources/test_database/users.json');
+        let posts = require('../../../ressources/test_database/posts.json');
 
-        let text = 'It is a long established fact that a reader will be distracted ' +
-        'by the readable content of a page when looking at its layout. The point of ' +
-        'using Lorem Ipsum is that it has a more-or-less normal distribution of ' +
-        'letters, as opposed to using Content here, content here, making it look '+ 
-        'like readable English. Many desktop publishing packages and web page editors '+
-        'now use Lorem Ipsum as their default model text, and a search for ' +
-        'lorem ipsum will uncover many web sites still in their infancy. Various ' +
-        'versions have evolved over the years, sometimes by accident, sometimes on ' +
-        'purpose (injected humour and the like).';
+        let usersList = users.map(userObject => {
+            let user = User.fromJSON(userObject);
+            user.followers = numbers.slice(0, 100);
+            user.followings = numbers.slice(0, 75);
+            return user;
+        });
+        let userId = 11;
 
-        let postReplyTo = new Post(
-            'abcdefghijklmnopqrstuvwxyz',
-            user,
-            null,
-            new Date(5, 3, 2022),
-            text,
-            'Caen, France',
-            'privé'
-        );
-
-        let post = new Post(
-            'abcdefghijklmnopqrstuvwxyz',
-            user,
-            postReplyTo,
-            new Date(),
-            text,
-            'Paris, France',
-            'public',
-            postPrologue
-        );
+        let postsList = posts.map(postObject => {
+            let post = Post.fromJSON(postObject);
+            post.location = postObject.city + ', ' + postObject.country;
+            post.user = usersList[post.user_id];
+            return post;
+        });
+        for (let post of postsList) {
+            post.reply_to = postsList[post.reply_to_id];
+        }
 
         let messages = new Messages(
             'abcdefghijklmnopqrstuvwxyz',
@@ -76,7 +59,8 @@ export class FeedContent extends React.Component {
             false
         )
 
-        stories.addStorie([1, 2, 3])
+        for (let i=0; i < 10; i++)
+            stories.stories.push(i);
 
         // 
 
@@ -107,11 +91,20 @@ export class FeedContent extends React.Component {
                 break;
 
             case 'profil':
+                let postsUser = postsList.filter(post => post.user_id == userId);
+                content = (
+                    <FeedContentProfil 
+                        user={users[userId]}
+                        posts={postsUser} />
+                );
                 break;
 
             case 'friends':
                 content = (
-                    <FeedContentFriends />
+                    <FeedContentFriends 
+                        user={usersList[userId]}
+                        followers={usersList.slice(0, 50)} 
+                        followings={usersList.slice(50, 100)} />
                 )
                 break;
 
@@ -127,8 +120,9 @@ export class FeedContent extends React.Component {
             default: // home
                 content = (
                     <FeedContentHome 
+                        user={usersList[userId]}
                         stories={[1,2,3,4,5]} 
-                        posts={[post, post, post, post]} />
+                        posts={postsList.slice(0, 20)} />
                 );
         }
         return (

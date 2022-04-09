@@ -1,5 +1,5 @@
 import React from "react";
-import { UserSex } from "../../../model/objects/users/User";
+import { UserSex } from "../../../model/objects/User";
 
 export default class Sex extends React.Component {
 

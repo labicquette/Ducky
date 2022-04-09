@@ -1,5 +1,4 @@
 import React from "react";
-import { MessageType } from "../../../model/objects/messages/MessageBase";
 
 export class MessageView extends React.Component {
 

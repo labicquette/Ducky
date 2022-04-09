@@ -28,9 +28,9 @@ export default class SignUpContacts extends React.Component {
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='lastname'
+                        for='mail'
                         className='form-sign-label' >
-                        Nom
+                        Adresse e-mail
                     </label>
                     <input
                         type='mail'
