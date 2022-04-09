@@ -49,10 +49,6 @@ export class UserProfilPreview extends React.Component {
                 </div>
                 <div className='user-profil-preview-counters'>
                     <div className='user-profil-preview-counters-item'>
-                        <span className='value'>{this.props.posts.length}</span>
-                        <span>Publications</span>
-                    </div>
-                    <div className='user-profil-preview-counters-item'>
                         <span className='value'>{this.props.user.followers.length}</span>
                         <span>Abonnés</span>
                     </div>
