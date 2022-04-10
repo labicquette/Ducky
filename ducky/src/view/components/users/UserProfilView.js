@@ -23,7 +23,7 @@ export class UserProfilView extends React.Component {
                         className='user-profil-view-header-infos-action-item '
                         type='button'
                         value='Modifier le profil' 
-                        />
+                        onClick={this.props.handleUpdateProfil}/>
                     <input
                         className='user-profil-view-header-infos-action-item'
                         type='button'

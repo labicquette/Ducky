@@ -9,6 +9,8 @@ import { User } from "../../../model/objects/User";
 import { Post } from "../../../model/objects/Post";
 import { Messages, MessagesStatus } from "../../../model/objects/Messages";
 import { Stories } from "../../../model/objects/Stories";
+import { UserUpdateProfilView } from "../users/UserUpdateProfilView";
+import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 
 export class FeedContent extends React.Component {
 
@@ -95,7 +97,15 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentProfil 
                         user={users[userId]}
-                        posts={postsUser} />
+                        posts={postsUser}
+                        handleUpdateProfil={this.props.handleUpdateProfil} />
+                );
+                break;
+
+            case 'profil-update':
+                content = (
+                    <FeedContentUpdateProfil
+                        user={usersList[userId]} />
                 );
                 break;
 
@@ -105,7 +115,7 @@ export class FeedContent extends React.Component {
                         user={usersList[userId]}
                         followers={usersList.slice(0, 50)} 
                         followings={usersList.slice(50, 100)} />
-                )
+                );
                 break;
 
             case 'suggestions':

@@ -9,7 +9,6 @@ body {
   	-moz-osx-font-smoothing: grayscale;
 }
 
-/* SIGN */
 
 .img-logo {
   	width: 2%;
@@ -140,8 +139,6 @@ body {
 }
 
 
-/* POSTS EDITOR */
-
 .post-edit-container {
 	border: 1px solid lightgray;
 	border-radius: 8px;
@@ -168,9 +165,7 @@ body {
 
 .post-edit-text {
 	font-size: 18px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
+	font-family: inherit;
 	width: 100%;
 	height: 100%;
 	resize: none;
@@ -470,7 +465,7 @@ body {
 	padding: 10px 10px 10px 10px;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: white;
+	background-color: inherit;
 	color: black;
 }
 
@@ -1053,3 +1048,124 @@ body {
 	font-size: 16px;
 	margin-top: 20px;
 }
+
+
+.feed-content-update-profil {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	border: 1px solid lightgray;
+}
+
+.feed-content-update-profil-navigation {
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid lightgray;
+}
+
+.feed-content-update-profil-navigation-item {
+	text-decoration: none;
+	display: block;
+	padding: 20px 10px 20px 10px;
+	border-bottom: 1px lightgray solid;
+	color: black;
+}
+
+.feed-content-update-profil-content {
+	margin: 10px 50px 10px 50px;
+	height: 80vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.user-update-profil-view-container {
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+}
+
+.user-update-profil-view-resume {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.user-update-profil-view-resume-picture-names {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.user-update-profil-view-resume-names {
+	margin-left: 10px;
+}
+
+.user-update-profil-view-resume-names-names {
+	font-weight: bold;
+}
+
+.user-update-profil-view-resume-picture {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.user-profil-view-resume-button {
+	font-weight: bold;
+	color: black;
+}
+
+.user-update-profil-view-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-update-profil-view-content-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.user-update-profil-view-content-item-label {
+	font-weight: bold;
+	width: 150px;
+	margin-right: 5px;
+	text-align: right;
+}
+
+.user-update-profil-view-content-item-text {
+	height: 20px;
+	width: 100%;
+	border: 1px solid lightgray;
+	border-radius: 7px;
+	font-size: 16px;
+	padding: 1% 2% 1% 2%;
+	outline: none;
+	background: none;
+	background-color: white;
+}
+
+.user-update-profil-view-content-item textarea {
+	resize: none;
+	height: 80px;
+	font-family: inherit;
+}
+
+.user-update-profil-view-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 5px;
+}
+
+.user-update-profil-view-button {
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+
+
