@@ -1,4 +1,5 @@
 import React from "react";
+import { PollEditor } from "../poll/PollEditor";
 
 export class PostEdit extends React.Component {
 
@@ -20,6 +21,9 @@ export class PostEdit extends React.Component {
                             placeholder='Quoi de neuf ?'
                             >
                         </textarea>
+                    </div>
+                    <div className='post-edit-more-content'>
+                        <PollEditor timer={true}/>
                     </div>
                     <div className='post-edit-actions-bar'>
                         <div className='post-edit-actions-icons'>

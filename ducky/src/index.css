@@ -179,6 +179,17 @@ body {
 	border: none;	
 }
 
+.post-edit-more-content {
+	width: 99%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	margin: 5px 0 5px 0;
+	padding: 5px 5px 5px 5px;
+}
+
 .post-edit-actions-bar {
 	display: flex;
 	flex-direction: row;
@@ -715,6 +726,7 @@ body {
 	margin: 10px 10px 10px 10px;
 	font-weight: bold;
 	border: 1px solid lightgray;
+	cursor: pointer;
 }
 
 .feed-content-messages-empty-button:hover,
@@ -1113,6 +1125,7 @@ body {
 .user-profil-view-resume-button {
 	font-weight: bold;
 	color: black;
+	cursor: pointer;
 }
 
 .user-update-profil-view-content {
@@ -1129,7 +1142,7 @@ body {
 
 .user-update-profil-view-content-item-label {
 	font-weight: bold;
-	width: 150px;
+	width: 200px;
 	margin-right: 5px;
 	text-align: right;
 }
@@ -1152,6 +1165,10 @@ body {
 	font-family: inherit;
 }
 
+.user-update-profil-view-content-item2-info {
+	color: gray;
+}
+
 .user-update-profil-view-buttons {
 	display: flex;
 	flex-direction: row;
@@ -1165,7 +1182,91 @@ body {
 	padding: 10px 10px 10px 10px;
 	font-weight: bold;
 	margin-right: 10px;
+	cursor: pointer;
 }
 
 
 
+.poll-editor-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.poll-editor-title-content-input,
+.poll-editor-items-content-item-input {
+	padding: 10px 10px 10px 10px;
+	margin: 5px 5px 5px 5px;
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	outline: none;
+	width: 95%;
+}
+
+.poll-editor-title-content-input {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.poll-editor-title-content, 
+.poll-editor-items-content-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.poll-editor-items-content-item-info {
+	color: gray;
+	font-size: 12px;
+	width: 30px;
+}
+
+.poll-editor-timer-content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	align-self: center;
+}
+
+.poll-editor-timer-content-items {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-left: 5px;
+}
+
+.poll-editor-timer-content-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 5px;
+	width: 100px;
+}
+
+.poll-editor-timer-content-item-label {
+	color: gray;
+}
+
+.poll-editor-timer-content-item-select {
+	padding: 10px 10px 10px 10px;
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	outline: none;
+	background-color: inherit;
+}
+
+.poll-editor-actions-content-item {
+	width: 100%;
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	margin-right: 10px;
+	cursor: pointer;
+	color: red;
+	background-color: inherit;
+}
+
+.poll-editor-actions-content-item:hover {
+	background-color: pink;
+}
