@@ -27,6 +27,7 @@ export class FeedContentStories extends React.Component {
                 <div className='feed-content-stories-empty'>
                     <img
                         src={require('../../../ressources/icons/story.png')}
+                        alt='Aucune storie'
                         className='feed-content-stories-empty-image' />
                     <h3>Vos stories</h3>
                     <span>Partagez vos meilleurs moments !</span>

@@ -63,11 +63,10 @@ body {
 	height: 100%;
 	width: 100%;
 	border: 1px solid lightgray;
-	border-radius: 7px;
+	border-radius: 8px;
 	font-size: 16px;
-	padding: 1% 2% 1% 2%;
+	padding: 2px 5px 2px 5px;
 	outline: none;
-	background: none;
 	background-color: white;
 }
 
@@ -210,7 +209,11 @@ body {
 	border-radius: 50%;
 }
 
-.post-edit-action-icon-iamge {
+.post-edit-action-icon-file {
+	display: none;
+}
+
+.post-edit-action-icon-image {
 	width: 20px;
 }
 
@@ -1066,6 +1069,7 @@ body {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 	border: 1px solid lightgray;
+	margin-bottom: 20px;
 }
 
 .feed-content-update-profil-navigation {
@@ -1078,13 +1082,16 @@ body {
 	text-decoration: none;
 	display: block;
 	padding: 20px 10px 20px 10px;
+	border: none;
 	border-bottom: 1px lightgray solid;
 	color: black;
+	background-color: inherit;
+	cursor: pointer;
 }
 
 .feed-content-update-profil-content {
 	margin: 10px 50px 10px 50px;
-	height: 80vh;
+	height: 100vh;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -1199,7 +1206,6 @@ body {
 	margin: 5px 5px 5px 5px;
 	border-radius: 8px;
 	border: 1px solid lightgray;
-	outline: none;
 	width: 95%;
 }
 

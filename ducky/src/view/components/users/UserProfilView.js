@@ -10,7 +10,8 @@ export class UserProfilView extends React.Component {
                 <div className='user-profil-view-header-infos-private'>
                     <img 
                         className='user-profil-view-header-infos-private-image' 
-                        src={require('../../../ressources/icons/private.png')} />
+                        src={require('../../../ressources/icons/private.png')}
+                        alt='Compte privé' />
                 </div>
             );
         }
@@ -49,8 +50,8 @@ export class UserProfilView extends React.Component {
                         <span>...</span>
                         <div className='user-profil-view-header-infos-action-menu-content'>
                             <ul>
-                                <li><a href='#'>Signaler</a></li>
-                                <li><a href='#'>Bloquer</a></li>
+                                <li>Signaler</li>
+                                <li>Bloquer</li>
                             </ul>
                         </div>
                     </div>
@@ -64,6 +65,7 @@ export class UserProfilView extends React.Component {
                 <div className='user-profil-view-header'>
                     <img
                         src={this.props.user.profil_picture_src} 
+                        alt={this.props.user.names}
                         className='user-profil-view-header-image' />
                     <div className='user-profil-view-header-infos'>
                         <div className='user-profil-view-header-infos-names-private'>

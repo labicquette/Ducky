@@ -3,10 +3,6 @@ import { StorieView } from "./StorieView";
 
 export class StorieViewList extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className='storie-view-list-container'>

@@ -16,7 +16,8 @@ export class StoriePreview2 extends React.Component {
                 <div className='stories-preview2-image-container'>
                     <img
                         src={this.props.stories.image}
-                        className='stories-preview2-image' />
+                        className='stories-preview2-image'
+                        alt={this.props.stories.title} />
                 </div>
                 <div className='stories-preview2-infos'>
                     <div className='stories-preview2-infos-title'>

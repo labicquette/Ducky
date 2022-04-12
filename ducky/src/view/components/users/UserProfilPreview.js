@@ -33,7 +33,8 @@ export class UserProfilPreview extends React.Component {
                 <div className='user-profil-preview-resume'>
                     <img 
                         className='user-profil-preview-resume-image'
-                        src={this.props.user.profil_picture_src} />
+                        src={this.props.user.profil_picture_src} 
+                        alt={this.props.user.names} />
                     <div className='user-profil-preview-resume-names'>
                         <span className='user-profil-preview-resume-names-names'>
                             {this.props.user.names}

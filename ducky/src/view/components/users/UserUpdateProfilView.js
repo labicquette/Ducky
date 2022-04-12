@@ -27,19 +27,21 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-resume-picture-names'>
                         <img    
                             className='user-update-profil-view-resume-picture'
-                            src={this.state.profil_picture_src} />
+                            src={this.state.profil_picture_src}
+                            alt='Profil' />
                         <div className='user-update-profil-view-resume-names'>
                             <div className='user-update-profil-view-resume-names-names'>
-                                {this.state.lastname + ' ' + this.state.firstname}
+                                {this.state.firstname + ' ' + this.state.lastname}
                             </div>
                             <div className='user-update-profil-view-resume-names-username'>
                                 {this.state.username}
                             </div>
                         </div>
                     </div>
-                    <a href='#' className='user-profil-view-resume-button'>
-                        Modifier la photo de profil
-                    </a>
+                    <input 
+                        className='user-profil-view-resume-button'
+                        type='button'
+                        value='Modifier la photo de profil' />
                 </div>
                 <div className='user-update-profil-view-content'>
                     <div className='user-update-profil-view-content-item'>
@@ -51,29 +53,29 @@ export class UserUpdateProfilView extends React.Component {
                         <input
                             className='user-update-profil-view-content-item-text'
                             type='text'
-                            value={this.state.lastname}
-                            name='lastname'
-                            id='lastname'
-                            onChange={(e) => {
-                                e.preventDefault();
-                                this.setState({ lastname : e.target.value.trim() });
-                            }} />
-                    </div>
-                    <div className='user-update-profil-view-content-item'>
-                        <label
-                            className='user-update-profil-view-content-item-label'
-                            for='firstname'>
-                            Nom
-                        </label>
-                        <input
-                            className='user-update-profil-view-content-item-text'
-                            type='text'
                             value={this.state.firstname}
                             name='firstname'
                             id='firstname'
                             onChange={(e) => {
                                 e.preventDefault();
                                 this.setState({ firstname : e.target.value.trim() });
+                            }} />
+                    </div>
+                    <div className='user-update-profil-view-content-item'>
+                        <label
+                            className='user-update-profil-view-content-item-label'
+                            for='lastname'>
+                            Nom
+                        </label>
+                        <input
+                            className='user-update-profil-view-content-item-text'
+                            type='text'
+                            value={this.state.lastname}
+                            name='lastname'
+                            id='lastname'
+                            onChange={(e) => {
+                                e.preventDefault();
+                                this.setState({ lastname : e.target.value.trim() });
                             }} />
                     </div>
                     <div className='user-update-profil-view-content-item'>

@@ -25,14 +25,14 @@ export class SignUp extends React.Component {
         event.preventDefault();
         const value = event.target.value.trim();
 
-        if (field == 'confirmpassword') {
+        if (field === 'confirmpassword') {
             this.setState({confirmpassword: value})
             return;
         }
 
         let user = this.state.user;
 
-        if (field == 'day' || field == 'month' || field == 'year') {
+        if (field === 'day' || field === 'month' || field === 'year') {
             let birthday = user.birthday;
             if (!birthday) birthday = new Date();
             switch (field) {
@@ -116,7 +116,7 @@ export class SignUp extends React.Component {
                             e.preventDefault();
                             this.setState({errorMessage: ''})
                             const step = this.state.step;
-                            if (step == 1)
+                            if (step === 1)
                                 return;
                             this.setState({step: step - 1});
                         }}
@@ -131,13 +131,13 @@ export class SignUp extends React.Component {
                             const user = this.state.user;
                             const confirmpassword = this.state.confirmpassword;
                             let errorMessage;
-                            if (step == 1) {
+                            if (step === 1) {
                                 if (!user.firstname || !user.lastname) {
                                     errorMessage = (
                                         'Renseignez vos nom et prénom pour continuer !');
                                 }
                             }
-                            else if (step == 2) {
+                            else if (step === 2) {
                                 if (!user.birthday) {
                                     errorMessage = "Veuillez rentrer une date correcte !";
                                 }
@@ -145,12 +145,12 @@ export class SignUp extends React.Component {
                                     errorMessage = "Dites-nous un peu plus sur votre genre !";
                                 }
                             }
-                            else if (step == 3) {
+                            else if (step === 3) {
                                 if (!user.country || !user.city) {
                                     errorMessage = "Renseignez votre pays et votre ville !";
                                 }
                             }
-                            else if (step == 4) {
+                            else if (step === 4) {
                                 if (!user.phone || !user.mail) {
                                     errorMessage = "Renseignez votre mail et numéro de téléphone";
                                 }
@@ -160,7 +160,7 @@ export class SignUp extends React.Component {
                                     errorMessage = (
                                         "Choisissez un nom d'utilisateur et un mot de passe !");
                                 }
-                                else if (user.password != confirmpassword) {
+                                else if (user.password !== confirmpassword) {
                                     errorMessage = (
                                         "Les mots de passe ne sont pas identiques !");
                                 }

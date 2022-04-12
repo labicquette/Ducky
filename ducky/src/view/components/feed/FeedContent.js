@@ -9,14 +9,9 @@ import { User } from "../../../model/objects/User";
 import { Post } from "../../../model/objects/Post";
 import { Messages, MessagesStatus } from "../../../model/objects/Messages";
 import { Stories } from "../../../model/objects/Stories";
-import { UserUpdateProfilView } from "../users/UserUpdateProfilView";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 
 export class FeedContent extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         // Test
@@ -32,7 +27,6 @@ export class FeedContent extends React.Component {
             user.followings = numbers.slice(0, 75);
             return user;
         });
-        let userId = 11;
 
         let postsList = posts.map(postObject => {
             let post = Post.fromJSON(postObject);
@@ -93,10 +87,10 @@ export class FeedContent extends React.Component {
                 break;
 
             case 'profil':
-                let postsUser = postsList.filter(post => post.user_id == userId);
+                let postsUser = postsList.filter(post => post.user_id === this.props.user.id);
                 content = (
                     <FeedContentProfil 
-                        user={users[userId]}
+                        user={this.props.user}
                         posts={postsUser}
                         handleUpdateProfil={this.props.handleUpdateProfil} />
                 );
@@ -105,14 +99,14 @@ export class FeedContent extends React.Component {
             case 'profil-update':
                 content = (
                     <FeedContentUpdateProfil
-                        user={usersList[userId]} />
+                        user={this.props.user} />
                 );
                 break;
 
             case 'friends':
                 content = (
                     <FeedContentFriends 
-                        user={usersList[userId]}
+                        user={this.props.user}
                         followers={usersList.slice(0, 50)} 
                         followings={usersList.slice(50, 100)} />
                 );
@@ -130,7 +124,7 @@ export class FeedContent extends React.Component {
             default: // home
                 content = (
                     <FeedContentHome 
-                        user={usersList[userId]}
+                        user={this.props.user}
                         stories={[1,2,3,4,5]} 
                         posts={postsList.slice(0, 20)} />
                 );

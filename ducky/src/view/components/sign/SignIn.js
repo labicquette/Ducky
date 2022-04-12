@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserServices } from '../../../model/services/UserServices';
 import { SignTop } from './SignTop';
 
 export class SignIn extends React.Component {
@@ -17,8 +18,8 @@ export class SignIn extends React.Component {
         let errorContent = null;
         if (this.state.errorMessage) {
             errorContent = (
-                <div>
-                    <span className='sign-error-message'>{this.state.errorMessage}</span>
+                <div className='sign-error-message'>
+                    {this.state.errorMessage}
                 </div>
             );
         }
@@ -97,7 +98,9 @@ export class SignIn extends React.Component {
                                 return;
                             }
                             this.setState({errorMessage: ''});
-                            this.props.signIn(this.state.username, this.state.password);
+                            const res = UserServices.login(this.state.username, this.state.password);
+                            if (res.ok) this.props.setUser(res.user);
+                            else this.setState({errorMessage: res.message});
                         }}
                         />
                 </div>

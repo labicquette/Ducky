@@ -15,7 +15,8 @@ export class FollowerViewItem extends React.Component {
             <div className='follow-view-item-container'>
                 <img
                     src={this.props.follower.profil_picture_src}
-                    className='follow-view-item-image' />
+                    className='follow-view-item-image'
+                    alt={this.props.follower.names} />
                 <div className='follow-view-item-names'>
                     <span className='follow-view-item-names-names'>
                         {this.props.follower.names}
@@ -36,9 +37,7 @@ export class FollowerViewItem extends React.Component {
                         onClick={() => {alert(this.state.active)}}/>
                 </div>
                 <div className='follow-view-item-menu-container'>
-                    <img
-                        src={require('../../../ressources/icons/more2.png')}
-                        className='follow-view-item-menu-image' />
+                    <span>...</span>
                     <div className='follow-view-item-menu-content'>
                         <div 
                             className='follow-view-item-menu-item'

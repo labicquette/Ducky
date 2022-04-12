@@ -3,10 +3,6 @@ import CountrySelect from "../common/CountrySelect";
 
 export default class SingUpLocalisation extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div class='sign-content'>

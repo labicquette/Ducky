@@ -3,19 +3,13 @@ import { UserProfilPreview } from "../users/UserProfilPreview";
 
 export class PostView extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let postPrologueContent = null;
         if (this.props.post.prologue) {
             postPrologueContent = (
                 <div className='post-view-prologue'>
-                    <span>
-                        <a className='post-view-prologue-username'>
-                            {this.props.post.prologue.user.names}
-                        </a>
+                    <span className='post-view-prologue-username'>
+                        {this.props.post.prologue.user.names}
                         {this.props.post.prologue.comment}
                     </span>
                 </div>
@@ -109,6 +103,7 @@ export class PostView extends React.Component {
                     <div className='post-view-content-user-profile-picture'>
                         <img
                             src={this.props.post.user.profil_picture_src}
+                            alt={this.props.post.user.names}
                             className='post-view-content-user-profile-picture-image' />
                         {userProfilPreviewContent}
                     </div>

@@ -15,7 +15,7 @@ export class FollowsViewList extends React.Component {
         let followListContent;
 
         // followers
-        if (this.state.onglet == 2) { 
+        if (this.state.onglet === 2) { 
             followListContent = this.props.followers.map(
                 follower => (
                     <FollowerViewItem follower={follower} />
@@ -39,7 +39,7 @@ export class FollowsViewList extends React.Component {
                     <div 
                         className={
                             'follows-view-list-title' + (
-                            (this.state.onglet == 1) ? ' follows-view-list-title-select': '')
+                            (this.state.onglet === 1) ? ' follows-view-list-title-select': '')
                         }
                         onClick={() => {
                             this.setState({ onglet: 1 });
@@ -53,7 +53,7 @@ export class FollowsViewList extends React.Component {
                     <div 
                         className={
                             'follows-view-list-title' + (
-                            (this.state.onglet == 2) ? ' follows-view-list-title-select': '')
+                            (this.state.onglet === 2) ? ' follows-view-list-title-select': '')
                         }
                         onClick={() => {
                             this.setState({ onglet: 2 });

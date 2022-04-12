@@ -24,8 +24,8 @@ export function dateDifference(date1, date2) {
 
 export function formatDate(date) {
     let diff = dateDifference(date);
-    if (diff.timeUnit == 's' || diff.timeUnit == 'm' || diff.timeUnit == 'h')
+    if (diff.timeUnit === 's' || diff.timeUnit === 'm' || diff.timeUnit === 'h')
         return diff.diff + diff.timeUnit;
-    let now = new Date();
+    //let now = new Date();
     
 }

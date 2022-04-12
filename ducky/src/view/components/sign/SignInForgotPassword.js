@@ -2,10 +2,6 @@ import React from 'react';
 import { SignTop } from './SignTop';
 
 export class SignForgotPassword extends React.Component {
-        
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

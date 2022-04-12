@@ -3,10 +3,6 @@ import { StoriePreview } from "./StoriePreview";
 
 export class StoriePreviewList extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className='storie-preview-list-container'>
@@ -14,7 +10,8 @@ export class StoriePreviewList extends React.Component {
                     <div className='storie-preview-container'>
                         <div className='storie-preview-content'>
                             <img
-                                src={this.props.user.profil_picture_src} />
+                                src={this.props.user.profil_picture_src}
+                                alt={this.props.user.names} />
                         </div>
                         <div className='storie-preview-title'>
                             <span>Créer une nouvelle storie</span>

@@ -4,10 +4,6 @@ import Sex from "../common/Sex";
 
 export default class SignUpBirthdaySex extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div class='sign-content'>

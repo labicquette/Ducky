@@ -5,10 +5,6 @@ import { StoriePreviewList } from "../stories/StoriePreviewList";
 
 export class FeedContentHome extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className='feed-content-item feed-content-home'>
@@ -33,6 +29,7 @@ export class FeedContentHome extends React.Component {
                         <div className='feed-content-user-infos'>
                             <img
                                 src={this.props.user.profil_picture_src} 
+                                alt={this.props.user.names}
                                 className='feed-content-user-infos-image'/>
                             <div className='feed-content-user-infos-names'>
                                 <h4>{this.props.user.names}</h4>

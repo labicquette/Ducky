@@ -13,22 +13,19 @@ export default class App extends React.Component {
 		
 		this.state = {
 			mode: 0,
-			connected: true,
-			user: new User()
+			connected: false,
+			user: new User(),
 		};
 
 		this.forgotPassword.bind(this);
 		this.setMode.bind(this);
-		this.signIn.bind(this);
+		this.setUser.bind(this);
 		this.handleLogOut.bind(this);
 	}
 
-	signIn(username, password) {
-		alert(username + ' ' + password);
-	}
-
-	signUp(user) {
-
+	setUser(user) {
+		console.log(user);
+		this.setState({ user: user, connected: true });
 	}
 
 	setMode(mode) {
@@ -36,7 +33,7 @@ export default class App extends React.Component {
 	}
 
 	handleSignChangeMode() {
-		this.setState({mode: (this.state.mode == 'signin') ? 'signup': 'signin'});
+		this.setState({mode: (this.state.mode === 0) ? 1: 0});
 	}
 
 	forgotPassword(username) {
@@ -45,7 +42,7 @@ export default class App extends React.Component {
 	}
 
 	handleLogOut() {
-
+		this.setState({ connected: false })
 	}
 
 	render() {
@@ -56,7 +53,7 @@ export default class App extends React.Component {
 				case 1: // sign up
 					subcontent = (
 						<SignUp
-							signUp={this.signUp}
+							setUser={(user) => this.setUser(user)}
 							handleSignIn={() => this.setMode(0)} 
 						/>
 					);
@@ -73,7 +70,7 @@ export default class App extends React.Component {
 					subcontent = (
 						<SignIn 
 							username={this.state.user.username} 
-							signIn={this.signIn}
+							setUser={(user) => this.setUser(user)}
 							forgotPassword={(username) => this.forgotPassword(username)}
 							handleSignUp={() => this.setMode(1)}
 						/>
@@ -88,7 +85,9 @@ export default class App extends React.Component {
 		else {
 			content = (
 				<div className='feed'>
-					<Feed handleLogOut={() => this.handleLogOut()}/>
+					<Feed 
+						user={this.state.user} 
+						handleLogOut={() => this.handleLogOut()}/>
 				</div>
 			);
 		}

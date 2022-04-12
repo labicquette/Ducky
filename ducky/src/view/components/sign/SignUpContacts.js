@@ -2,10 +2,6 @@ import React from "react";
 
 export default class SignUpContacts extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div class='sign-content'>

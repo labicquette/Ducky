@@ -1,14 +1,48 @@
 import React from "react";
 import { PollEditor } from "../poll/PollEditor";
+import { Media, MediaType } from "../../../model/objects/Media";
+import { Post } from "../../../model/objects/Post";
 
 export class PostEdit extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            post: new Post(),
+            pollFlag: false,
+            postFlag: false,
+        }
+    }
+
     render() {
+        let pollContent = null;
+        if (this.state.pollFlag) {
+            pollContent = (
+                <PollEditor 
+                    timer={true} 
+                    handleDelete={(e) => {
+                        e.preventDefault();
+                        this.setState({ pollFlag : false });
+                    }}/>
+            );  
+        }
+
+        let moreContent = null;
+        if (pollContent) {
+            moreContent = (
+                <div className='post-edit-more-content'>
+                    {pollContent}
+                </div>
+            );
+        }
+
         return (
             <div className='post-edit-container'>
                 <div className='post-edit-profil'>
                     <img
                         src={this.props.user.profil_picture_src} 
+                        alt={this.props.user.names}
                         className='post-edit-profil-image'/>
                 </div>
                 <div className='post-edit-sub-container'>
@@ -22,23 +56,52 @@ export class PostEdit extends React.Component {
                             >
                         </textarea>
                     </div>
-                    <div className='post-edit-more-content'>
-                        <PollEditor timer={true}/>
-                    </div>
+                    {moreContent}
                     <div className='post-edit-actions-bar'>
                         <div className='post-edit-actions-icons'>
                             <div className='post-edit-action-icon'>
+                                <input
+                                    className='post-edit-action-icon-file'
+                                    id='post-edit-action-icon-file-image'
+                                    type='file'
+                                    accept='images'
+                                    onChange={(e) => {
+                                        let media = this.state.media;
+                                        let input = document.getElementById('post-edit-action-icon-file-image');
+                                        for (let file of input.files) {
+                                            let m = new Media(null, MediaType.image, e.target.result);    
+                                            let img = document.createElement('img');
+                                            img.file = file;
+                                            let reader = new FileReader();
+                                            reader.onload = (
+                                                function(aImg) {
+                                                    return function(e) { 
+                                                        aImg.src = e.target.result; 
+                                                    }; 
+                                                }
+                                            )(img);
+                                            reader.readAsDataURL(file);
+                                            m.img = img;
+                                            media.push(m);
+                                        }
+                                        this.setState({media: media});
+                                        console.log(this.state.media);
+                                    }} />
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Image'
                                     title='Image'
                                     src={require('../../../ressources/icons/image.png')}
-                                    onClick={this.props.onClick} />
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        let input = document.getElementById('post-edit-action-icon-file-image');
+                                        input.click();
+                                    }} />
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Vidéo'
                                     title='Vidéo'
@@ -47,7 +110,7 @@ export class PostEdit extends React.Component {
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Audio'
                                     title='Audio'
@@ -56,7 +119,7 @@ export class PostEdit extends React.Component {
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Localisation'
                                     title='Localisation'
@@ -65,16 +128,19 @@ export class PostEdit extends React.Component {
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Sondage'
                                     title='Sondage'
                                     src={require('../../../ressources/icons/poll.png')}
-                                    onClick={this.props.onClick} />
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        this.setState({ pollFlag: true});
+                                    }} />
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
-                                    className='post-edit-action-icon-iamge'
+                                    className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Audience'
                                     title='Audience'

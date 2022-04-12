@@ -149,7 +149,8 @@ export class PollEditor extends React.Component {
                     <input 
                         className='poll-editor-actions-content-item'
                         type='button'
-                        value='Supprimer le sondage' />
+                        value='Supprimer le sondage' 
+                        onClick={this.props.handleDelete} />
                 </div>
             </div>
         );

@@ -43,36 +43,31 @@ export class FeedContentUpdateProfil extends React.Component {
         return (
             <div className='feed-content-update-profil'>
                 <div className='feed-content-update-profil-navigation'>
-                    <a 
+                    <input 
                         className='feed-content-update-profil-navigation-item'
-                        href='#'
-                        onClick={() => {this.setState({ page: 0 })}}>
-                        Modifier le profil
-                    </a>
-                    <a 
+                        onClick={() => {this.setState({ page: 0 })}}
+                        type='button'
+                        value='Modifier le profil' />
+                    <input 
                         className='feed-content-update-profil-navigation-item'
-                        href='#'
-                        onClick={() => {this.setState({ page: 1 })}}>
-                        Mot de passe
-                    </a>
-                    <a 
+                        onClick={() => {this.setState({ page: 1 })}}
+                        type='button'
+                        value='Mot de passe' />
+                    <input 
                         className='feed-content-update-profil-navigation-item'
-                        href='#'
-                        onClick={() => {this.setState({ page: 2 })}}>
-                        Status du compte
-                    </a>
-                    <a 
+                        onClick={() => {this.setState({ page: 2 })}}
+                        type='button'
+                        value='Status du compte' />
+                    <input 
                         className='feed-content-update-profil-navigation-item'
-                        href='#'
-                        onClick={() => {this.setState({ page: 3 })}}>
-                        Paramètres
-                    </a>
-                    <a 
+                        onClick={() => {this.setState({ page: 3 })}}
+                        type='button'
+                        value='Paramètres' />
+                    <input 
                         className='feed-content-update-profil-navigation-item'
-                        href='#'
-                        onClick={() => {this.setState({ page: 4 })}}>
-                        Aide
-                    </a>
+                        onClick={() => {this.setState({ page: 4 })}}
+                        type='button'
+                        value='Aide' />
                 </div>
                 <div className='feed-content-update-profil-content'>
                     {content}

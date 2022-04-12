@@ -8,7 +8,8 @@ export class MessagesView extends React.Component {
                 <div className='messages-view-header'>
                     <img
                         src={this.props.messages.image} 
-                        className='messages-view-header-image'/>
+                        className='messages-view-header-image'
+                        alt={this.props.messages.title} />
                     <span className='message-view-header-title'>
                         {this.props.messages.title}
                     </span>

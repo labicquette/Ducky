@@ -9,6 +9,7 @@ export class Feed extends React.Component {
         this.state = {
             search: '',
             contentId: 'home', 
+            user: this.props.user,
         };
 
         this.handleSearchBarChange.bind(this);
@@ -28,6 +29,7 @@ export class Feed extends React.Component {
         return (
             <div className='feed'>
                 <FeedNavigation
+                    user={this.props.user}
                     handleSearchBarChange={(e) => this.handleSearchBarChange(e)}   
                     handleHome={() => this.setContentId('home')}
                     handleMessages={() => this.setContentId('messages')}
@@ -39,6 +41,7 @@ export class Feed extends React.Component {
                     handleLogOut={() => this.props.handleLogOut()}
                     notifications={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}/>
                 <FeedContent
+                    user={this.props.user}
                     contentId={this.state.contentId} 
                     onClickStories={() => this.setContentId('stories')}
                     handleUpdateProfil={() => this.setContentId('profil-update')}/>

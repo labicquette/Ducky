@@ -27,6 +27,7 @@ export class FeedContentMessages extends React.Component {
                 <div className='feed-content-messages-empty'>
                     <img
                         src={require('../../../ressources/icons/message.png')}
+                        alt='Aucun message'
                         className='feed-content-messages-empty-image' />
                     <h3>Vos messages</h3>
                     <span>Commencez un nouvel échange !</span>

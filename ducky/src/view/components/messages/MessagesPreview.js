@@ -33,6 +33,7 @@ export class MessagesPreview extends React.Component {
                 <div className='messages-preview-image-container'>
                     <img
                         src={this.props.messages.image}
+                        alt={this.props.messages.title}
                         className='messages-preview-image' />
                 </div>
                 <div className='messages-preview-infos'>
@@ -42,6 +43,7 @@ export class MessagesPreview extends React.Component {
                     <div className='messages-preview-infos-status'>
                         <img
                             src={messagesStatusImageSrc}
+                            alt='Message status'
                             className='messages-preview-infos-status-image' />
                         <span>{this.props.messages.status}</span>
                         <span>{' · ' + timeDiff.diff +timeDiff.timeUnit}</span>
