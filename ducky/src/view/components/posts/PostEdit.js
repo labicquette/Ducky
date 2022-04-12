@@ -2,14 +2,34 @@ import React from "react";
 import { PollEditor } from "../poll/PollEditor";
 import { Media, MediaType } from "../../../model/objects/Media";
 import { Post } from "../../../model/objects/Post";
+import { MediaEdit } from "../media/MediaEdit";
 
 export class PostEdit extends React.Component {
 
     constructor(props) {
         super(props);
 
+        // TODO: test
+        let post = new Post();
+        post.media.push(
+            new Media(null, MediaType.image, 
+                    ('http://dummyimage.com/170x100.png/dddddd/000000'))
+        );
+        post.media.push(
+            new Media(null, MediaType.image, 
+                    ('http://dummyimage.com/116x100.png/cc0000/ffffff'))
+        );
+        post.media.push(
+            new Media(null, MediaType.image, 
+                    ('http://dummyimage.com/157x100.png/ff4444/ffffff'))
+        );
+        post.media.push(
+            new Media(null, MediaType.image, 
+                    ('http://dummyimage.com/211x100.png/5fa2dd/ffffff'))
+        );
+
         this.state = {
-            post: new Post(),
+            post: post,
             pollFlag: false,
             postFlag: false,
         }
@@ -28,10 +48,29 @@ export class PostEdit extends React.Component {
             );  
         }
 
+        let mediaContent = null;
+        if (this.state.post.media.length > 0) {
+            mediaContent = (
+                <MediaEdit
+                    media={this.state.post.media}
+                    handleDelete={(i) => {
+                        let post = this.state.post;
+                        post.media.splice(i, 1);
+                        this.setState({ post: post });
+                    }} 
+                    handleChange={(e, i) => {
+                        let post = this.state.post;
+                        post.media[i].description = e.target.value;
+                        this.setState({ post: post });
+                    }}/>
+            );
+        }
+
         let moreContent = null;
-        if (pollContent) {
+        if (pollContent || mediaContent) {
             moreContent = (
                 <div className='post-edit-more-content'>
+                    {mediaContent}
                     {pollContent}
                 </div>
             );
