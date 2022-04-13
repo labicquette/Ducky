@@ -1,6 +1,6 @@
 express = require('express');
 var DataStore = require('nedb');
-
+session = require ('express-session');
 
 
 const app = express();
@@ -29,10 +29,13 @@ dbInterface.users = new Users(db)
 app.use(express.json());
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
+
+app.use(session)
+
 app.use((req, res, next) => {
-    console.log('API: method %s, path %s', req.method, req.path);
-    console.log('Body', req.body);
-    next();
+  console.log('API: method %s, path %s', req.method, req.path);
+  console.log('Body', req.body);
+  next();
 });
 
 
