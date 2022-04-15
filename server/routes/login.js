@@ -1,45 +1,60 @@
 const express = require("express");
 const session = require("express-session");
 
-function initRouter(db){
+function initRouter(req, res, next, db){
 
 let router = express.Router();
 
 
 
-router.get("login", (req, res) => {
+if(req.path== '/signin'){
+    db
+}
+
+if(req.path == '/login') {
     
     req.session.regenerate(function(err){
         if(err){
             res.status(500).send("error at setting cookies");
+            return;
         }
         else{
-            db.insert({session_id: req.sessionID}, function(err, newSessionId){
+            req.session.Store.set(req.session.id, req.session, function(err){
                 if(err){
                     res.status(500).send(err);
+                    return;
                 }else{
-                    res.session = req.session;
-                    res.send("connected");
+                    //res.session = req.session;
+                    res.end("connected");
+                    return;
                 }
             })
         }
     })
-    res.send("logged in");
-});
-
-router.all("",(req,res,next)=>{
-    if(req.session.session_id){
-        if(db.find({session_id : req.session.session_id},function(err, docs){
-            if(docs){return docs}
-            else{return false}
-        })){
-            next();
-        }else{
-            res.status(403).send("Session Timed Out")
-        }
+    return;
+}else{
+    if(req.session.id !== undefined){
+        req.session.Store.get(req.session.id, function(err, session){
+            if(err){
+                res.status(500).send("Error fetching session")
+                return;
+            }else{
+            if(!session){
+                res.status(403).send("Session Timed Out");
+                return
+            }
+            else{
+                res.send(session)
+                return;
+                next();
+            }}
+        })
+    }else{
+        res.status(403).send("Not connected")
+        return;
     }
-})
+}
 
-return router
+return;
 }
 module.exports = initRouter 
