@@ -11,29 +11,43 @@ router.get("", (req, res) => {
     .catch((error) => res.send(error));
 });
 
-router.post("", (req,res)  => {
-    db.users.create(req.body)
-    .then((user) => res.status(201).send({user: user.username}))
-    .catch((error) => res.send(error));
-});
 
-router.delete("/:username", (req, res) => {
-    db.users.delete({username: req.params.username})
+router.delete("/userid/:userid", (req, res) => {
+    if(req.session.userId === req.params.userid){
+    db.users.delete({_id: req.params.userid})
     .then((status) => res.status(201).send(status))
     .catch((error) => res.send(error));
+    }else{res.status(403).send("You cannot delete another user")}
 });
 
-router.get("/:username", (req, res) =>{
-    db.users.getUser({username: req.params.username})
+router.get("/username/:username", (req, res) =>{
+    db.users.getUserByUsername({username: req.params.username})
     .then((user) => res.status(201).send(user))
     .catch((error) => res.send(error));
 });
 
-router.patch("/:username", (req, res)=>{
+router.get("/userid/:userid", (req, res) =>{
+    if(req.session.userId === req.params.userid){
+        db.users.getFullUser({userid: req.params.userid})
+        .then((user) => res.status(201).send(user))
+        .catch((error) => res.send(error));
+    }else{
+        db.users.getUserById({userid: req.params.userid})
+        .then((user) => res.status(201).send(user))
+        .catch((error) => res.send(error));   
+    }
+});
+
+
+router.patch("/:userid", (req, res)=>{
     //requete bd patch 
-    db.users.update(req.params.username, req.body)
+    if(req.session.userId === req.params.userid){
+    db.users.update(req.params.userid, req.body)
     .then((user)=> res.sendStatus(201).send(user))
     .catch((error) => res.send(error));
+    }else{
+        res.status(403).status("You cannot modify another user")
+    }
 });
 
 return router

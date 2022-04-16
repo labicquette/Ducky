@@ -1,46 +1,80 @@
-const { response } = require("express");
-const { resolve } = require("path");
 
 class Users{
     constructor(db){
         this.db = db
     }
 
-    create(body){
+    getFullUser(body){
         return new Promise((resolve, reject) => {
-            if(body.username == undefined){
-                reject("username empty");
-            }else{
-            if(body.firstname == undefined){
-                reject("firstname empty");
-            }else{
-            if(body.lastname == undefined){
-                reject("lastname empty");
-            }else{
-            if(body.sex == undefined){
-                reject("sex empty");
-            }else{
-                this.db.users.insert([body], function (err, newUser){
+            if(body.userid == undefined){
+                reject("userid undefined");
+            }
+            else{
+                this.db.users.findOne({_id:body.userid}, function(err, user){
                     if (err){
                         reject(err);
                     } else {
-                        resolve(newUser);
+                        resolve(user);
                     }
-                });    
+                });
             }
-            }
-            }   
-            } 
+
         });
     }
 
-    getUser(body){
+    getUserById(body){
+        return new Promise((resolve, reject) => {
+            if(body.userid == undefined){
+                reject("username userid");
+            }
+            else{
+                this.db.users.findOne({_id:body.userid}, {
+                    id:1,
+                username:1,
+                firstname:1, 
+                lastname:1, 
+                sex:1, 
+                profil_picture_src:1,
+                phone:1, 
+                mail:1, 
+                city:1,
+                country:1,
+                birthday:1, 
+                biography:1,
+                creation_time:1
+                } ,function(err, user){
+                    if (err){
+                        reject(err);
+                    } else {
+                        resolve(user);
+                    }
+                });
+            }
+
+        });
+    }
+
+    getUserByUsername(body){
         return new Promise((resolve, reject) => {
             if(body.username == undefined){
                 reject("username undefined");
             }
             else{
-                this.db.users.find({username:body.username}, function(err, user){
+                this.db.users.findOne({username:body.username}, {
+                    id:1,
+                username:1,
+                firstname:1, 
+                lastname:1, 
+                sex:1, 
+                profil_picture_src:1,
+                phone:1, 
+                mail:1, 
+                city:1,
+                country:1,
+                birthday:1, 
+                biography:1,
+                creation_time:1
+                } , function(err, user){
                     if (err){
                         reject(err);
                     } else {
@@ -55,7 +89,21 @@ class Users{
     getUsers(body){
         return new Promise((resolve, reject)=>{
             //usernames = ["username1","username2","username3"]
-            this.db.users.find({username: body.usernames}, function(err, users){
+            this.db.users.find(body.usernames, {
+                id:1,
+            username:1,
+            firstname:1, 
+            lastname:1, 
+            sex:1, 
+            profil_picture_src:1,
+            phone:1, 
+            mail:1, 
+            city:1,
+            country:1,
+            birthday:1, 
+            biography:1,
+            creation_time:1
+            }, function(err, users){
                 if(err){
                     reject(err);
                 }else{
@@ -67,7 +115,7 @@ class Users{
 
     delete(body){
         return new Promise((resolve, reject)=>{
-            this.db.users.remove({username: body.username}, function(err, response){
+            this.db.users.remove({_id: body.userid}, function(err, response){
                 if(err){
                     reject(err);
                 }else{
@@ -77,9 +125,9 @@ class Users{
         });
     }
     
-    update(username, body){
+    update(userid, body){
         return new Promise((resolve, reject)=> {
-            this.db.users.update({username: username}, body,{}, function(err, user){
+            this.db.users.update({_id: userid}, body,{}, function(err, user){
                 if(err){
                     reject(err);
                 }else{

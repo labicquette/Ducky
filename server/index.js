@@ -48,12 +48,12 @@ app.use((req, res, next) => {
 });
 
 app.all("*",(req,res,next) =>{ 
-  login(req, res, next, db.login);
+  login(req, res, next, db);
 });
 
-//app.use("/posts", posts(dbInterface));
-app.use("/users", users(dbInterface));
 
+app.use("/users", users(dbInterface));
+app.use("/posts", posts(dbInterface));
 
 
 
