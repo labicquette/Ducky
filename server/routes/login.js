@@ -33,7 +33,7 @@ if(req.path== '/register'){
                 newUser.stories_groups = []
                 newUser.posts = []
                 newUser.posts_by = []
-
+ 
                 db.users.findOne({username: username},function(err,user){
                     if(user!==null){
                         res.status(403).send("username already used")
