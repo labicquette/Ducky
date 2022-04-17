@@ -6,8 +6,8 @@ let router = express.Router();
 
 
 router.get("", (req, res) => {
-    db.users.getUsers(req.body).
-    then((users) => res.send(users))
+    db.users.getUsers(req.body)
+    .then((users) => res.send(users))
     .catch((error) => res.send(error));
 });
 

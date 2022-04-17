@@ -29,7 +29,7 @@ class Users{
             }
             else{
                 this.db.users.findOne({_id:body.userid}, {
-                    id:1,
+                    _id:1,
                 username:1,
                 firstname:1, 
                 lastname:1, 
@@ -61,7 +61,7 @@ class Users{
             }
             else{
                 this.db.users.findOne({username:body.username}, {
-                    id:1,
+                    _id:1,
                 username:1,
                 firstname:1, 
                 lastname:1, 
@@ -90,7 +90,7 @@ class Users{
         return new Promise((resolve, reject)=>{
             //usernames = ["username1","username2","username3"]
             this.db.users.find(body.usernames, {
-                id:1,
+                _id:1,
             username:1,
             firstname:1, 
             lastname:1, 
