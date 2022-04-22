@@ -27,6 +27,39 @@ router.get("/post/:postid", (req, res) => {
     }
 });
 
+
+router.get("/by/user/:user_id", (req,res) => {
+    db.posts.getPostsByUser(req.params.user_id)
+    .then((posts) => res.send(posts))
+    .catch((error) => res.send(error))
+})
+
+
+router.get("/by", (req,res)  => {
+    db.posts.getPostsBy(req.body)
+    .then((posts) => res.send(posts))
+    .catch((error) => res.send(error))
+})
+
+router.get("/post/:post_id/likes", (req,res)=>{
+    db.posts.getPostLikes(req.params.post_id)
+    .then((users) => res.send(users))
+    .catch((error)=> res.send(error))
+})
+
+router.post("/posts/:post_id/likes", (req, res)=>{
+    db.posts.addPostLike(req.body)
+    .then((like) => res.send(like))
+    .catch((error) => res.send(error))
+})
+
+router.delete("/posts/:post_id/likes", (req,res) => {
+    db.posts.delPostLike(req.body)
+    .then((like) => res.send("OK"))
+    .catch((error) => res.send(error))
+})
+
+
 router.delete("/post/:postid",(req,res)=>{
     if(req.session.userId === req.body.userid){
     db.posts.delete(req.body)
