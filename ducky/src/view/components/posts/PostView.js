@@ -3,6 +3,14 @@ import { UserProfilPreview } from "../users/UserProfilPreview";
 
 export class PostView extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            like: this.props.like
+        }
+    }
+
     render() {
         let postPrologueContent = null;
         if (this.props.post.prologue) {
@@ -60,7 +68,6 @@ export class PostView extends React.Component {
                 </div>
             );
         }
-
     
         let postReplyToContent = null;
         let actionsBarContent = null;
@@ -78,13 +85,63 @@ export class PostView extends React.Component {
 
             actionsBarContent = (
                 <div className='post-view-actions-bar'>
+                    <div className='post-view-action-item'>
+                        <div className={
+                            'post-view-action-image-container ' +
+                            'post-view-action-image-container-red'
+                            }>
+                            <input
+                                className='post-view-action-item-image'
+                                type='image'
+                                alt='Liker'
+                                title='Liker'
+                                src={require('../../../ressources/icons/like_red.png')} />
+                        </div>
+                        <span className='post-view-action-item-name'>
+                            {this.props.post.likes.length}
+                        </span>
+                    </div>
+
+                    <div className='post-view-action-item'>
+                        <div className={
+                            'post-view-action-image-container ' +
+                            'post-view-action-image-container-blue'
+                            }>
+                            <input
+                                className='post-view-action-item-image'
+                                type='image'
+                                alt='Répondre'
+                                title='Répondre'
+                                src={require('../../../ressources/icons/comment.png')} />
+                        </div>
+                        <span className='post-view-action-item-name'>
+                            {this.props.post.replies.length}
+                        </span>
+                    </div>      
+
+                    <div className='post-view-action-item'>
+                        <div className={
+                            'post-view-action-image-container ' +
+                            'post-view-action-image-container-green'
+                            }>
+                            <input
+                                className='post-view-action-item-image'
+                                type='image'
+                                alt='Partager'
+                                title='Partager'
+                                src={require('../../../ressources/icons/share.png')} />
+                        </div>
+                        <span className='post-view-action-item-name'>
+                            {this.props.post.shares.length}
+                        </span>
+                    </div>      
 
                 </div>
             );
 
             replyContent = (
                 <div className='post-view-reply-container'>
-                    
+
                 </div>
             );
 
@@ -97,7 +154,10 @@ export class PostView extends React.Component {
         );
 
         return (
-            <div className='post-view-container'> 
+            <div className={
+                    (!this.props.isReply) ? 
+                        'post-view-container' : 
+                        'post-view-reply-container'}> 
                 {postPrologueContent}
                 <div className='post-view-content'>
                     <div className='post-view-content-user-profile-picture'>
@@ -129,11 +189,11 @@ export class PostView extends React.Component {
                             {postTextContent}
                             {postPollContent}
                             {postMediaContent}
-                            {postReplyToContent}                            
+                            {postReplyToContent}   
+                            {actionsBarContent}                         
                         </div>
                     </div>
                 </div>
-                {actionsBarContent}
                 {replyContent}
             </div>
         );

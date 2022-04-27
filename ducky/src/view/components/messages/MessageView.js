@@ -3,30 +3,63 @@ import React from "react";
 export class MessageView extends React.Component {
 
     render() {
-        let messageHeaderContent = null;
-        /*
-        if (this.props.message.type == MessageType.group) {
-            messageHeaderContent = (
-                <div className='message-view-header'>
-                    
+        let messageAuthorContent = null;
+        messageAuthorContent = (
+            <div className='message-view-author-content'>
+                <span>{this.props.message.user.names}</span>
+            </div>
+        );
+
+        let messageReplyContent = null;
+        if (this.props.message.reply_to) {
+            messageReplyContent = (
+                <div className='message-view-reply-container'>
+
+                </div>
+            );
+        } 
+       
+        let messagePollContent = null;
+        if (this.props.message.polls.length > 0) {
+            messagePollContent = (
+                <div className='message-view-polls-container'>
+
                 </div>
             );
         }
-        */
-       let messageReplyContent = null;
-       let messageTextContent = null;
-       let messagePollContent = null;
-       let messageMediaContent = null;
+       
+        let messageMediaContent = null;
+        if (this.props.message.media.length > 0) {
+            messageMediaContent = (
+                <div className='message-view-media-container'>
+
+                </div>
+            );
+        }
+       
+        let messageTextContent = null;
+        if (this.props.message.text) {
+            messageTextContent = (
+                <div className='message-view-text-container'>
+                    {this.props.message.text}
+                </div>
+            );
+        }
+
+        let messageInfosContent = (
+            <div className='message-view-info-container'>
+
+            </div>
+        );
        
         return (
             <div className='message-view-container'>
-                {messageHeaderContent}
-                <div className='message-view-content'>
-                    {messageReplyContent}
-                    {messageTextContent}
-                    {messagePollContent}
-                    {messageMediaContent}
-                </div>
+                {messageAuthorContent}
+                {messageReplyContent}
+                {messagePollContent}
+                {messageMediaContent}
+                {messageTextContent}
+                {messageInfosContent}
             </div>
         );
     }

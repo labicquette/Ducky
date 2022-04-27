@@ -44,6 +44,7 @@ export class Feed extends React.Component {
                     user={this.props.user}
                     contentId={this.state.contentId} 
                     onClickStories={() => this.setContentId('stories')}
+                    handleProfil={() => this.setContentId('profil')}
                     handleUpdateProfil={() => this.setContentId('profil-update')}/>
             </div>
         );

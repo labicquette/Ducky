@@ -7,6 +7,7 @@ import { FeedContentProfil } from "./FeedContentProfil";
 
 import { User } from "../../../model/objects/User";
 import { Post } from "../../../model/objects/Post";
+import { Message } from "../../../model/objects/Message";
 import { Messages, MessagesStatus } from "../../../model/objects/Messages";
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
@@ -20,6 +21,7 @@ export class FeedContent extends React.Component {
 
         let users = require('../../../ressources/test_database/users.json');
         let posts = require('../../../ressources/test_database/posts.json');
+        let messages = require('../../../ressources/test_database/messages.json');
 
         let usersList = users.map(userObject => {
             let user = User.fromJSON(userObject);
@@ -36,15 +38,63 @@ export class FeedContent extends React.Component {
         });
         for (let post of postsList) {
             post.reply_to = postsList[post.reply_to_id];
+
+            let replies_id = [];
+            for (let other of postsList) {
+                if (other.reply_to_id === post.id) 
+                    replies_id.push(other.id);
+            }
+
+            for (let id of replies_id)
+                post.replies.push(postsList[id]);
         }
 
-        let messages = new Messages(
-            'abcdefghijklmnopqrstuvwxyz',
-            require('../../../ressources/profil_test.png'),
-            'Ben Kabongo',
-            new Date('02 April 2022 13:49'),
-            MessagesStatus.send
-        );
+        let messagesDict = {};
+        for (let message of messages) {
+            if (!messagesDict[message.user_id])
+                messagesDict[message.user_id] = [];
+            messagesDict[message.user_id].push(message.id);
+        }
+        let messagesList = [];
+        for (let otherUserId in messagesDict) {
+            let messagesIds = messagesDict[otherUserId];
+            let otherUser = usersList[otherUserId];
+
+            let messages_ = new Messages(
+                'abcdefghijklmnopqrstuvwxyz',
+                usersList[otherUserId].profil_picture_src,
+                usersList[otherUserId].names,
+                new Date(),
+                MessagesStatus.received
+            );
+
+            for (let messageId of messagesIds) {
+                try {
+                let message = new Message(
+                    messageId, 
+                    (messageId % 2 !== 0) ? otherUserId : this.props.user.user_id,
+                    messages[messageId].reply_to_id,
+                    messages[messageId].time,
+                    messages[messageId].text
+                );
+                message.user = (messageId % 2 !== 0) ? otherUser : this.props.user;
+                message.reply_to = new Message(
+                    message.reply_to_id,
+                    (messageId % 2 === 0) ? otherUserId : this.props.user.user_id,
+                    0,
+                    messages[message.reply_to_id].time,
+                    messages[message.reply_to_id].text
+                );
+                message.reply_to.user = (messageId % 2 === 0) ? otherUser : this.props.user;
+
+                messages_.messages.push(message);
+                } catch (except) {
+                    
+                }
+            }
+
+            messagesList.push(messages_);
+        }
 
         let stories = new Stories(
             'abcdefghijklmnopqrstuvwxyz',
@@ -60,7 +110,6 @@ export class FeedContent extends React.Component {
 
         // 
 
-
         let content = null;
         switch(this.props.contentId) {
 
@@ -74,15 +123,7 @@ export class FeedContent extends React.Component {
             case 'messages':
                 content = (
                     <FeedContentMessages 
-                        messagesList={[messages, messages, messages, messages, messages, messages,
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, messages, messages, messages, 
-                            messages, messages, messages, messages, ]} />
+                        messagesList={messagesList} />
                 );
                 break;
 
@@ -126,7 +167,8 @@ export class FeedContent extends React.Component {
                     <FeedContentHome 
                         user={this.props.user}
                         stories={[1,2,3,4,5]} 
-                        posts={postsList.slice(0, 20)} />
+                        posts={postsList.slice(0, 20)}
+                        handleProfil={this.props.handleProfil} />
                 );
         }
         return (

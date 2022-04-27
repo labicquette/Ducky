@@ -9,7 +9,9 @@ export class Message {
 
         this.id = id;
         this.user_id = user_id;
+        this.user = null;
         this.reply_to_id = reply_to_id;
+        this.reply_to = null;
         this.time = time;
         this.text = text;
 
@@ -22,6 +24,7 @@ export class Message {
         this.hashtags = [];
         this.links = [];
         this.mentionned_users_ids = [];
+        this.mentionned_users = [];
 
         // Interactions
         this.likes = [];

@@ -39,7 +39,7 @@ export class UserUpdateProfilView extends React.Component {
                         </div>
                     </div>
                     <input 
-                        className='user-profil-view-resume-button'
+                        className='user-update-profil-view-button'
                         type='button'
                         value='Modifier la photo de profil' />
                 </div>

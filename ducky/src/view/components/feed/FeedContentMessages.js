@@ -38,7 +38,7 @@ export class FeedContentMessages extends React.Component {
                 </div>
             );
         }
-
+      
         return (
             <div className='feed-content-item feed-content-messages'>
                 <div className='feed-content-messages-main'>

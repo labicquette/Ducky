@@ -1,12 +1,20 @@
 body {
   	margin: 0;
   	padding: 0;
-  	font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen",
-    	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    	sans-serif;
-	font-size: 16px;
+  	font-family: 
+	  			-apple-system, 
+				BlinkMacSystemFont, 
+				"Roboto", 
+				"Oxygen",
+    			"Ubuntu", 
+				"Cantarell", 
+				"Fira Sans", 
+				"Droid Sans", 
+				"Helvetica Neue",
+    			sans-serif;
+	font-size: 14px;
   	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+  	-moz-osx-font-smoothing: bluescale;
 }
 
 
@@ -21,7 +29,7 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100vh;
-	background-color: rgba(240, 240, 240, .5);
+	background-color: lightblue;
 }
 
 .sign {
@@ -33,7 +41,7 @@ body {
 	margin-top: 10vh;
 	background-color: white;
 	border-radius: 8px;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 }
 
 .sign-top {
@@ -54,7 +62,7 @@ body {
 }
 
 .sign-content h3 {
-	font-size: 18px;
+	font-size: 16px;
 	margin-bottom: 20px;
 	text-align: center;
 }
@@ -62,9 +70,9 @@ body {
 .form-sign-input-text {
 	height: 100%;
 	width: 100%;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	border-radius: 8px;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 2px 5px 2px 5px;
 	outline: none;
 	background-color: white;
@@ -72,7 +80,7 @@ body {
 
 .form-sign-input-label {
 	color: black;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 5% 0 5% 0;
 }
 
@@ -98,7 +106,7 @@ body {
 	padding: 10px 20px 10px 20px;
 	border-radius: 20px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	border: none;
 }
@@ -114,23 +122,22 @@ body {
 }
 
 .negative {
-	background-color: white;
+	background-color: lightblue;
 	color: black;
-	border: 2px solid lightgray;
 }
 
 .select-label {
-	font-size: 16px;
+	font-size: 14px;
 	padding: 10px 10px 10px 10px;
 }
 
 .select-item {
-	font-size: 16px;
+	font-size: 14px;
 	padding: 8px 16px 8px 16px;
 }
 
 .sign-error-message {
-	font-size: 16px;
+	font-size: 14px;
 	color: brown;
 	background-color: pink;
 	padding: 2px 3px 2px 3px;
@@ -139,10 +146,10 @@ body {
 
 
 .post-edit-container {
-	border: 1px solid lightgray;
-	border-radius: 8px;
+	border-left: 5px solid lightblue;
+	background-color: rgba(240, 240, 240, .5);
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding: 10px 10px 10px 10px;
 	display: flex;
 	flex-direction: row;
@@ -163,7 +170,7 @@ body {
 }
 
 .post-edit-text {
-	font-size: 18px;
+	font-size: 16px;
 	font-family: inherit;
 	width: 100%;
 	height: 100%;
@@ -184,7 +191,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	border-radius: 8px;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	margin: 5px 0 5px 0;
 	padding: 5px 5px 5px 5px;
 }
@@ -197,15 +204,20 @@ body {
 .post-edit-actions-icons {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .post-edit-action-icon {
-	display: inline;
-	padding: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 10px 10px 10px;
+	width: 20px;
+	height: 20px;
 }
 
 .post-edit-action-icon:hover {
-	background-color: gainsboro;
+	background-color: lightblue;
 	border-radius: 50%;
 }
 
@@ -214,7 +226,7 @@ body {
 }
 
 .post-edit-action-icon-image {
-	width: 20px;
+	width: 100%;
 }
 
 .post-edit-actions-text {
@@ -227,22 +239,31 @@ body {
 
 .post-edit-action-text-button {
 	padding: 10px 20px 10px 20px;
-	border-radius: 10px;
+	border-radius: 20px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
-	background-color: black;
-	color: white;
-	border: 1px solid lightgray;
 	border: none;
 	position: absolute;
-	right: 25vw;
+	right: 2vw;
+	color: white;
 }
 
-.post-edit-action-text-button:hover {
+.post-edit-action-text-button-disabled {
+	background-color: lightblue;
+}
+
+.post-edit-action-text-button-active {
+	background-color: black;
+}
+
+.post-edit-action-text-button-active:hover {
 	opacity: .9;
 }
 
+
+.feed {
+}
 
 .feed-more-menu {
 	display: none;
@@ -250,10 +271,9 @@ body {
 	z-index: 9;
 	top: 9vh;
 	right: 10vw;
-	font-size: 16px;
+	font-size: 14px;
 	border-radius: 8px;
 	min-width: 200px;
-	border: 1px solid lightgray;
 	background-color: white;
 }
 
@@ -265,7 +285,7 @@ body {
 
 .feed-more-menu-item {
 	border: none;
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid lightblue;
 	width: 100%;
 	padding: 10px 10px 10px 10px;
 	text-align: center;
@@ -278,7 +298,7 @@ body {
 }
 
 .feed-more-menu-item:hover {
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	background-color: rgba(248, 248, 248, 1);
 	border-radius: 8px;
 }
@@ -304,23 +324,25 @@ body {
 	right: 15vw;
 	min-width: 30vw;
 	background-color: rgba(255, 255, 255, 1);
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	border-radius: 8px;
 }
 
 .notification-list-view-header {
-	border-bottom: 1px solid lightgray;
-	width: 100%;
+	background-color: lightblue;
+	border-bottom: 1px solid lightblue;
+	padding-left: 5px;
 }
 
 .notification-list-view-content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 	height: 60vh;
 	overflow-y: auto;
 	overflow-x: hidden;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .notification-view-container {
@@ -328,7 +350,8 @@ body {
 	flex-direction: row;
 	align-items: center;
 	padding: 10px 10px 10px 10px;
-	border-bottom: 1px solid lightgray;
+	width: 100%;
+	border-bottom: 1px solid lightblue;
 }
 
 .notification-view-image {
@@ -344,12 +367,12 @@ body {
 	left: 0;
 	z-index: 10;
 	width: 100%;
-	height: 5vh;
+	height: 6vh;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
 	padding: 1% 2% 1% 2%;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	background-color: rgba(248, 248, 248, 1);
 }
 
@@ -363,19 +386,19 @@ body {
 	width: 50px;
 	height: 50px;
 	position: absolute;
-	left: 13vw;
+	left: 15vw;
 }
 
 .feed-navigation-search-bar-input {
 	border-radius: 3px;
-	font-size: 16px;
+	font-size: 14px;
 	outline: none;
 	padding: 10px 10px 10px 10px;
 	width: 20vw;
 	color: black;
-	border: solid 1px lightgray;
+	border: solid 1px lightblue;
 	position: absolute;
-	left: 18vw;
+	left: 20vw;
 }
 
 .feed-navigation-menu {
@@ -395,7 +418,7 @@ body {
 }
 
 .feed-navigation-menu-item:hover {
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	border-radius: 8px;
 }
 
@@ -403,10 +426,11 @@ body {
 	width: 25px;
 }
 
+
 .feed-content {
 	position: relative;
-	top: 12vh;
-	left: 12vw;
+	top: 15vh;
+	left: 15vw;
 	width: 76vw;
 	height: 100vh;
 }
@@ -420,29 +444,40 @@ body {
 .feed-content-home {
 	display: flex;
 	flex-direction: row;
+	overflow-x: none;
 }
 
-.feed-content-home-left {
+.feed-content-home-main {
 	display: flex;
 	flex-direction: column;
-	height: fit-content;
-	width: 50vw;
 	padding: 0 20px 0 20px;
+	position: relative;
+	left: 22vw;
+	width: 50vw;
 }
 
-.feed-content-home-left-main {
+.feed-content-home-main-title {
+	text-align: center;
+	border-top: 1px solid lightblue;
+	padding: 10px 0px 10px 0px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.feed-content-home-main-main {
 	
 }
 
-.feed-content-home-right {
-	border: 1px solid lightgray;
-	height: fit-content;
-	padding: 10px 10px 10px 10px;
-	width: 100%;
+.feed-content-home-left {
+	width: 20vw;
+	height: 90vh;
+	position: fixed;
+	top: 10vh;
+	left: 15vw;
 }
 
-.feed-content-home-right-item {
-	border-bottom: 1px solid lightgray;
+.feed-content-home-left-item {
+	border-bottom: 1px solid lightblue;
 	padding: 10px 10px 10px 10px;
 }
 
@@ -450,6 +485,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	cursor: pointer;
 }
 
 .feed-content-user-infos-image {
@@ -471,25 +507,22 @@ body {
 	margin: 0;
 }
 
-.feed-content-home-right-action-button {
+.feed-content-home-left-action-button {
+	border-radius: 8px;
 	border: none;
-	cursor: pointer;
-	width: 100%;
-	text-align: center;
 	padding: 10px 10px 10px 10px;
-	font-size: 16px;
 	font-weight: bold;
-	background-color: inherit;
-	color: black;
+	cursor: pointer;
+	margin: 0;
+	background-color: lightblue;
 }
 
-.feed-content-home-right-action-button:hover {
-	text-decoration: underline;
+.feed-content-home-left-action-button:hover {
+	opacity: .7;
 }
 
 
 .feed-content-storie-preview-list-container {
-	margin-bottom: 20px;
 }
 
 
@@ -508,12 +541,10 @@ body {
 .storie-preview-container {
 	width: 1000px;
 	height: 250px;
-	margin: 0 2px 0 2px;
-	border: solid 1px lightgray;
-	border-radius: 5px;
+	border: solid 1px lightblue;
 	display: grid;
 	grid-template-rows: 3fr 1fr;
-	transition: transform .2s;
+	margin: 0;
 }
 
 .storie-preview-container:hover {
@@ -521,7 +552,7 @@ body {
 }
 
 .storie-preview-content {
-	border-bottom: solid 1px lightgray;
+	border-bottom: solid 1px lightblue;
 	display: flex;
 	align-items: center;
 }
@@ -538,21 +569,29 @@ body {
 
 
 .post-view-container {
-	margin: 4px 2px 4px 2px;
-	border: solid 1px lightgray;
-	border-radius: 5px;
-	border: 1px solid lightgray;
+	border-top: 1px solid lightblue;
 	padding: 10px 20px 10px 20px;
-	margin: 20px 0 20px 0;
 	transition: transform .5s;
+}
+
+.post-view-reply-container {
+	border-left: 3px solid lightblue;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	background-color: rgba(240, 240, 240, .5);
+	cursor: pointer;
 }
 
 .post-view-container:hover {
 	background-color: rgba(240, 240, 240, .5);
 }
 
+.post-view-reply-container:hover {
+	background-color: rgba(125, 194, 255, 0.281);
+}
+
 .post-view-prologue {
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid lightblue;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -575,7 +614,7 @@ body {
 .post-view-user-profil-preview {
 	display: none;
 	position: relative;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	box-shadow: 0 10px 25px rgba(80, 80, 80, .2);
 }
 
@@ -608,6 +647,8 @@ body {
 
 .post-view-content-content-header-user-infos {
 	cursor: pointer;
+	display: flex;
+	flex-direction: row;
 }
 
 .post-view-content-content-header-user-infos-names {
@@ -622,7 +663,6 @@ body {
 
 .post-view-content-content-header-user-infos-username {
 	font-weight: bold;
-	color: gray;
 }
 
 .post-view-content-content-header-post-infos {
@@ -636,7 +676,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .post-view-content-content-post-infos-item-image {
@@ -667,9 +707,46 @@ body {
 	width: 100%;
 }
 
-
 .post-view-actions-bar {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	width: 100%;
+	border-top: 1px solid lightblue;
+}
 
+.post-view-action-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.post-view-action-image-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 10px 10px 10px;
+	border-radius: 50%;
+}
+
+.post-view-action-image-container-red:hover {
+	background-color: lightcoral;
+}
+
+.post-view-action-image-container-blue:hover {
+	background-color: lightblue;
+}
+
+.post-view-action-image-container-green:hover {
+	background-color: lightgreen;
+}
+
+.post-view-action-item-image {
+	width: 20px;
+}
+
+.post-view-action-item-name {
+	margin-left: 5px;
+	font-weight: 700;
 }
 
 .post-view-replies-preview {
@@ -685,7 +762,8 @@ body {
 .feed-content-stories-main {
 	display: flex;
 	flex-direction: row;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
+	width: 72vw;
 	height: 80vh;
 }
 
@@ -716,25 +794,22 @@ body {
 
 .feed-content-messages-empty span,
 .feed-content-stories-empty span {
-	color: gray;
 }
 
 .feed-content-messages-empty-button,
 .feed-content-stories-empty-button {
-	color: white;
-	background-color: black;
 	border-radius: 8px;
 	border: none;
 	padding: 10px 10px 10px 10px;
 	margin: 10px 10px 10px 10px;
 	font-weight: bold;
-	border: 1px solid lightgray;
 	cursor: pointer;
+	background-color: lightblue;
+	border: 1px solid lightblue;
 }
 
 .feed-content-messages-empty-button:hover,
 .feed-content-stories-empty-button:hover {
-	color: black;
 	background-color: white;
 }
 
@@ -743,13 +818,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-right: 1px solid lightgray;
+	border-right: 1px solid lightblue;
 	height: 100%;
 }
 
 .messages-preview-list-title,
 .stories-preview2-list-title {
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid lightblue;
 	width: 100%;
 	text-align: center;
 }
@@ -766,7 +841,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid lightblue;
 	padding: 10px 10px 10px 10px;
 	width: 100%;
 }
@@ -774,7 +849,7 @@ body {
 .messages-preview-container:hover,
 .stories-preview2-container:hover {
 	background-color: rgba(240, 240, 240, .8);
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 }
 
 .messages-preview-image,
@@ -796,7 +871,6 @@ body {
 
 .messages-preview-infos-status,
 .stories-preview2-infos-status {
-	color: gray;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -836,7 +910,7 @@ body {
 }
 
 .feed-content-friends-main {
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	border-radius: 8px;
 	height: 75vh;
 	width: 35vw;
@@ -846,7 +920,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	border-bottom: 1px solid lightgray;
+	border-bottom: 1px solid lightblue;
 }
 
 .follows-view-list-title {
@@ -934,7 +1008,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100%;
+	width: 72vw;
 }
 
 .user-profil-view-container {
@@ -976,12 +1050,11 @@ body {
 
 .user-profil-view-header-infos-names-names {
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .user-profil-view-header-infos-names-username {
-	color: gray;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .user-profil-view-header-infos-private-image {
@@ -1033,7 +1106,7 @@ body {
 }
 
 .user-profil-view-header-infos-action-item:hover {
-	opacity: 0.7;
+	background-color: lightblue;
 }
 
 .user-profil-view-content {
@@ -1048,7 +1121,7 @@ body {
 	flex-direction: row;
 	align-items: center;	
 	width: 100%;
-	border-top: 1px solid lightgray;
+	border-top: 1px solid lightblue;
 	margin-top: 20px;
 }
 
@@ -1060,7 +1133,7 @@ body {
 
 .user-profil-view-content-navigation-item span {
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	margin-top: 20px;
 }
 
@@ -1068,14 +1141,15 @@ body {
 .feed-content-update-profil {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	margin-bottom: 20px;
+	width: 72vw;
 }
 
 .feed-content-update-profil-navigation {
 	display: flex;
 	flex-direction: column;
-	border-right: 1px solid lightgray;
+	border-right: 1px solid lightblue;
 }
 
 .feed-content-update-profil-navigation-item {
@@ -1083,7 +1157,7 @@ body {
 	display: block;
 	padding: 20px 10px 20px 10px;
 	border: none;
-	border-bottom: 1px lightgray solid;
+	border-bottom: 1px lightblue solid;
 	color: black;
 	background-color: inherit;
 	cursor: pointer;
@@ -1091,7 +1165,7 @@ body {
 
 .feed-content-update-profil-content {
 	margin: 10px 50px 10px 50px;
-	height: 100vh;
+	height: 95vh;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -1157,9 +1231,9 @@ body {
 .user-update-profil-view-content-item-text {
 	height: 20px;
 	width: 100%;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	border-radius: 7px;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 1% 2% 1% 2%;
 	outline: none;
 	background: none;
@@ -1173,7 +1247,6 @@ body {
 }
 
 .user-update-profil-view-content-item2-info {
-	color: gray;
 }
 
 .user-update-profil-view-buttons {
@@ -1192,6 +1265,10 @@ body {
 	cursor: pointer;
 }
 
+.user-update-profil-view-button:hover {
+	background-color: lightblue;
+}
+
 
 
 .poll-editor-container {
@@ -1205,12 +1282,12 @@ body {
 	padding: 10px 10px 10px 10px;
 	margin: 5px 5px 5px 5px;
 	border-radius: 8px;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	width: 95%;
 }
 
 .poll-editor-title-content-input {
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -1222,8 +1299,7 @@ body {
 }
 
 .poll-editor-items-content-item-info {
-	color: gray;
-	font-size: 12px;
+	font-size: 11px;
 	width: 30px;
 }
 
@@ -1250,14 +1326,14 @@ body {
 }
 
 .poll-editor-timer-content-item-label {
-	color: gray;
+	
 }
 
 .poll-editor-timer-content-item-select {
 	padding: 10px 10px 10px 10px;
 	width: 100%;
 	border-radius: 8px;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	outline: none;
 	background-color: inherit;
 }
@@ -1288,7 +1364,7 @@ body {
 	flex-direction: column;
 	width: 95%;
 	border-radius: 8px;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	margin: 5px 5px 5px 5px;
 }
 
@@ -1310,7 +1386,7 @@ body {
 	height: 20px;
 	padding: 5px 5px 5px 5px;
 	border-radius: 50%;
-	border: 1px solid lightgray;
+	border: 1px solid lightblue;
 	background-color: white;
 }
 
