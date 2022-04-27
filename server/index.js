@@ -1,8 +1,5 @@
 express = require('express');
 var DataStore = require('nedb');
-session = require ('express-session');
-
-
 const app = express();
 const port = 4444;
 
@@ -16,16 +13,17 @@ const Users = require("./entities/users");
 
 const session = require("express-session");
 
+var NedbStore = require('nedb-session-store')(session);
 
 const db = {} 
 db.users = new DataStore({filename: '../database/dataUsers.txt', autoload: true});
-db.users.ensureIndex({fieldName: 'username',fieldName: 'mail',fieldName:'phone', unique: true})
-
+db.users.ensureIndex({fieldName: 'username',unique:true, sparse:true});
+//db.login = new NedbStore({filename: '../database/dataSessions.txt'});
 
 db.posts = new DataStore({filename: '../database/dataPosts.txt', autoload: true});
 
-db.login = new DataStore({filename: '../database/sessions.txt', autoload:true});
-db.login.ensureIndex({fieldName: 'session_id', unique: true, expireAfterSeconds: 2628000})
+//db.login = new DataStore({filename: '../database/sessions.txt', autoload:true});
+//db.login.ensureIndex({fieldName: 'session_id', expireAfterSeconds: 2628000, unique:true, sparse:true})
 
 dbInterface = {}
 dbInterface.users = new Users(db)
@@ -39,7 +37,8 @@ app.use(express.json());
 app.use(session({
     secret: "chaine <<aleatoire>>",
     cookie: {maxAge : 30000},
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new NedbStore({filename: '../database/dataSessions.txt'})
 }));
 
 app.use((req, res, next) => {
@@ -48,11 +47,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", login(db.login));
+app.all("*",(req,res,next) =>{ 
+  login(req, res, next, db);
+});
 
-//app.use("/posts", posts(dbInterface));
+
 app.use("/users", users(dbInterface));
-
+app.use("/posts", posts(dbInterface));
 
 
 

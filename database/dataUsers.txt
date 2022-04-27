@@ -1,7 +1,6 @@
-{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
-{"$$indexCreated":{"fieldName":"phone","unique":true,"sparse":false}}
-{"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
-{"$$indexCreated":{"fieldName":"sex","unique":true,"sparse":false}}
-{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
-{"username":"labicquette","sex":"shadok","_id":"HNKaWMBAlfYGUUDx"}
-{"username":"labicquette","sex":"pacha","_id":"HNKaWMBAlfYGUUDx"}
+{"email":"asdfafsd","username":"labocquet","password":"password","_id":"8duONSGvTWNXdli9"}
+{"email":"labic","username":"labic","password":"password","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"Km3sls2TahTKccA4"}
+{"username":"labicquette","firstname":"theo","lastname":"charlot","sex":"alien","_id":"PtAK6kbEBk5FD7v8"}
+{"email":"labico","username":"labi","password":"password","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"SCDxV0h1C4IN2qZ1"}
+{"username":"labocquette","firstname":"theo","lastname":"charlot","sex":"alien","_id":"p1hUkGdJM9RualaF"}
+{"$$indexCreated":{"fieldName":"username","unique":true,"sparse":true}}
