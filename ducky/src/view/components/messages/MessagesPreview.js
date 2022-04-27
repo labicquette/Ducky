@@ -5,7 +5,8 @@ import { dateDifference } from "../../../model/utils";
 export class MessagesPreview extends React.Component {
 
     render() {
-        let timeDiff = dateDifference(this.props.messages.time);
+        //let timeDiff = dateDifference(new Date(this.props.messages.time));
+        let timeDiff = this.props.messages.time;
 
         let messagesStatusImageSrc = null;
         switch (this.props.messages.status) {
@@ -46,7 +47,7 @@ export class MessagesPreview extends React.Component {
                             alt='Message status'
                             className='messages-preview-infos-status-image' />
                         <span>{this.props.messages.status}</span>
-                        <span>{' · ' + timeDiff.diff +timeDiff.timeUnit}</span>
+                        <span>{' · ' + this.props.messages.time}</span>
                     </div>
                 </div>
             </div>

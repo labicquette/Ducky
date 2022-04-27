@@ -29,9 +29,19 @@ export class FeedContentUpdateProfil extends React.Component {
                 break;
 
             case 3: // parameters
+                content = (
+                    <div>
+                        <h3>Paramètres</h3>
+                    </div>
+                )
                 break;
 
             case 4: // help
+                content = (
+                    <div>
+                        <h3>Aide</h3>
+                    </div>
+                )
                 break;
 
             default: // update profil

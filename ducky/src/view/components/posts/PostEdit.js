@@ -12,16 +12,16 @@ export class PostEdit extends React.Component {
         // TODO: test
         let post = new Post();
         post.media.push(
-            new Media(null, MediaType.image, 
-                    ('http://dummyimage.com/170x100.png/dddddd/000000'))
+            new Media(null, MediaType.video, 
+                    ('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'))
         );
         post.media.push(
             new Media(null, MediaType.image, 
                     ('http://dummyimage.com/116x100.png/cc0000/ffffff'))
         );
         post.media.push(
-            new Media(null, MediaType.image, 
-                    ('http://dummyimage.com/157x100.png/ff4444/ffffff'))
+            new Media(null, MediaType.audio, 
+                    ('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'))
         );
         post.media.push(
             new Media(null, MediaType.image, 
@@ -32,6 +32,7 @@ export class PostEdit extends React.Component {
             post: post,
             pollFlag: false,
             postFlag: false,
+            postButtonFlag: 'active',
         }
     }
 
@@ -190,7 +191,10 @@ export class PostEdit extends React.Component {
                         <div className='post-edit-actions-text'>
                             <div className='post-edit-action-text'>
                                 <input 
-                                    className='post-edit-action-text-button'
+                                    className={
+                                        'post-edit-action-text-button ' +
+                                        'post-edit-action-text-button-' + this.state.postButtonFlag
+                                    }
                                     type='button'
                                     value='Publier'
                                     onClick={this.props.onClick} />

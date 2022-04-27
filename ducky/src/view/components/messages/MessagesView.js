@@ -1,4 +1,5 @@
 import React from "react";
+import { MessageView } from "./MessageView";
 
 export class MessagesView extends React.Component {
 
@@ -15,7 +16,11 @@ export class MessagesView extends React.Component {
                     </span>
                 </div>
                 <div className='messages-view-content'>
-                    
+                    {
+                        this.props.messages.messages.map(
+                            message => <MessageView message={message} />
+                        )
+                    }
                 </div>
             </div>
         );
