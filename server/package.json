@@ -12,6 +12,7 @@
   "dependencies": {
     "chai": "^4.3.0",
     "chai-http": "^4.3.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
     "express-nedb-session": "^0.1.1",
     "express-session": "^1.17.1",

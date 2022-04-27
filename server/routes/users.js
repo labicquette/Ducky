@@ -13,7 +13,7 @@ router.get("", (req, res) => {
 
 
 router.delete("/userid/:userid", (req, res) => {
-    if(req.session.userId === req.params.userid){
+    if(req.cookies.user_id === req.params.userid){
     db.users.delete({_id: req.params.userid})
     .then((status) => res.status(201).send(status))
     .catch((error) => res.send(error));
@@ -27,7 +27,7 @@ router.get("/username/:username", (req, res) =>{
 });
 
 router.get("/userid/:userid", (req, res) =>{
-    if(req.session.userId === req.params.userid){
+    if(req.cookies.user_id === req.params.userid){
         db.users.getFullUser({userid: req.params.userid})
         .then((user) => res.status(201).send(user))
         .catch((error) => res.send(error));
@@ -41,12 +41,12 @@ router.get("/userid/:userid", (req, res) =>{
 
 router.patch("/:userid", (req, res)=>{
     //requete bd patch 
-    if(req.session.userId === req.params.userid){
+    if(req.cookies.user_id === req.params.userid){
     db.users.update(req.params.userid, req.body)
     .then((user)=> res.sendStatus(201).send(user))
     .catch((error) => res.send(error));
     }else{
-        res.status(403).status("You cannot modify another user")
+        res.status(403).send("You cannot modify another user")
     }
 });
 

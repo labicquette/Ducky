@@ -1,3 +1,4 @@
+const { time } = require("console");
 const { resolve } = require("path");
 
 class Posts{
@@ -7,7 +8,7 @@ class Posts{
 
     getPosts(body){
         return new Promise((resolve, reject)=> {
-            this.db.posts.find(body.posts, {reports: 0, banished_reason:0}, function(err, posts){
+            this.db.posts.find({_id: {$in : body.posts}}, {reports: 0, banished_reason:0}, function(err, posts){
                 if(err){
                     reject(err);
                 }else{
@@ -95,7 +96,7 @@ class Posts{
 
     addPostLike(body){
         return new Promise((resolve, reject) => {
-            this.db.post.update({_id: req.post_id},{$push:{ likes:{user_id: req.user_id, time:req.time}}}, function(err, like){
+            this.db.posts.update({_id: req.post_id},{$push:{ likes:{user_id: req.user_id, time:req.time}}}, function(err, like){
                 if(err){
                     reject(err)
                 }else{
@@ -107,7 +108,7 @@ class Posts{
 
     delPostLike(body){
         return new Promise((resolve, reject) => {
-            this.db.post.update({_id:req.post_id}, {$pull:{ likes: {user_id: req.user_id}}}, {}, function(err, like){
+            this.db.posts.update({_id:req.post_id}, {$pull:{ likes: {user_id: req.user_id}}}, {}, function(err, like){
                 if(err){
                     reject(err)
                 }else{
@@ -120,13 +121,15 @@ class Posts{
 
     create(body){
         return new Promise((resolve, reject) => {
-            const post = body 
+            var post = body 
+            post.user_id = req.cookies.user_id
             post.banished = false;
             post.deleted = false;
             post.likes = [];
             post.shares = [];
             post.views = []
             post.reports = []
+            post.time = Date.now()
 
             this.db.posts.insert(post, function(err, post){
                 if(err){
@@ -135,24 +138,26 @@ class Posts{
                     resolve(post)
                 }
             })
+
+            //additional requests : notifications, insertion in user database
         })
     }
 
-    update(body){
+    update(postid, body){
         return new Promise((resolve, reject)=> {
-            this.db.posts.update({_id: body.postid}, body, {}, function(err, post){
+            this.db.posts.update({_id: postid}, {$set : body}, {}, function(err, post){
                 if(err){
                     reject(err)
                 }else{
                     resolve(post)
                 }
-            })
-        })
+            });
+        });
     }
 
     delete(body){
         return new Promise((resolve, reject)=> {
-            this.db.users.update({_id: body.postid}, deleted=true,{}, function(err,post){
+            this.db.posts.update({_id: body.postid}, deleted=true,{}, function(err,post){
                 if(err){
                     reject(err)
                 }else{
@@ -164,4 +169,4 @@ class Posts{
     }
 }
 
-module.exports = Users;
+module.exports = Posts;

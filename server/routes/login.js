@@ -43,7 +43,7 @@ if(req.path== '/register'){
                             res.status(500).send("error inserting new user in database")
                             return;
                         }else{
-                            req.session.userId = user._id
+                            res.cookie("user_id", user._id, {expire: 360000 + Date.now()})
                             res.send("user added to database")
                             return;
                         }
@@ -80,14 +80,15 @@ if(req.path == '/login') {
     
     if(password){
         db.users.findOne({$or: [{username: username}, {email:email}, {phone:phone}]},function(err, user){
-            console.log('user', user)
             if(err){
                 res.status(500).send("error fetching user")
                 return;
             }
-            if(user !== []){
+            if(user !== [] && user !== null){
+                console.log(user)
                 if((user.password === password)){
                     req.session.userId = user._id
+                    res.cookie("user_id", user._id, {expire: 360000 + Date.now()})
                     req.session.regenerate(function(err){
                         if(err){
                             res.status(500).send("error at setting cookies");
@@ -112,7 +113,7 @@ if(req.path == '/login') {
     return;
 
 }else{
-    if(req.session.userId){
+    if(req.cookies.user_id){
         next();
     }else{
         res.status(403).send("Not connected")

@@ -70,13 +70,10 @@ router.delete("/post/:postid",(req,res)=>{
 
 router.patch("/post/:postid", (req, res)=>{
     //requete bd patch 
-    if(req.session.userId === req.body.userid){
-        db.posts.update(req.body)
+    db.posts.update(req.params.postid, req.body)
         .then((post) => res.status(201).send(post))
         .catch((error) => res.send(error))
-    }else{res.status(403).send("You're not the owner of this post")}
-    res.send("patched post");
 });
+return router
 }
-module.exports = router 
-
+module.exports = initRouter 

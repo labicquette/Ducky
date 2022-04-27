@@ -89,7 +89,7 @@ class Users{
     getUsers(body){
         return new Promise((resolve, reject)=>{
             //usernames = ["username1","username2","username3"]
-            this.db.users.find(body.usernames, {
+            this.db.users.find({username : {$in : body.usernames}}, {
                 _id:1,
             username:1,
             firstname:1, 
@@ -127,7 +127,7 @@ class Users{
     
     update(userid, body){
         return new Promise((resolve, reject)=> {
-            this.db.users.update({_id: userid}, body,{}, function(err, user){
+            this.db.users.update({_id: userid}, {$set :body},{}, function(err, user){
                 if(err){
                     reject(err);
                 }else{

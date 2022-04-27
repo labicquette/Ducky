@@ -7,11 +7,12 @@ const posts = require("./routes/posts");
 const users = require("./routes/users");
 const login = require("./routes/login");
 
-//const Posts = require("./entities/posts");
+const Posts = require("./entities/posts");
 const Users = require("./entities/users");
 //const Login = require("./entities/login");
 
 const session = require("express-session");
+var cookieParser = require("cookie-parser");
 
 var NedbStore = require('nedb-session-store')(session);
 
@@ -22,17 +23,19 @@ db.users.ensureIndex({fieldName: 'username',unique:true, sparse:true});
 
 db.posts = new DataStore({filename: '../database/dataPosts.txt', autoload: true});
 
-//db.login = new DataStore({filename: '../database/sessions.txt', autoload:true});
-//db.login.ensureIndex({fieldName: 'session_id', expireAfterSeconds: 2628000, unique:true, sparse:true})
-
 dbInterface = {}
 dbInterface.users = new Users(db)
-//dbInterface.posts = new Posts(db)
+dbInterface.posts = new Posts(db)
+app.use(express.json());
+
+app.use(cookieParser());
 
 // On utilise JSON
-app.use(express.json());
+
     // simple logger for this router's requests
     // all requests to this router will first hit this middleware
+
+//
 
 app.use(session({
     secret: "chaine <<aleatoire>>",
