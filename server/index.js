@@ -1,7 +1,10 @@
 express = require('express');
 var DataStore = require('nedb');
+var cors = require('cors');
 const app = express();
 const port = 4444;
+
+
 
 const posts = require("./routes/posts");
 const users = require("./routes/users");
@@ -26,6 +29,9 @@ db.posts = new DataStore({filename: '../database/dataPosts.txt', autoload: true}
 dbInterface = {}
 dbInterface.users = new Users(db)
 dbInterface.posts = new Posts(db)
+
+
+app.use(cors())
 app.use(express.json());
 
 app.use(cookieParser());

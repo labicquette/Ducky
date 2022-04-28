@@ -127,11 +127,11 @@ class Users{
     
     update(userid, body){
         return new Promise((resolve, reject)=> {
-            this.db.users.update({_id: userid}, {$set :body},{}, function(err, user){
+            this.db.users.update({_id: userid}, {$set :body},{}, function(err){
                 if(err){
                     reject(err);
                 }else{
-                    resolve(user);
+                    resolve("OK");
                 }
             });
         });

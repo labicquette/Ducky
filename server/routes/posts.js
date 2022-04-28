@@ -16,15 +16,9 @@ router.post("", (req,res)  => {
 });
 
 router.get("/post/:postid", (req, res) => {
-    if(req.session.userId === req.body.userid){
-        db.posts.getFullPost(body)
+        db.posts.getPostById(req.params.postid)
         .then((post) => res.status(201).send(post))
         .catch((error) => res.send(error))
-    }else{
-        db.posts.getPost(req.body)
-        .then((post) => res.status(201).send(post))
-        .catch((error) => res.send(error))
-    }
 });
 
 

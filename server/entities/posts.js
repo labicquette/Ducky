@@ -18,7 +18,7 @@ class Posts{
         })
     }
 
-    getPost(body){
+    getPostById(postid){
         return new Promise((resolve, reject)=> {
             this.db.posts.findOne({_id:body.postid}, {
                 reports:0,
@@ -145,11 +145,11 @@ class Posts{
 
     update(postid, body){
         return new Promise((resolve, reject)=> {
-            this.db.posts.update({_id: postid}, {$set : body}, {}, function(err, post){
+            this.db.posts.update({_id: postid}, {$set : body}, {}, function(err){
                 if(err){
                     reject(err)
                 }else{
-                    resolve(post)
+                    resolve("OK")
                 }
             });
         });
