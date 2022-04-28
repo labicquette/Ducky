@@ -1,21 +1,30 @@
 import React from "react";
-import CountrySelect from "../common/CountrySelect";
 
-export default class SingUpLocalisation extends React.Component {
+export class SingUpLocalisation extends React.Component {
 
     render() {
         return (
-            <div class='sign-content'>
+            <div className='sign-content'>
                 <h3>D'où réjoignez-vous notre communauté ? (3/5)</h3>
                 <div className='form-sign-input-label'>
-                    <label className='form-sign-label'>Pays</label>
-                    <CountrySelect 
-                        country={this.props.country} 
-                        handleChange={e => {this.props.handleChange(e, 'country')}} />
+                    <label
+                        htmlFor='country'
+                        className='form-sign-label' >
+                        Pays
+                    </label>
+                    <input
+                        type='text'
+                        id='country'
+                        name='country'
+                        placeholder='ex: France'
+                        value={this.props.country}
+                        onChange={e => {this.props.handleChange(e, 'country')}}
+                        className='form-sign-input-text'
+                    />
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='city'
+                        htmlFor='city'
                         className='form-sign-label' >
                         Ville
                     </label>

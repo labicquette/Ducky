@@ -1,14 +1,14 @@
 import React from "react";
 
-export default class SignUpNames extends React.Component {
+export class SignUpNames extends React.Component {
 
     render() {
         return (
-            <div class='sign-content'>
+            <div className='sign-content'>
                 <h3>Bienvenue ! Comment vous appelez-vous ? (1/5)</h3>
                 <div className='form-sign-input-label'>
                     <label
-                        for='firstname'
+                        htmlFor='firstname'
                         className='form-sign-label' >
                         Prénom
                     </label>
@@ -24,7 +24,7 @@ export default class SignUpNames extends React.Component {
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='lastname'
+                        htmlFor='lastname'
                         className='form-sign-label' >
                         Nom
                     </label>

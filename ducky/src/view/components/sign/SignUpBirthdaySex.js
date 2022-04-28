@@ -1,24 +1,40 @@
 import React from "react";
-import DayMonthYear from "../common/DayMonthYear";
-import Sex from "../common/Sex";
 
-export default class SignUpBirthdaySex extends React.Component {
+export class SignUpBirthdaySex extends React.Component {
 
     render() {
         return (
-            <div class='sign-content'>
+            <div className='sign-content'>
                 <h3>Dites-nous un peu plus sur vous ! (2/5)</h3>
                 <div className='form-sign-input-label'>
-                    <p className='form-sign-label'>Date de naissance</p>
-                    <DayMonthYear 
-                        date={this.props.date} 
-                        handleChange={(e, f) => this.props.handleChange(e, f)} />
+                    <label
+                        htmlFor='birthday'
+                        className='form-sign-label' >
+                        Date de naissance
+                    </label>
+                    <input
+                        type='date'
+                        id='birthday'
+                        name='birthday'
+                        value={this.props.birthday}
+                        onChange={e => {this.props.handleChange(e, 'birthday')}}
+                        className='form-sign-input-text'
+                    />
                 </div>
                 <div className='form-sign-input-label'>
-                    <p className='form-sign-label'>Votre genre</p>
-                    <Sex
-                        sex={this.props.sex} 
-                        handleChange={(e) => this.props.handleChange(e, 'sex')} />
+                    <label
+                        htmlFor='sex'
+                        className='form-sign-label' >
+                        Sexe
+                    </label>
+                    <input
+                        type='text'
+                        id='sex'
+                        name='sex'
+                        value={this.props.sex}
+                        onChange={e => {this.props.handleChange(e, 'sex')}}
+                        className='form-sign-input-text'
+                    />
                 </div>
             </div>
         );

@@ -4,6 +4,7 @@ import { SignUp } from "./view/components/sign/SignUp";
 import { SignIn } from "./view/components/sign/SignIn";
 import { SignForgotPassword } from "./view/components/sign/SignInForgotPassword";
 import { Feed } from "./view/components/feed/Feed";
+import axios from "axios";
 
 
 export default class App extends React.Component {

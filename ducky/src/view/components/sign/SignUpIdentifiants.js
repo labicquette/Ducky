@@ -1,14 +1,14 @@
 import React from "react";
 
-export default class SignUpIdentifiants extends React.Component {
+export class SignUpIdentifiants extends React.Component {
 
     render() {
         return (
-            <div class='sign-content'>
+            <div className='sign-content'>
                 <h3>Choisissez vos identifiants ! (5/5)</h3>
                 <div className='form-sign-input-label'>
                     <label
-                        for='username'
+                        htmlFor='username'
                         className='form-sign-label' >
                         Nom d'utilisateur
                     </label>
@@ -24,7 +24,7 @@ export default class SignUpIdentifiants extends React.Component {
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='password'
+                        htmlFor='password'
                         className='form-sign-label' >
                         Mot de passe
                     </label>
@@ -40,7 +40,7 @@ export default class SignUpIdentifiants extends React.Component {
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='confirmpassword'
+                        htmlFor='confirmpassword'
                         className='form-sign-label' >
                         Confirmer le mot de passe
                     </label>

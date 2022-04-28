@@ -1,14 +1,14 @@
 import React from "react";
 
-export default class SignUpContacts extends React.Component {
+export class SignUpContacts extends React.Component {
 
     render() {
         return (
-            <div class='sign-content'>
+            <div className='sign-content'>
                 <h3>On veut pouvoir vous contacter ! (4/5)</h3>
                 <div className='form-sign-input-label'>
                     <label
-                        for='phone'
+                        htmlFor='phone'
                         className='form-sign-label' >
                         Numéro de téléphone
                     </label>
@@ -24,7 +24,7 @@ export default class SignUpContacts extends React.Component {
                 </div>
                 <div className='form-sign-input-label'>
                     <label
-                        for='mail'
+                        htmlFor='mail'
                         className='form-sign-label' >
                         Adresse e-mail
                     </label>

@@ -1,12 +1,13 @@
 import React from 'react';
-import SignUpNames from './SingUpNames';
-import SignUpBirthdaySex from './SignUpBirthdaySex';
-import SingUpLocalisation from './SignUpLocalisation';
-import SignUpContacts from './SignUpContacts';
-import SignUpIdentifiants from './SignUpIdentifiants';
-
-import { User, UserSex } from '../../../model/objects/User';
+import { SignUpNames } from './SingUpNames';
+import { SignUpBirthdaySex } from './SignUpBirthdaySex';
+import { SingUpLocalisation } from './SignUpLocalisation';
+import { SignUpContacts } from './SignUpContacts';
+import { SignUpIdentifiants } from './SignUpIdentifiants';
 import { SignTop } from './SignTop';
+
+import { User } from '../../../model/objects/User';
+import { UserServices } from '../../../model/services/UserServices';
 
 export class SignUp extends React.Component {
 
@@ -14,7 +15,7 @@ export class SignUp extends React.Component {
         super(props);
         this.state = {
             step: 1,
-            user: new User(0, '', '', '', UserSex.m, '', '', '', 'France', new Date()),
+            user: new User(),
             errorMessage: '',
             confirmpassword: '',
         };
@@ -31,26 +32,7 @@ export class SignUp extends React.Component {
         }
 
         let user = this.state.user;
-
-        if (field === 'day' || field === 'month' || field === 'year') {
-            let birthday = user.birthday;
-            if (!birthday) birthday = new Date();
-            switch (field) {
-                case 'day':
-                    birthday.setDate(value);
-                    break;
-                case 'month':
-                    birthday.setMonth(value-1);
-                    break;
-                case 'year':
-                    birthday.setFullYear(value);
-                    break;
-                default:
-                    ;
-            }
-            user.birthday = birthday;
-        }
-        else user[field] = value;
+        user[field] = value;
         
         this.setState({user: user});
     }
@@ -96,8 +78,8 @@ export class SignUp extends React.Component {
         let errorContent = null;
         if (this.state.errorMessage) {
             errorContent = (
-                <div>
-                    <span className='sign-error-message'>{this.state.errorMessage}</span>
+                <div className='sign-error-message'>
+                    {this.state.errorMessage}
                 </div>
             );
         }
@@ -166,6 +148,7 @@ export class SignUp extends React.Component {
                                 }
                                 else {
                                     // Création du compte
+                                    UserServices.createUser(user);
                                     return;
                                 }
                             }
