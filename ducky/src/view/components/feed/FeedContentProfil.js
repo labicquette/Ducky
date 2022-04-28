@@ -8,7 +8,7 @@ export class FeedContentProfil extends React.Component {
             <div className='feed-content-item feed-content-profil'>
                 <UserProfilView 
                     user={this.props.user} 
-                    me={true}
+                    me={this.props.me}
                     posts={this.props.posts}
                     handleUpdateProfil={this.props.handleUpdateProfil} />
             </div>

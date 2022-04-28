@@ -12,7 +12,12 @@ export class MessagesPreviewList extends React.Component {
                 <div className='messages-preview-list-content'>
                     {
                         this.props.messagesList.map(
-                            messages => <MessagesPreview messages={messages} />
+                            messages => (
+                                <MessagesPreview 
+                                    key={messages.id} 
+                                    messages={messages}
+                                    handleSelect={() => this.props.handleSelect(messages)} />
+                            )
                         )
                     }
                 </div>

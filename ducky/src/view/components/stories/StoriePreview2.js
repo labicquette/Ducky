@@ -1,10 +1,10 @@
 import React from "react";
-import { dateDifference } from "../../../model/utils";
+import { formatISODate } from "../../../model/utils";
 
 export class StoriePreview2 extends React.Component {
 
     render() {
-        let timeDiff = dateDifference(this.props.stories.time);
+        let time = formatISODate(new Date(this.props.stories.time));
         let counter = this.props.stories.stories.length - this.props.stories.currentStorieId - 1;
         let statusContent = (
             (counter > 0) ? 
@@ -25,7 +25,7 @@ export class StoriePreview2 extends React.Component {
                     </div>
                     <div className='stories-preview2-infos-status'>
                         {statusContent}
-                        <span>{' · ' + timeDiff.diff +timeDiff.timeUnit}</span>
+                        <span>{' · ' + time}</span>
                     </div>
                 </div>
             </div>

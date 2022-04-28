@@ -10,6 +10,7 @@ export class Feed extends React.Component {
             search: '',
             contentId: 'home', 
             user: this.props.user,
+            otherUser: null
         };
 
         this.handleSearchBarChange.bind(this);
@@ -23,6 +24,10 @@ export class Feed extends React.Component {
 
     setContentId(id) {
         this.setState({contentId: id});
+    }
+
+    setOtherUser(otherUser) {
+        this.setState({otherUser: otherUser});
     }
 
     render() {
@@ -45,7 +50,9 @@ export class Feed extends React.Component {
                     contentId={this.state.contentId} 
                     onClickStories={() => this.setContentId('stories')}
                     handleProfil={() => this.setContentId('profil')}
-                    handleUpdateProfil={() => this.setContentId('profil-update')}/>
+                    handleUpdateProfil={() => this.setContentId('profil-update')}
+                    handleOtherProfil={() => this.setContentId('other-profil')} 
+                    handleSetOtherUser={(otherUser) => this.setOtherUser(otherUser)} />
             </div>
         );
     }

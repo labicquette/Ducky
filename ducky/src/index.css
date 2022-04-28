@@ -354,6 +354,11 @@ body {
 	border-bottom: 1px solid lightblue;
 }
 
+.notification-view-container:hover {
+	background-color: rgba(240, 240, 240, .5);
+	cursor: pointer;
+}
+
 .notification-view-image {
 	width: 50px;
 	height: 50px;
@@ -844,6 +849,7 @@ body {
 	border-bottom: 1px solid lightblue;
 	padding: 10px 10px 10px 10px;
 	width: 100%;
+	cursor: pointer;
 }
 
 .messages-preview-container:hover,
@@ -882,6 +888,106 @@ body {
 	margin-right: 5px;
 }
 
+
+.messages-view-container {
+	width: 100%;
+	height: 80vh;
+}
+
+.messages-view-content {
+	width: 100%;
+	height: 57vh;
+	overflow-x: scroll;
+	overflow-x: hidden;
+}
+
+.messages-view-header {
+	border-bottom: 1px solid lightblue;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 11px 0px 10px 10px;
+}
+
+.messages-view-header-image {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.messages-view-header-title {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+.message-view-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.message-view-other-content,
+.message-view-me-content {
+	margin: 10px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+	border: 1px solid lightblue;
+	border-radius: 8px;
+}
+
+.message-view-other-content {
+	margin-right: 40%;
+}
+
+.message-view-me-content {
+	margin-left: 40%;
+	background-color: lightblue;
+}
+
+.message-view-author-content {
+	text-transform: capitalize;
+	color: black;
+	font-weight: bold;
+}
+
+.message-view-info-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.message-view-info-time {
+	width: 100%;
+	text-align: right;
+	font-size: 12px;
+	color: gray;
+}
+
+
+.messages-view-edit {
+	height: 12vh;
+	border-top: 1px solid lightblue;
+	background-color: rgba(240, 240, 240, .8);
+	padding: 10px 10px 10px 10px;
+}
+
+.message-edit-container {
+}
+
+.message-edit-text {
+	height: 7vh;
+	width: 100%;
+	border: 1px solid lightblue;
+	border-radius: 7px;
+	font-size: 14px;
+	font-family: inherit;
+	outline: none;
+	background: none;
+	background-color: white;
+	resize: none;
+}
 
 
 .feed-content-friends {
@@ -932,7 +1038,7 @@ body {
 }
 
 .follows-view-list-title-select {
-	border-bottom: 3px solid black;
+	border-bottom: 3px solid lightblue;
 }
 
 .follows-view-list-title-value {
@@ -1019,7 +1125,7 @@ body {
 }
 
 .user-profil-view-header {
-	width: 100%;
+	width: 50vw;
 	display: flex;
 	flex-direction: row;
 }
@@ -1028,7 +1134,7 @@ body {
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	margin: 0px 100px 0px 100px;
+	margin: 0px 10% 0px 10%;
 }
 
 .user-profil-view-header-infos {

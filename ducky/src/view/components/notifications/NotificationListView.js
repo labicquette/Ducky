@@ -12,7 +12,11 @@ export class NotificationListView extends React.Component {
                 <div className='notification-list-view-content'>
                     {
                         this.props.notifications.map(
-                            notification => <NotificationView notification={notification} />
+                            notification => (
+                                <NotificationView 
+                                    key={notification}
+                                    notification={notification} />
+                            )
                         )
                     }
                 </div>

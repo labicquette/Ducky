@@ -8,7 +8,7 @@ import { FeedContentProfil } from "./FeedContentProfil";
 import { User } from "../../../model/objects/User";
 import { Post } from "../../../model/objects/Post";
 import { Message } from "../../../model/objects/Message";
-import { Messages, MessagesStatus } from "../../../model/objects/Messages";
+import { Messages, MessagesStatus, MessageType } from "../../../model/objects/Messages";
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 
@@ -61,8 +61,9 @@ export class FeedContent extends React.Component {
             let otherUser = usersList[otherUserId];
 
             let messages_ = new Messages(
-                'abcdefghijklmnopqrstuvwxyz',
+                otherUserId,
                 usersList[otherUserId].profil_picture_src,
+                MessageType.simple,
                 usersList[otherUserId].names,
                 new Date(),
                 MessagesStatus.received
@@ -72,17 +73,17 @@ export class FeedContent extends React.Component {
                 try {
                 let message = new Message(
                     messageId, 
-                    (messageId % 2 !== 0) ? otherUserId : this.props.user.user_id,
+                    (messageId % 2 !== 0) ? otherUserId : this.props.user.id,
                     messages[messageId].reply_to_id,
-                    messages[messageId].time,
+                    new Date(messages[messageId].time),
                     messages[messageId].text
                 );
                 message.user = (messageId % 2 !== 0) ? otherUser : this.props.user;
                 message.reply_to = new Message(
                     message.reply_to_id,
-                    (messageId % 2 === 0) ? otherUserId : this.props.user.user_id,
+                    (messageId % 2 === 0) ? otherUserId : this.props.user.id,
                     0,
-                    messages[message.reply_to_id].time,
+                    new Date(messages[message.reply_to_id].time),
                     messages[message.reply_to_id].text
                 );
                 message.reply_to.user = (messageId % 2 === 0) ? otherUser : this.props.user;
@@ -95,6 +96,12 @@ export class FeedContent extends React.Component {
 
             messagesList.push(messages_);
         }
+
+        for (let messages_ of messagesList) {
+            messages_.messages.sort((m1, m2) => new Date(m1.time) - new Date(m2.time));
+            messages_.time = messages_.messages[messages_.messages.length-1].time;
+        }
+        messagesList.sort((m1, m2) => new Date(m2.time) - new Date(m1.time));
 
         let stories = new Stories(
             'abcdefghijklmnopqrstuvwxyz',
@@ -123,6 +130,7 @@ export class FeedContent extends React.Component {
             case 'messages':
                 content = (
                     <FeedContentMessages 
+                        user={this.props.user}
                         messagesList={messagesList} />
                 );
                 break;
@@ -132,6 +140,17 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentProfil 
                         user={this.props.user}
+                        me={true}
+                        posts={postsUser}
+                        handleUpdateProfil={this.props.handleUpdateProfil} />
+                );
+                break;
+
+            case 'other-profil':
+                content = (
+                    <FeedContentProfil 
+                        user={this.props.user}
+                        me={true}
                         posts={postsUser}
                         handleUpdateProfil={this.props.handleUpdateProfil} />
                 );

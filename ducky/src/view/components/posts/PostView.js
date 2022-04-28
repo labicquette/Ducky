@@ -1,4 +1,5 @@
 import React from "react";
+import { formatISODate } from "../../../model/utils";
 import { UserProfilPreview } from "../users/UserProfilPreview";
 
 export class PostView extends React.Component {
@@ -39,9 +40,10 @@ export class PostView extends React.Component {
             </div>
         );
         
+        let time = formatISODate(new Date(this.props.post.time));
         let postTimeContent = (
             <div className='post-view-content-content-post-infos-item'>
-                <span>{this.props.post.time.toLocaleString("fr-FR")}</span>
+                <span>{time}</span>
             </div>
         );
 

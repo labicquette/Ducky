@@ -8,18 +8,21 @@ export class FeedContentMessages extends React.Component {
         super(props);
 
         this.state = {
-            selected: -1,
+            messages: null,
         };
+    }
+
+    setMessages(messages) {
+        this.setState({messages: messages});
     }
 
     render() {
         let messagesContent = null;
-        if (
-                this.state.selected > -1 && 
-                this.state.selected < this.props.messagesList.length
-            ) {
+        if (this.state.messages) {
             messagesContent = (
-                <MessagesView messages={this.props.messagesList[this.state.selected]} />
+                <MessagesView 
+                    user={this.props.user}
+                    messages={this.state.messages} />
             );
         }
         else {
@@ -43,7 +46,9 @@ export class FeedContentMessages extends React.Component {
             <div className='feed-content-item feed-content-messages'>
                 <div className='feed-content-messages-main'>
                     <div className='feed-content-messages-left'>
-                        <MessagesPreviewList messagesList={this.props.messagesList} />
+                        <MessagesPreviewList 
+                            handleSelect={(messages) => this.setMessages(messages)}
+                            messagesList={this.props.messagesList} />
                     </div>
                     <div className='feed-content-messages-right'>
                         {messagesContent}

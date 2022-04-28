@@ -31,7 +31,7 @@ export class SignIn extends React.Component {
                     <h3>Tout se passe sur Ducky !</h3>
                     <div className='form-sign-input-label'>
                         <label
-                            for='username'
+                            htmlFor='username'
                             className='form-sign-label' >
                             Nom d'utilisateur
                         </label>
@@ -49,7 +49,7 @@ export class SignIn extends React.Component {
                     </div>
                     <div className='form-sign-input-label'>
                         <label
-                            for='password'
+                            htmlFor='password'
                             className='form-sign-label' >
                             Mot de passe
                         </label>

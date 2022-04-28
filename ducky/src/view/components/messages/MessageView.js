@@ -1,4 +1,5 @@
 import React from "react";
+import { formatISODateTime } from "../../../model/utils";
 
 export class MessageView extends React.Component {
 
@@ -48,18 +49,27 @@ export class MessageView extends React.Component {
 
         let messageInfosContent = (
             <div className='message-view-info-container'>
-
+                <div className='message-view-info-time'>
+                    {formatISODateTime(new Date(this.props.message.time))}
+                </div>
             </div>
         );
+
+        let cssClassName = 'message-view-other-content';
+        if (this.props.me) {
+            cssClassName = 'message-view-me-content';
+        }
        
         return (
             <div className='message-view-container'>
-                {messageAuthorContent}
-                {messageReplyContent}
-                {messagePollContent}
-                {messageMediaContent}
-                {messageTextContent}
-                {messageInfosContent}
+                <div className={cssClassName}>
+                    {messageAuthorContent}
+                    {messageReplyContent}
+                    {messagePollContent}
+                    {messageMediaContent}
+                    {messageTextContent}
+                    {messageInfosContent}
+                </div>
             </div>
         );
     }

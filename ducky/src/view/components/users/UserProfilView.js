@@ -3,7 +3,30 @@ import { PostViewList } from "../posts/PostViewList";
 
 export class UserProfilView extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            page: 0,
+            posts: this.props.posts,
+            mentionnedPosts: this.props.mentionnedPosts,
+            likedPosts: this.props.likedPosts,
+        };
+    }
+
     render() {
+        let posts = [];
+        switch (this.state.page) {
+            case 1: // mentions
+                posts = this.state.mentionnedPosts;
+                break;
+            case 2: // likes
+                posts = this.state.likedPosts;
+                break;
+            default: // posts
+                posts = this.state.posts
+        }
+
         let privateContent= null;
         if (this.props.user.private) {
             privateContent = (
@@ -116,7 +139,7 @@ export class UserProfilView extends React.Component {
                         </div>
                     </div>
                     <div className='user-profil-view-content-body'>
-                        <PostViewList posts={this.props.posts} />
+                        <PostViewList posts={posts} />
                     </div>
                 </div>
             </div>

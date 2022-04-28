@@ -17,7 +17,14 @@ export class StoriePreviewList extends React.Component {
                             <span>Créer une nouvelle storie</span>
                         </div>
                     </div>
-                    {this.props.stories.map(storie => <StoriePreview storie={storie} />)}
+                        {
+                            this.props.stories.map(storie => (
+                                    <StoriePreview 
+                                        key={storie}
+                                        storie={storie} />
+                                )
+                            )
+                        }
                 </div>
             </div>
         );

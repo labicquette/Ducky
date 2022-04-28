@@ -10,6 +10,7 @@ export class MediaEdit extends React.Component {
             if (!media) continue;
             itemsContent.push(
                 <MediaEditItem 
+                    key={i}
                     media={media}
                     handleDelete={() => this.props.handleDelete(i)}
                     handleChange={(e) => this.props.handleChange(e, i)} />

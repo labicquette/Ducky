@@ -1,12 +1,11 @@
 import React from "react";
 import { MessagesStatus } from "../../../model/objects/Messages";
-import { dateDifference } from "../../../model/utils";
+import { formatISODate } from "../../../model/utils";
 
 export class MessagesPreview extends React.Component {
 
     render() {
-        //let timeDiff = dateDifference(new Date(this.props.messages.time));
-        let timeDiff = this.props.messages.time;
+        let time = formatISODate(new Date(this.props.messages.time));
 
         let messagesStatusImageSrc = null;
         switch (this.props.messages.status) {
@@ -30,7 +29,9 @@ export class MessagesPreview extends React.Component {
         }
 
         return (
-            <div className='messages-preview-container'>
+            <div 
+                className='messages-preview-container'
+                onClick={this.props.handleSelect}>
                 <div className='messages-preview-image-container'>
                     <img
                         src={this.props.messages.image}
@@ -47,7 +48,7 @@ export class MessagesPreview extends React.Component {
                             alt='Message status'
                             className='messages-preview-infos-status-image' />
                         <span>{this.props.messages.status}</span>
-                        <span>{' · ' + this.props.messages.time}</span>
+                        <span>{' · ' + time}</span>
                     </div>
                 </div>
             </div>
