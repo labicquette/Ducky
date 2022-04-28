@@ -13,6 +13,7 @@ export class SignUp extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             step: 1,
             user: new User(),
@@ -148,7 +149,7 @@ export class SignUp extends React.Component {
                                 }
                                 else {
                                     // Création du compte
-                                    UserServices.createUser(user);
+                                    UserServices.createUser(this.state.user);
                                     return;
                                 }
                             }
