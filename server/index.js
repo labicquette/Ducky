@@ -61,8 +61,8 @@ app.all("*",(req,res,next) =>{
 });
 
 
-app.use("/users", users(dbInterface));
-app.use("/posts", posts(dbInterface));
+app.use("/1/users", users(dbInterface));
+app.use("/1/posts", posts(dbInterface));
 
 
 

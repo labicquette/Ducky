@@ -4,7 +4,9 @@ function initRouter(db){
 let router = express.Router();
 
 router.get("", (req, res) => {
-    db.posts.getPosts(req.body)
+    let ids = req.query.postsids
+    const postsids = ids.split(",")
+    db.posts.getPosts(postsids)
     .then((users) => res.send(users))
     .catch((error) => res.send(error));
 });
@@ -15,11 +17,6 @@ router.post("", (req,res)  => {
     .catch((error) => res.send(error))
 });
 
-router.get("/post/:postid", (req, res) => {
-        db.posts.getPostById(req.params.postid)
-        .then((post) => res.status(201).send(post))
-        .catch((error) => res.send(error))
-});
 
 
 router.get("/by/user/:user_id", (req,res) => {
@@ -54,17 +51,23 @@ router.delete("/posts/:post_id/likes", (req,res) => {
 })
 
 
-router.delete("/post/:postid",(req,res)=>{
+router.delete("/:postid",(req,res)=>{
     if(req.session.userId === req.body.userid){
-    db.posts.delete(req.body)
-    .then((post) => res.status(201).send(post))
-    .catch((error) => res.send(error))    
+        db.posts.delete(req.body)
+        .then((post) => res.status(201).send(post))
+        .catch((error) => res.send(error))    
     }else{res.status(403).send("You're not the owner of this post")}
 })
 
-router.patch("/post/:postid", (req, res)=>{
+router.patch("/:postid", (req, res)=>{
     //requete bd patch 
     db.posts.update(req.params.postid, req.body)
+    .then((post) => res.status(201).send(post))
+    .catch((error) => res.send(error))
+});
+
+router.get("/:postid", (req, res) => {
+        db.posts.getPostById(req.params.postid)
         .then((post) => res.status(201).send(post))
         .catch((error) => res.send(error))
 });

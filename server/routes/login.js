@@ -7,12 +7,12 @@ let router = express.Router();
 
 
 
-if(req.path== '/register'){
-    const{email,password, username} = req.body
-    if(email && username && password){
-        db.users.findOne({email: email}, function(err,user){
+if(req.path== '/1/register'){
+    const{mail,password, username} = req.body
+    if(mail && username && password){
+        db.users.findOne({mail: mail}, function(err,user){
         if(err){
-            res.status(500).send("email already used")
+            res.status(500).send("mail already used")
             return;
         }
         console.log('user',user)
@@ -60,7 +60,13 @@ if(req.path== '/register'){
     }
 }
 else{
-if(req.path == '/logout'){
+if(req.path == '/1/users/:user_id/logout'){
+    db.users.update({_id: req.cookies.user_id},{$set :{online: false}},function(err){
+        if(err){
+            res.send(err)
+            return;
+        }
+    })
     res.session.destroy(err =>{
         if(err){
             res.status(500).send(err)
@@ -71,15 +77,15 @@ if(req.path == '/logout'){
         }
     })
 }else{
-if(req.path == '/login') {
-    const{email, username, phone, password} = req.body
-    if(!email && !username && phone){
+if(req.path == '/1/users/login') {
+    const{mail, username, phone, password} = req.body
+    if((!mail || !username || !phone) && !password){
         res.status(403).send("Error: No credentials");
         return;
     }
     
     if(password){
-        db.users.findOne({$or: [{username: username}, {email:email}, {phone:phone}]},function(err, user){
+        db.users.findOne({$or: [{username: username}, {mail:mail}, {phone:phone}]},function(err, user){
             if(err){
                 res.status(500).send("error fetching user")
                 return;

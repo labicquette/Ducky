@@ -113,8 +113,15 @@ export class UserServices {
         .then(() => {});
     }
 
+<<<<<<< HEAD
+    static createUser(user) {
+        user = new User();
+        user.creation_time = new Date();
+        this.instance.post('/register', {
+=======
     static updateUser(user, success, failure) {
         this.instance.patch('/1/users/:user_id', {
+>>>>>>> 5e9ad6e427983c7b4a5fc2e676b559f0dbb713c6
             username: user.username,
             password: user.password,
             firstname: user.firstname, 
