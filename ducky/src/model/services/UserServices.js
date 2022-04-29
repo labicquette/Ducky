@@ -1,8 +1,6 @@
 import axios from "axios";
-import { User } from '../objects/User';
 
 export class UserServices {
-
 
     static instance = axios.create({
 			baseURL: 'http://localhost:4444',
@@ -10,86 +8,47 @@ export class UserServices {
 			headers: {'X-Custom-Header': 'foobar'}
 	});
 
-    static errorCallback(error) {
+    static consoleError(error) {
         if (error.response) {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
-          } else if (error.request) {
+        } else if (error.request) {
             console.log(error.request);
-          } else {
+        } else {
             console.log('Error', error.message);
-          }
-          console.log(error.config);
-    }
-
-    static login(username, password) {
-        let usersJson = require('../../ressources/test_database/users.json');
-        for (let userObject of usersJson) {
-            if (userObject.username === username) {
-                if (userObject.password === password)
-                    return {
-                        ok: true,
-                        user: User.fromJSON(userObject)
-                    };
-            }
         }
-        return {
-            ok: false,
-            message: "Nom d'utilisateur ou mot de passe incorrects !"
-        };
+        console.log(error.config);
     }
 
-    static login2(username, password) {
-        axios.post('/1/users/login', {
+    static login(username, password, success, failure) {
+        this.instance.post('/1/users/login', {
             username: username,
             mail: username,
             phone: username,
-            password: password
+            password: password,
         })
-        .then((response) => {
-            if (response.status === 200) {
-
-            }
-            else {
-
-            }
-        })
+        .then((response) => {success(response)})
         .catch((error) => {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message);
-            }
-            console.log(error.config);
+            this.consoleError(error);
+            failure(error);
         })
-        .then(() => {
-
-        });
+        .then(() => {});
     }
 
-    static logout() {
-        axios.post('/1/users/login')
-        .then((response) => {
-
+    static logout(user_id, success, failure) {
+        this.instance.post('/1/users/:user_id/logout', null, {
+            user_id: user_id,
         })
-        .catch((error) => {
-
-        })
-        .then(() => {
-
-        });
+        .then((response) => {success(response)})
+        .catch((error) => {failure(error)})
+        .then(() => {});
     }
 
-    static createUser(user) {
-        user = new User();
-        user.creation_time = new Date();
-        this.instance.post('/register', {
+    static createUser(user, success, failure) {
+        this.instance.post('/1/users/', {
             username: user.username,
+            password: user.password,
             firstname: user.firstname, 
             lastname: user.lastname, 
             sex: user.sex, 
@@ -100,24 +59,473 @@ export class UserServices {
             birthday: user.birthday, 
             creation_time: new Date()
         })
-        .then((response) => {
-            console.log('Compte créé avec succès !')
-        })
+        .then((response) => {success(response)})
         .catch((error) => {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log('Error', error.message);
-            }
-            console.log(error.config);
+            this.consoleError(error);
+            failure(error);
         })
-        .then(() => {
+        .then(() => {});
+    }
 
+    static getUsers(users_ids, success, failure) {
+        this.instance.get('/1/users', {
+            users_ids: users_ids.join(','),
         })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUser(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUserMe(success, failure) {
+        this.instance.get('/1/users/me')
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUserByUsername(username, success, failure) {
+        this.instance.get('/1/users/by/username/:username', {
+            username: username,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+<<<<<<< HEAD
+    static createUser(user) {
+        user = new User();
+        user.creation_time = new Date();
+        this.instance.post('/register', {
+=======
+    static updateUser(user, success, failure) {
+        this.instance.patch('/1/users/:user_id', {
+>>>>>>> 5e9ad6e427983c7b4a5fc2e676b559f0dbb713c6
+            username: user.username,
+            password: user.password,
+            firstname: user.firstname, 
+            lastname: user.lastname, 
+            sex: user.sex, 
+            phone: user.phone, 
+            mail: user.mail, 
+            city: user.city,
+            country: user.country,
+            birthday: user.birthday, 
+            biography: user.biography
+        }, {
+            user_id: user.id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static deleteUser(user_id, success, failure) {
+        this.instance.delete('/1/users/:user_id', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getFollowers(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/followers', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getFollowings(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/followings', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addFollower(user_id, follower_id, success, failure) {
+        this.instance.post('/1/users/:user_id/followers', {
+            follower_id: follower_id,
+            time: new Date(),
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addFollowing(user_id, following_id, success, failure) {
+        this.instance.post('/1/users/:user_id/followings', {
+            following_id: following_id,
+            time: new Date(),
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static delFollower(user_id, follower_id, success, failure) {
+        this.instance.delete('1/users/:user_id/followers/:follower_id', {
+            user_id: user_id,
+            follower_id: follower_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+    
+    static delFollowing(user_id, following_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/followings/:following_id', {
+            user_id: user_id,
+            following_id: following_id,
+        })        
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getBlocks(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/blocks', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getBlocksBy(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/blocksby', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addBlock(user_id, blocked_id, reason, success, failure) {
+        this.instance.post('/1/users/:user_id/blocks', {
+            blocked_id: blocked_id,
+            time: new Date(),
+            reason: reason,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static delBlock(user_id, blocked_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/blocks', {
+            user_id: user_id,
+            blocked_id: blocked_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getReports(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/reports', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getReportsBy(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/reportsby', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addReport(user_id, reported_id, reason, success, failure) {
+        this.instance.post('/1/users/:user_id/reports', {
+            reported_id: reported_id,
+            time: new Date(),
+            reason: reason,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getViews(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/views', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getViewsBy(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/viewsby', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addView(user_id, viewed_id, success, failure) {
+        this.instance.post('/1/users/:user_id/views', {
+            viewed_id: viewed_id,
+            time: new Date(),
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUserMessages(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/messages', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static createUserMessages(user_id, 
+                            type, 
+                            messages_id,
+                            other_user_id, 
+                            group_id, 
+                            success, 
+                            failure) {
+        this.instance.post('/1/users/:user_id/messages', {
+            type: type,
+            messages_id: messages_id,
+            other_user_id: other_user_id,
+            group_id: group_id,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }    
+
+    static updateUserMessages(user_id, 
+                            messages_id, 
+                            other_user_id, 
+                            group_id, 
+                            success, 
+                            failure) {
+        this.instance.patch('/1/users/:user_id/messages', {
+            messages_id: messages_id,
+            other_user_id: other_user_id,
+            group_id: group_id,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static deleteUserSimpleMessages(user_id, other_user_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/messages/simple/:other_user_id', {
+            user_id: user_id,
+            other_user_id: other_user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static deleteUserGroupMessages(user_id, group_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/messages/group/:group_id', {
+            user_id: user_id,
+            group_id: group_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUserPosts(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/posts', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    } 
+
+    static addUserPost(user_id, post_id, success, failure) {
+        this.insatnce.post('/1/users/:user_id/posts', {
+            post_id: post_id,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static delUserPost(user_id, post_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/posts/:post_id', {
+            user_id: user_id,
+            post_id: post_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getUserLikedPosts(user_id, success, failure) {
+        this.instance.get('/1/users/:user_id/likedposts', {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static addUserLikedPost(user_id, post_id, success, failure) {
+        this.instance.post('/1/users/:user_id/likedposts', {
+            post_id: post_id,
+        }, {
+            user_id: user_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static delUserLikedPost(user_id, post_id, success, failure) {
+        this.instance.delete('/1/users/:user_id/likedposts/:post_id', {
+            user_id: user_id,
+            post_id: post_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
     }
 
 }
