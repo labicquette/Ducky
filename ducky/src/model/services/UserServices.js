@@ -5,7 +5,7 @@ export class UserServices {
 
 
     static instance = axios.create({
-			baseURL: 'http://localhost:4444/1/users/',
+			baseURL: 'http://localhost:4444',
 			timeout: 1000,
 			headers: {'X-Custom-Header': 'foobar'}
 	});
@@ -88,7 +88,7 @@ export class UserServices {
     static createUser(user) {
         user = new User();
         user.creation_time = new Date();
-        this.instance.post('1/users/', {
+        this.instance.post('/register', {
             username: user.username,
             firstname: user.firstname, 
             lastname: user.lastname, 
