@@ -11,11 +11,11 @@ if(req.path== '/1/users'  && req.method == 'POST'){
     const{mail,password, username} = req.body
     if(mail && username && password){
         db.users.findOne({mail: mail}, function(err,user){
+
         if(err){
-            res.status(500).send("mail already used")
-            return;
+            res.status(500).send(err)
         }
-        console.log('user',user)
+
         if(user !== null){
             res.status(403).send("error: User already exists")
             return;
