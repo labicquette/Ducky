@@ -46,7 +46,7 @@ export class UserServices {
     }
 
     static createUser(user, success, failure) {
-        this.instance.post('/1/users/', {
+        this.instance.post('register', {
             username: user.username,
             password: user.password,
             firstname: user.firstname, 

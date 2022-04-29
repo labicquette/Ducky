@@ -1,4 +1,5 @@
 import React from "react";
+import { UserSex } from "../../../model/objects/User";
 
 export class SignUpBirthdaySex extends React.Component {
 
@@ -16,7 +17,7 @@ export class SignUpBirthdaySex extends React.Component {
                         type='date'
                         id='birthday'
                         name='birthday'
-                        value={this.props.birthday}
+                        value={new Date(this.props.birthday)}
                         onChange={e => {this.props.handleChange(e, 'birthday')}}
                         className='form-sign-input-text'
                     />
@@ -27,14 +28,16 @@ export class SignUpBirthdaySex extends React.Component {
                         className='form-sign-label' >
                         Sexe
                     </label>
-                    <input
-                        type='text'
+                    <select 
+                        className='form-sign-input-text'
                         id='sex'
                         name='sex'
-                        value={this.props.sex}
                         onChange={e => {this.props.handleChange(e, 'sex')}}
-                        className='form-sign-input-text'
-                    />
+                        value={this.props.sex}>
+                        <option value={UserSex.m}>Homme</option>
+                        <option value={UserSex.f}>Femme</option>
+                        <option value={UserSex.o}>Autre</option>
+                    </select>
                 </div>
             </div>
         );

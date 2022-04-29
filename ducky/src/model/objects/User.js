@@ -1,7 +1,7 @@
 export const UserSex = {
-    m: 'homme',
-    w: 'femme',
-    o: 'autre'
+    m: 'Homme',
+    w: 'Femme',
+    o: 'Autre'
 };
 
 export class User {
