@@ -8,6 +8,7 @@ export class User {
 
     constructor(id,
                 username,
+                password,
                 firstname, 
                 lastname, 
                 sex, 
@@ -23,6 +24,7 @@ export class User {
 
         this.id = id;
         this.username = username;
+        this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.names = this.firstname + ' ' + this.lastname;

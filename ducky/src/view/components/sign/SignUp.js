@@ -148,8 +148,23 @@ export class SignUp extends React.Component {
                                         "Les mots de passe ne sont pas identiques !");
                                 }
                                 else {
-                                    // Création du compte
-                                    UserServices.createUser(this.state.user);
+                                    UserServices.createUser(this.state.user,
+                                        (response) => {
+                                            if (response.status === 200) {
+                                                const user_id = response.data._id;
+                                                this.props.setUser(this.state.user);
+                                            } else {
+                                                const errorMessage = (
+                                                    'Echec de création de compte'
+                                                );
+                                                this.setState({errorMessage: errorMessage});
+                                            }
+                                        },
+                                        (error) => {
+                                            const errorMessage = error.message;
+                                            this.setState({errorMessage: errorMessage});
+                                        }
+                                    );
                                     return;
                                 }
                             }
