@@ -17,7 +17,7 @@ if(req.path== '/1/users'  && req.method == 'POST'){
         }
 
         if(user !== null){
-            res.status(403).send("error: User already exists")
+            res.status(403).send("mail already used")
             return;
         }else{
                 newUser = req.body
