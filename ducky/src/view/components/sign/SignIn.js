@@ -54,7 +54,7 @@ export class SignIn extends React.Component {
                             Mot de passe
                         </label>
                         <input
-                            type='text'
+                            type='password'
                             id='password'
                             name='password'
                             placeholder='Mot de passe'
