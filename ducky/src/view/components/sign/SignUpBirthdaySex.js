@@ -28,7 +28,7 @@ export class SignUpBirthdaySex extends React.Component {
                         className='form-sign-label' >
                         Sexe
                     </label>
-                    <c 
+                    <select 
                         className='form-sign-input-text'
                         id='sex'
                         name='sex'
