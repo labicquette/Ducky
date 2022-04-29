@@ -1,6 +1,8 @@
+{"username":"pipo","password":"pipo","firstname":"pipo","lastname":"pipo","sex":"Homme","phone":"pipo","mail":"pipo","city":"pipo","country":"pipo","birthday":"2022-04-14","creation_time":"2022-04-29T13:06:45.394Z","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"1ZbAGGTHgnQZPzUC"}
 {"sex":"yay","_id":"8duONSGvTWNXdli9","blabla":"yes","addingMore":"more"}
 {"email":"labic","username":"labic","password":"password","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"Km3sls2TahTKccA4"}
 {"username":"labicquette","firstname":"theo","lastname":"charlot","sex":"alien","_id":"PtAK6kbEBk5FD7v8"}
 {"email":"labico","username":"labi","password":"password","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"SCDxV0h1C4IN2qZ1"}
 {"username":"labocquette","firstname":"theo","lastname":"charlot","sex":"alien","_id":"p1hUkGdJM9RualaF"}
 {"$$indexCreated":{"fieldName":"username","unique":true,"sparse":true}}
+{"username":"pipo2","password":"pipo2","firstname":"pipo2","lastname":"pipo2","sex":"Homme","phone":"pipo2","mail":"pipo2","city":"pipo2","country":"pipo2","birthday":"2022-04-13","creation_time":"2022-04-29T13:12:51.061Z","online":false,"private":false,"deleted":false,"banished":false,"ban":null,"messages":[],"notifications":[],"stories":[],"stories_by":[],"stories_groups":[],"posts":[],"posts_by":[],"_id":"9jO34Kj7bFtDVjBh"}
