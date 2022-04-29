@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SignUpNames } from './SingUpNames';
 import { SignUpBirthdaySex } from './SignUpBirthdaySex';
 import { SingUpLocalisation } from './SignUpLocalisation';
@@ -6,7 +6,7 @@ import { SignUpContacts } from './SignUpContacts';
 import { SignUpIdentifiants } from './SignUpIdentifiants';
 import { SignTop } from './SignTop';
 
-import { User } from '../../../model/objects/User';
+import { User, UserSex } from '../../../model/objects/User';
 import { UserServices } from '../../../model/services/UserServices';
 
 export class SignUp extends React.Component {
@@ -14,9 +14,11 @@ export class SignUp extends React.Component {
     constructor(props) {
         super(props);
 
+        let user = new User();
+        user.sex = UserSex.m;
         this.state = {
             step: 1,
-            user: new User(),
+            user: user,
             errorMessage: '',
             confirmpassword: '',
         };

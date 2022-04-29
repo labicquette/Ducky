@@ -17,7 +17,7 @@ export class SignUpBirthdaySex extends React.Component {
                         type='date'
                         id='birthday'
                         name='birthday'
-                        value={new Date(this.props.birthday)}
+                        value={this.props.birthday}
                         onChange={e => {this.props.handleChange(e, 'birthday')}}
                         className='form-sign-input-text'
                     />
