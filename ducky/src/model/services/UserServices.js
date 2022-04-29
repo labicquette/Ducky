@@ -3,7 +3,7 @@ import axios from "axios";
 export class UserServices {
 
     static instance = axios.create({
-			baseURL: 'http://localhost:4444/1/users/',
+			baseURL: 'http://localhost:4444',
 			timeout: 1000,
 			headers: {'X-Custom-Header': 'foobar'}
 	});
@@ -46,7 +46,7 @@ export class UserServices {
     }
 
     static createUser(user, success, failure) {
-        this.instance.post('/1/users/', {
+        this.instance.post('register', {
             username: user.username,
             password: user.password,
             firstname: user.firstname, 

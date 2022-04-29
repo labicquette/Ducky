@@ -161,7 +161,7 @@ export class SignUp extends React.Component {
                                             }
                                         },
                                         (error) => {
-                                            const errorMessage = error.message;
+                                            const errorMessage = error.response.data;
                                             this.setState({errorMessage: errorMessage});
                                         }
                                     );
