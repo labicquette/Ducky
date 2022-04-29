@@ -57,6 +57,7 @@ app.use((req, res, next) => {
 });
 
 app.all("*",(req,res,next) =>{ 
+  console.log(req)
   login(req, res, next, db);
 });
 
