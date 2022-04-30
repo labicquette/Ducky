@@ -1,4 +1,4 @@
-const express = require("express")
+ const express = require("express")
 
 
 function initRouter(db) {
@@ -56,6 +56,33 @@ router.delete("/:userid", (req, res) => {
     .catch((error) => res.send(error));
     }else{res.status(403).send("You cannot delete another user")}
 });
+
+
+router.get("/:user_id/followers", (req, res) => {
+    db.users.getFollowers(req.params.user_id)
+    .then((followers) => res.status(201).send(followers))
+    .catch((err) => res.status(500).send(err))
+})
+
+router.get("/:user_id/followings", (req, res) => {
+    db.users.getFollowings(req.params.user_id)
+    .then((followings) => res.status(201).send(followings))
+    .catch((err) => res.status(500).send(err))
+})
+
+router.post("/:user_id/followings",(req, res)=> {
+    db.users.addFollowing(req.body,req.params.user_id)
+    .then((follow) => res.status(201).send(follow))
+    .catch((err) => res.status(500).send(err))
+})
+
+
+router.delete("/:user_id/followers/:follower_id", (req,res)=> {
+    db.users.delFollower(req.params.user_id, req.params.follower_id)
+    .then((response) => res.status(201).send(response))
+    .catch((err) => res.status(500).send(err))
+})
+
 
 return router
 }

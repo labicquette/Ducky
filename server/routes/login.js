@@ -17,7 +17,7 @@ if(req.path === '/1/users'  && req.method === 'POST'){
         }
 
         if(user !== null){
-            res.status(403).send("error: User already exists")
+            res.status(403).send("mail already used")
             return;
         }else{
                 newUser = req.body
@@ -33,6 +33,9 @@ if(req.path === '/1/users'  && req.method === 'POST'){
                 newUser.stories_groups = []
                 newUser.posts = []
                 newUser.posts_by = []
+                newUser.mentionnedPosts = []
+                newUser.followers = []
+                newUser.following = []
  
                 db.users.findOne({username: username},function(err,user){
                     if(user!==null){
