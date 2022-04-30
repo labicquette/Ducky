@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { SignUpNames } from './SingUpNames';
 import { SignUpBirthdaySex } from './SignUpBirthdaySex';
 import { SingUpLocalisation } from './SignUpLocalisation';
@@ -154,7 +154,7 @@ export class SignUp extends React.Component {
                                         (response) => {
                                             if (response.status === 200) {
                                                 const user_id = response.data._id;
-                                                this.props.setUser(this.state.user);
+                                                this.props.setUser(user_id);
                                             } else {
                                                 const errorMessage = (
                                                     'Echec de création de compte'

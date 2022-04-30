@@ -7,7 +7,7 @@ let router = express.Router();
 
 
 
-if(req.path== '/1/users'  && req.method == 'POST'){
+if(req.path === '/1/users'  && req.method === 'POST'){
     const{mail,password, username} = req.body
     if(mail && username && password){
         db.users.findOne({mail: mail}, function(err,user){

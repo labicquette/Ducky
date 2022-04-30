@@ -4,7 +4,7 @@ import { SignUp } from "./view/components/sign/SignUp";
 import { SignIn } from "./view/components/sign/SignIn";
 import { SignForgotPassword } from "./view/components/sign/SignInForgotPassword";
 import { Feed } from "./view/components/feed/Feed";
-import axios from "axios";
+import { UserServices } from "./model/services/UserServices";
 
 
 export default class App extends React.Component {
@@ -24,9 +24,21 @@ export default class App extends React.Component {
 		this.handleLogOut.bind(this);
 	}
 
-	setUser(user) {
-		console.log(user);
-		this.setState({ user: user, connected: true });
+	setUser(user_id) {
+		UserServices.getUser(user_id,
+			(response) => {
+				if (response.status === 200) {
+					const userObject = response.data;
+					let user = User.fromJSON(userObject);
+					this.setState({ user: user, connected: true });
+				} else {
+					console.log(response.status)
+					console.log(response.data);
+				}
+			},
+			(error) => {
+			}
+		);
 	}
 
 	setMode(mode) {
