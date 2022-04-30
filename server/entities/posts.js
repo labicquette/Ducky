@@ -45,9 +45,9 @@ class Posts{
         })
     }
 
-    getPostsByUser(body){
+    getPostsByUser(user_id){
         return new Promise((resolve, reject)=> {
-            this.db.posts.find({user_id:body}, function(err, post){
+            this.db.posts.find({user_id:user_id}, function(err, post){
                 if(err){
                     reject(err)
                 }else{
@@ -60,7 +60,9 @@ class Posts{
     getPostsBy(body){
         return new Promise((resolve, reject)=> {
         if(body.hashtags){
-            this.db.posts.find({hashtags: {$in : body.hashtags}}, function(err, posts){
+            let listHashtags = body.hashtags
+            const hashtags = listHashtags.split(",")
+            this.db.posts.find({hashtags: {$in : hashtags}}, function(err, posts){
                 if(err){
                     reject(err)
                 }else{
@@ -69,7 +71,9 @@ class Posts{
             })
         }else{
             if(body.mentionned_users_ids){
-                this.db.posts.find({mentionned_users_ids: {$in : body.mentionned_users_ids}}, function(err,posts){
+                let mentionned_users = body.mentionned_users_ids
+                const users_ids = mentionned_users.split(",")
+                this.db.posts.find({mentionned_users_ids: {$in : users_ids}}, function(err,posts){
                     if(err){
                         reject(err)
                     }else{
@@ -82,9 +86,9 @@ class Posts{
         })
     }
 
-    getPostLikes(body){
+    getPostLikes(postid){
         return new Promise((resolve, reject) => {
-            this.db.posts.find({_id:req.post_id},{likes:1}, function(err, likes){
+            this.db.posts.find({_id: postid},{likes:1}, function(err, likes){
                 if(err){
                     reject(err)
                 }else{
@@ -94,9 +98,9 @@ class Posts{
         })
     }
 
-    addPostLike(body){
+    addPostLike(body, postid){
         return new Promise((resolve, reject) => {
-            this.db.posts.update({_id: req.post_id},{$push:{ likes:{user_id: req.user_id, time:req.time}}}, function(err, like){
+            this.db.posts.update({_id: postid},{$push:{ likes:{user_id: body.user_id, time:body.time}}}, function(err, like){
                 if(err){
                     reject(err)
                 }else{
@@ -106,9 +110,9 @@ class Posts{
         })
     }
 
-    delPostLike(body){
+    delPostLike(body, postid){
         return new Promise((resolve, reject) => {
-            this.db.posts.update({_id:req.post_id}, {$pull:{ likes: {user_id: req.user_id}}}, {}, function(err, like){
+            this.db.posts.update({_id:postid}, {$pull:{ likes: {user_id: body.user_id}}}, {}, function(err, like){
                 if(err){
                     reject(err)
                 }else{
@@ -130,11 +134,12 @@ class Posts{
             post.views = []
             post.reports = []
             post.time = Date.now()
-
+            
             this.db.posts.insert(post, function(err, post){
                 if(err){
                     reject(err);
                 }else{
+                    this.db.users.update({_id: body.mentionned_users_ids},{$push : {mentionnedPosts : post._id}},{multi : true},function(){})
                     resolve(post)
                 }
             })
@@ -167,6 +172,8 @@ class Posts{
 
         })
     }
+
+
 }
 
 module.exports = Posts;
