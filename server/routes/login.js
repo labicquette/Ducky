@@ -7,7 +7,7 @@ let router = express.Router();
 
 
 
-if(req.path== '/1/users'  && req.method == 'POST'){
+if(req.path === '/1/users'  && req.method === 'POST'){
     const{mail,password, username} = req.body
     if(mail && username && password){
         db.users.findOne({mail: mail}, function(err,user){
@@ -33,6 +33,9 @@ if(req.path== '/1/users'  && req.method == 'POST'){
                 newUser.stories_groups = []
                 newUser.posts = []
                 newUser.posts_by = []
+                newUser.mentionnedPosts = []
+                newUser.followers = []
+                newUser.following = []
  
                 db.users.findOne({username: username},function(err,user){
                     if(user!==null){

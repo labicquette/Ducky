@@ -1,4 +1,4 @@
-const express = require("express")
+ const express = require("express")
 
 function initRouter(db){
 let router = express.Router();
@@ -27,36 +27,30 @@ router.get("/by/user/:user_id", (req,res) => {
 
 
 router.get("/by", (req,res)  => {
-    db.posts.getPostsBy(req.body)
+    db.posts.getPostsBy(req.query)
     .then((posts) => res.send(posts))
     .catch((error) => res.send(error))
 })
 
-router.get("/post/:post_id/likes", (req,res)=>{
-    db.posts.getPostLikes(req.params.post_id)
-    .then((users) => res.send(users))
-    .catch((error)=> res.send(error))
-})
 
-router.post("/posts/:post_id/likes", (req, res)=>{
-    db.posts.addPostLike(req.body)
+
+router.post("/:post_id/likes", (req, res)=>{
+    db.posts.addPostLike(req.body, req.params.post_id)
     .then((like) => res.send(like))
     .catch((error) => res.send(error))
 })
 
-router.delete("/posts/:post_id/likes", (req,res) => {
-    db.posts.delPostLike(req.body)
+router.delete("/:post_id/likes", (req,res) => {
+    db.posts.delPostLike(req.body, req.params.post_id)
     .then((like) => res.send("OK"))
     .catch((error) => res.send(error))
 })
 
 
 router.delete("/:postid",(req,res)=>{
-    if(req.session.userId === req.body.userid){
-        db.posts.delete(req.body)
-        .then((post) => res.status(201).send(post))
-        .catch((error) => res.send(error))    
-    }else{res.status(403).send("You're not the owner of this post")}
+    db.posts.delete(req.body)
+    .then((post) => res.status(201).send(post))
+    .catch((error) => res.send(error))
 })
 
 router.patch("/:postid", (req, res)=>{
@@ -66,11 +60,20 @@ router.patch("/:postid", (req, res)=>{
     .catch((error) => res.send(error))
 });
 
+router.get("/:post_id/likes", (req,res)=>{
+    db.posts.getPostLikes(req.params.post_id)
+    .then((users) => res.send(users))
+    .catch((error)=> res.send(error))
+})
+
 router.get("/:postid", (req, res) => {
-        db.posts.getPostById(req.params.postid)
+    db.posts.getPostById(req.params.postid)
         .then((post) => res.status(201).send(post))
         .catch((error) => res.send(error))
 });
+
+
+
 return router
 }
 module.exports = initRouter 

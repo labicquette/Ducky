@@ -3,9 +3,14 @@ import axios from "axios";
 export class UserServices {
 
     static instance = axios.create({
-			baseURL: 'http://localhost:4444',
-			timeout: 1000,
-			headers: {'X-Custom-Header': 'foobar'}
+		baseURL: 'http://localhost:4444',
+		timeout: 1000,
+        withCredentials: true,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            'X-Custom-Header': 'foobar'
+        }
 	});
 
     static consoleError(error) {

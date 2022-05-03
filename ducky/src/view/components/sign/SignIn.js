@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserServices } from '../../../model/services/UserServices';
 import { SignTop } from './SignTop';
+import Cookies from 'js-cookie';
 
 export class SignIn extends React.Component {
         
@@ -98,9 +99,23 @@ export class SignIn extends React.Component {
                                 return;
                             }
                             this.setState({errorMessage: ''});
-                            const res = UserServices.login(this.state.username, this.state.password);
-                            if (res.ok) this.props.setUser(res.user);
-                            else this.setState({errorMessage: res.message});
+                            UserServices.login(this.state.username, this.state.password,
+                                (response) => {
+                                    if (response.status === 200) {
+                                        console.log('Connecté !')
+                                        console.log(Cookies.get('user_id'));
+                                        console.log(response.headers);
+                                    }
+                                    else {
+                                        const errorMessage = response.data;
+                                        this.setState({errorMessage: errorMessage});
+                                    }
+                                },
+                                (error) => {
+                                    const errorMessage = error.message;
+                                    this.setState({errorMessage: errorMessage});
+                                }
+                            );
                         }}
                         />
                 </div>

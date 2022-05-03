@@ -47,7 +47,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='lastname'>
+                            htmlFor='lastname'>
                             Prénom
                         </label>
                         <input
@@ -64,7 +64,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='lastname'>
+                            htmlFor='lastname'>
                             Nom
                         </label>
                         <input
@@ -81,7 +81,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='username'>
+                            htmlFor='username'>
                             Nom d'utilisateur
                         </label>
                         <input
@@ -98,7 +98,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='sex'>
+                            htmlFor='sex'>
                             Sexe
                         </label>
                         <input
@@ -115,7 +115,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='phone'>
+                            htmlFor='phone'>
                             Téléphone
                         </label>
                         <input
@@ -132,7 +132,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='mail'>
+                            htmlFor='mail'>
                             Adresse e-mail
                         </label>
                         <input
@@ -149,7 +149,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='country'>
+                            htmlFor='country'>
                             Pays
                         </label>
                         <input
@@ -166,7 +166,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='city'>
+                            htmlFor='city'>
                             Ville
                         </label>
                         <input
@@ -183,7 +183,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='birthday'>
+                            htmlFor='birthday'>
                             Date de naissance
                         </label>
                         <input
@@ -200,7 +200,7 @@ export class UserUpdateProfilView extends React.Component {
                     <div className='user-update-profil-view-content-item'>
                         <label
                             className='user-update-profil-view-content-item-label'
-                            for='sex'>
+                            htmlFor='sex'>
                             Bio
                         </label>
                         <textarea
