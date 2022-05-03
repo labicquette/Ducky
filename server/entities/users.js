@@ -115,7 +115,7 @@ class Users{
 
     delete(userid){
         return new Promise((resolve, reject)=>{
-            this.db.users.remove({_id: userid}, function(err, response){
+            this.db.users.remove({_id: userid}, {}, function(err, response){
                 if(err){
                     reject(err);
                 }else{
