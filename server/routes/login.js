@@ -70,7 +70,7 @@ if(req.path == '/1/users/logout'){
             return;
         }
     })
-    res.session.destroy(err =>{
+    req.session.destroy(err =>{
         if(err){
             res.status(500).send(err)
             return;
