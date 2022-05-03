@@ -252,6 +252,7 @@ export class UserUpdateProfilView extends React.Component {
                                     this.props.handleProfil();
                                 },
                                 (error) => {
+                                    this.setState({errorMessage: error.message});
                                     console.log(error);
                                 }
                             );

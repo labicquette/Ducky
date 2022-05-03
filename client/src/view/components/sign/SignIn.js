@@ -106,13 +106,11 @@ export class SignIn extends React.Component {
                                         this.props.setUser(user_id);
                                     }
                                     else {
-                                        const errorMessage = response.data;
-                                        this.setState({errorMessage: errorMessage});
+                                        this.setState({errorMessage: 'Identifants incorrects !'});
                                     }
                                 },
                                 (error) => {
-                                    const errorMessage = error.message;
-                                    this.setState({errorMessage: errorMessage});
+                                    this.setState({errorMessage: 'Echec de connexion !'});
                                 }
                             );
                         }}

@@ -1428,6 +1428,15 @@ body {
 .user-update-profil-view-content-item2-info {
 }
 
+.user-update-profil-view-error {
+	text-align: center;
+	font-size: 14px;
+	color: brown;
+	background-color: pink;
+	padding: 2px 3px 2px 3px;
+	border-radius: 2px;
+}
+
 .user-update-profil-view-buttons {
 	display: flex;
 	flex-direction: row;

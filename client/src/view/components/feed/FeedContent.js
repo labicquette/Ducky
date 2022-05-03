@@ -162,7 +162,8 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentUpdateProfil
                         user={this.props.user}
-                        handleProfil={this.props.handleProfil} />
+                        handleProfil={this.props.handleProfil}
+                        handleLogOut={this.props.handleLogOut} />
                 );
                 break;
 
