@@ -1,8 +1,39 @@
 import React from "react";
+import { UserServices } from "../../../model/services/UserServices";
 
 export class UserUpdateStatusView extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            private: this.props.user.private,
+            disablePassword: '',
+            deletePassword: '',
+            errorDisableMessage: '',
+            errorDeleteMessage: ''
+        };
+    }
+
     render() {
+        let errorDisableContent = null;
+        if (this.state.errorDisableMessage) {
+            errorDisableContent = (
+                <div className='user-update-profil-view-error'>
+                    {this.state.errorDisableMessage}
+                </div>
+            );
+        }
+        
+        let errorDeleteContent = null;
+        if (this.state.errorDeleteMessage) {
+            errorDeleteContent = (
+                <div className='user-update-profil-view-error'>
+                    {this.state.errorDeleteMessage}
+                </div>
+            );
+        }
+
         return (
             <div className='user-update-profil-view-container'>
                 <div className='user-update-profil-view-title'>
@@ -23,7 +54,7 @@ export class UserUpdateStatusView extends React.Component {
                                     id='private' />
                                 <label 
                                     className=''
-                                    for='private'>
+                                    htmlFor='private'>
                                     Compte privé
                                 </label>
                             </div>
@@ -46,19 +77,30 @@ export class UserUpdateStatusView extends React.Component {
                             <div className='user-update-profil-view-content-item'>
                                 <label
                                     className='user-update-profil-view-content-item-label'
-                                    for='password'>
+                                    htmlFor='disable-password'>
                                     Mot de passe
                                 </label>
                                 <input
                                     className='user-update-profil-view-content-item-text'
                                     type='password'
-                                    name='password'
-                                    id='password' />
+                                    name='disabled-password'
+                                    id='disabled-password'
+                                    value={this.state.disablePassword}
+                                    onChange={(e) => {this.setState({disablePassword: e.target.value})}} />
                             </div>
+                            {errorDisableContent}
                             <input 
                                 className='user-update-profil-view-button'
                                 type='button'
-                                value='Désactiver temporairement le compte' />
+                                value='Désactiver temporairement le compte'
+                                onClick={() => {
+                                    if (this.state.disablePassword !== this.props.user.password) {
+                                        this.setState({errorDisableMessage: 'Mot de passe incorrect'});
+                                        return;
+                                    }
+                                    this.setState({errorDisableMessage: 'Compte désactivé'});
+                                    this.props.handleLogOut();
+                                }} />
                         </div>
                     </div>
                     <div className='user-update-profil-view-content-item2'>
@@ -68,26 +110,44 @@ export class UserUpdateStatusView extends React.Component {
                         </h4>
                         <div className='user-update-profil-view-content-item2-container'>
                             <div className='user-update-profil-view-content-item2-info'>
-                                Vous pouvez désactiver votre compte au lieu de le supprimer. <br />
-                                Votre compte sera masqué jusqu’à ce que vous le réactiviez
-                                en vous reconnectant.  <br />
+                                Cette action est définitive. Vous perdrez votre compte ainsi
+                                que toutes vos informations et liens d'amitié.  <br />
                             </div>
                             <div className='user-update-profil-view-content-item'>
                                 <label
                                     className='user-update-profil-view-content-item-label'
-                                    for='password'>
+                                    htmlFor='password'>
                                     Mot de passe
                                 </label>
                                 <input
                                     className='user-update-profil-view-content-item-text'
                                     type='password'
                                     name='password'
-                                    id='password' />
+                                    id='password'
+                                    value={this.state.deletePassword}
+                                    onChange={(e) => {this.setState({deletePassword: e.target.value})}} />
                             </div>
+                            {errorDeleteContent}
                             <input 
                                 className='user-update-profil-view-button'
                                 type='button'
-                                value='Supprimer définitivement le compte' />
+                                value='Supprimer définitivement le compte'
+                                onClick={() => {
+                                    if (this.state.deletePassword !== this.props.user.password) {
+                                        this.setState({errorDeleteMessage: 'Mot de passe incorrect'});
+                                        return;
+                                    }
+                                    this.setState({errorDeleteContent: 'Compte supprimé'});
+                                    UserServices.deleteUser(this.props.user.id,
+                                        (response) => {
+                                            console.log(response);
+                                        },
+                                        (error) => {
+                                            console.log(error);
+                                        }
+                                    );
+                                    this.props.handleLogOut();
+                                }} />
                         </div>
                     </div>
                 </div>
