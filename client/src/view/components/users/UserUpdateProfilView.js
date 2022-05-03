@@ -18,7 +18,7 @@ export class UserUpdateProfilView extends React.Component {
             country: this.props.user.country,
             city: this.props.user.city,
             birthday: this.props.user.birthday,
-            biography: this.props.user.biography,
+            biography: (this.props.user.biography) ? this.props.user.biography: '',
             errorMessage: '',
         };
     }

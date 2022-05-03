@@ -42,9 +42,7 @@ export class UserServices {
     }
 
     static logout(user_id, success, failure) {
-        this.instance.post('/1/users/logout', null, {
-            user_id: user_id,
-        })
+        this.instance.post('/1/users/logout')
         .then((response) => {success(response)})
         .catch((error) => {failure(error)})
         .then(() => {});
