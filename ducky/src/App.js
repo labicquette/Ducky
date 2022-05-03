@@ -27,7 +27,7 @@ export default class App extends React.Component {
 	setUser(user_id) {
 		UserServices.getUser(user_id,
 			(response) => {
-				if (response.status === 200) {
+				if (response.status === 201) {
 					const userObject = response.data;
 					let user = User.fromJSON(userObject);
 					this.setState({ user: user, connected: true });
@@ -55,6 +55,14 @@ export default class App extends React.Component {
 	}
 
 	handleLogOut() {
+		UserServices.logout(this.state.user.id,
+			response => {
+				console.log(response);
+			},
+			error => {
+				console.log(error);
+			}
+		);
 		this.setState({ connected: false })
 	}
 

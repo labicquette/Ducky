@@ -131,7 +131,8 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentMessages 
                         user={this.props.user}
-                        messagesList={messagesList} />
+                        messagesList={messagesList}
+                        handleSetOtherUser={this.props.handleSetOtherUser} />
                 );
                 break;
 
@@ -152,14 +153,16 @@ export class FeedContent extends React.Component {
                         user={this.props.user}
                         me={true}
                         posts={postsUser}
-                        handleUpdateProfil={this.props.handleUpdateProfil} />
+                        handleUpdateProfil={this.props.handleUpdateProfil}
+                        handleFriends={this.props.handleFriends} />
                 );
                 break;
 
             case 'profil-update':
                 content = (
                     <FeedContentUpdateProfil
-                        user={this.props.user} />
+                        user={this.props.user}
+                        handleProfil={this.props.handleProfil} />
                 );
                 break;
 

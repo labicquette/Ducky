@@ -42,15 +42,16 @@ export class Feed extends React.Component {
                     handleFriends={() => this.setContentId('friends')}
                     handleSuggestions={() => this.setContentId('suggestions')}
                     handleStatistics={() => this.setContentId('statistics')}
-                    handleParameters={() => this.setContentId('parameters')}
+                    handleParameters={() => this.setContentId('profil-update')}
                     handleLogOut={() => this.props.handleLogOut()}
-                    notifications={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}/>
+                    notifications={this.props.user.notifications}/>
                 <FeedContent
                     user={this.props.user}
                     contentId={this.state.contentId} 
                     onClickStories={() => this.setContentId('stories')}
                     handleProfil={() => this.setContentId('profil')}
                     handleUpdateProfil={() => this.setContentId('profil-update')}
+                    handleFriends={() => this.setContentId('friends')}
                     handleOtherProfil={() => this.setContentId('other-profil')} 
                     handleSetOtherUser={(otherUser) => this.setOtherUser(otherUser)} />
             </div>

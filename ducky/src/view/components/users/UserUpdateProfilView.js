@@ -1,4 +1,6 @@
 import React from "react";
+import { User } from "../../../model/objects/User";
+import { UserServices } from "../../../model/services/UserServices";
 
 export class UserUpdateProfilView extends React.Component {
 
@@ -16,11 +18,21 @@ export class UserUpdateProfilView extends React.Component {
             country: this.props.user.country,
             city: this.props.user.city,
             birthday: this.props.user.birthday,
-            biography: this.props.user.biography
+            biography: this.props.user.biography,
+            errorMessage: '',
         };
     }
 
     render() {
+        let errorContent = null;
+        if (this.state.errorMessage) {
+            errorContent = (
+                <div className='user-update-profil-view-error'>
+                    {this.state.errorMessage}
+                </div>
+            );
+        }
+
         return (
             <div className='user-update-profil-view-container'>
                 <div className='user-update-profil-view-resume'>
@@ -189,7 +201,7 @@ export class UserUpdateProfilView extends React.Component {
                         <input
                             className='user-update-profil-view-content-item-text'
                             type='date'
-                            value={new Date(this.state.birthday)}
+                            value={this.state.birthday}
                             name='birthday'
                             id='birthday' 
                             onChange={(e) => {
@@ -215,17 +227,55 @@ export class UserUpdateProfilView extends React.Component {
                             }} />
                     </div>
                 </div>
+                {errorContent}
                 <div className='user-update-profil-view-buttons'>
                     <input
                         className='user-update-profil-view-button' 
                         type='button'
-                        value='Sauvegarder' />
+                        value='Sauvegarder'
+                        onClick={() => {
+                            const user = new User();
+                            user.id = this.props.user.id;
+                            user.profil_picture_src = this.state.profil_picture_src;
+                            user.lastname = this.state.lastname;
+                            user.firstname = this.state.firstname;
+                            user.username = this.state.username;
+                            user.sex = this.state.sex;
+                            user.phone = this.state.phone;
+                            user.mail = this.state.mail;
+                            user.country = this.state.country;
+                            user.city = this.state.city;
+                            user.birthday = this.state.birthday;
+                            user.biography = this.state.biography;
+                            UserServices.updateUser(user, 
+                                (response) => {
+                                    console.log(response);
+                                },
+                                (error) => {
+                                    console.log(error);
+                                }
+                            );
+                        }} />
                     <input
                         className='user-update-profil-view-button' 
                         type='button'
-                        value='Annuler' />
+                        value='Annuler'
+                        onClick={this.props.handleProfil} />
                 </div>
             </div>
         );
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

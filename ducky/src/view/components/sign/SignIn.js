@@ -102,9 +102,8 @@ export class SignIn extends React.Component {
                             UserServices.login(this.state.username, this.state.password,
                                 (response) => {
                                     if (response.status === 200) {
-                                        console.log('Connecté !')
-                                        console.log(Cookies.get('user_id'));
-                                        console.log(response.headers);
+                                        const user_id = Cookies.get('user_id');
+                                        this.props.setUser(user_id);
                                     }
                                     else {
                                         const errorMessage = response.data;

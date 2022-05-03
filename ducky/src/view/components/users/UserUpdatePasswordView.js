@@ -54,7 +54,8 @@ export class UserUpdatePasswordView extends React.Component {
                     <input
                         className='user-update-profil-view-button' 
                         type='button'
-                        value='Annuler' />
+                        value='Annuler'
+                        onClick={this.props.handleProfil} />
                 </div>
             </div>
         );

@@ -7,7 +7,7 @@ export class UserServices {
 		timeout: 1000,
         withCredentials: true,
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': 'http://localhost:4444',
             'Content-Type': 'application/json',
             'X-Custom-Header': 'foobar'
         }
@@ -42,7 +42,7 @@ export class UserServices {
     }
 
     static logout(user_id, success, failure) {
-        this.instance.post('/1/users/:user_id/logout', null, {
+        this.instance.post('/1/users/logout', null, {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -85,7 +85,7 @@ export class UserServices {
     }
 
     static getUser(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id', {
+        this.instance.get('/1/users/' + user_id, {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -107,7 +107,7 @@ export class UserServices {
     }
 
     static getUserByUsername(username, success, failure) {
-        this.instance.get('/1/users/by/username/:username', {
+        this.instance.get('/1/users/by/username/' + username, {
             username: username,
         })
         .then((response) => {success(response)})
@@ -119,7 +119,7 @@ export class UserServices {
     }
 
     static updateUser(user, success, failure) {
-        this.instance.patch('/1/users/:user_id', {
+        this.instance.patch('/1/users/' + user.id, {
             username: user.username,
             password: user.password,
             firstname: user.firstname, 
@@ -143,7 +143,7 @@ export class UserServices {
     }
 
     static deleteUser(user_id, success, failure) {
-        this.instance.delete('/1/users/:user_id', {
+        this.instance.delete('/1/users/' + user_id, {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -155,7 +155,7 @@ export class UserServices {
     }
 
     static getFollowers(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/followers', {
+        this.instance.get('/1/users/' + user_id + '/followers', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -167,7 +167,7 @@ export class UserServices {
     }
 
     static getFollowings(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/followings', {
+        this.instance.get('/1/users/' + user_id + '/followings', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -179,7 +179,7 @@ export class UserServices {
     }
 
     static addFollower(user_id, follower_id, success, failure) {
-        this.instance.post('/1/users/:user_id/followers', {
+        this.instance.post('/1/users/' + user_id + '/followers', {
             follower_id: follower_id,
             time: new Date(),
         }, {
@@ -194,7 +194,7 @@ export class UserServices {
     }
 
     static addFollowing(user_id, following_id, success, failure) {
-        this.instance.post('/1/users/:user_id/followings', {
+        this.instance.post('/1/users/' + user_id + '/followings', {
             following_id: following_id,
             time: new Date(),
         }, {
@@ -209,7 +209,7 @@ export class UserServices {
     }
 
     static delFollower(user_id, follower_id, success, failure) {
-        this.instance.delete('1/users/:user_id/followers/:follower_id', {
+        this.instance.delete('1/users/' + user_id + '/followers/' + follower_id, {
             user_id: user_id,
             follower_id: follower_id,
         })
@@ -222,7 +222,7 @@ export class UserServices {
     }
     
     static delFollowing(user_id, following_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/followings/:following_id', {
+        this.instance.delete('/1/users/' + user_id + '/followings/' + following_id, {
             user_id: user_id,
             following_id: following_id,
         })        
@@ -235,7 +235,7 @@ export class UserServices {
     }
 
     static getBlocks(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/blocks', {
+        this.instance.get('/1/users/' + user_id + '/blocks', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -247,7 +247,7 @@ export class UserServices {
     }
 
     static getBlocksBy(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/blocksby', {
+        this.instance.get('/1/users/' + user_id + '/blocksby', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -259,7 +259,7 @@ export class UserServices {
     }
 
     static addBlock(user_id, blocked_id, reason, success, failure) {
-        this.instance.post('/1/users/:user_id/blocks', {
+        this.instance.post('/1/users/' + user_id + '/blocks', {
             blocked_id: blocked_id,
             time: new Date(),
             reason: reason,
@@ -275,7 +275,7 @@ export class UserServices {
     }
 
     static delBlock(user_id, blocked_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/blocks', {
+        this.instance.delete('/1/users/' + user_id + '/blocks/' + blocked_id, {
             user_id: user_id,
             blocked_id: blocked_id,
         })
@@ -288,7 +288,7 @@ export class UserServices {
     }
 
     static getReports(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/reports', {
+        this.instance.get('/1/users/' + user_id + '/reports', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -300,7 +300,7 @@ export class UserServices {
     }
 
     static getReportsBy(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/reportsby', {
+        this.instance.get('/1/users/' + user_id + '/reportsby', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -312,7 +312,7 @@ export class UserServices {
     }
 
     static addReport(user_id, reported_id, reason, success, failure) {
-        this.instance.post('/1/users/:user_id/reports', {
+        this.instance.post('/1/users/' + user_id + '/reports', {
             reported_id: reported_id,
             time: new Date(),
             reason: reason,
@@ -328,7 +328,7 @@ export class UserServices {
     }
 
     static getViews(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/views', {
+        this.instance.get('/1/users/' + user_id + '/views', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -340,7 +340,7 @@ export class UserServices {
     }
 
     static getViewsBy(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/viewsby', {
+        this.instance.get('/1/users/' + user_id + '/viewsby', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -352,7 +352,7 @@ export class UserServices {
     }
 
     static addView(user_id, viewed_id, success, failure) {
-        this.instance.post('/1/users/:user_id/views', {
+        this.instance.post('/1/users/' + user_id + '/views', {
             viewed_id: viewed_id,
             time: new Date(),
         }, {
@@ -367,7 +367,7 @@ export class UserServices {
     }
 
     static getUserMessages(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/messages', {
+        this.instance.get('/1/users/' + user_id + '/messages', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -385,7 +385,7 @@ export class UserServices {
                             group_id, 
                             success, 
                             failure) {
-        this.instance.post('/1/users/:user_id/messages', {
+        this.instance.post('/1/users/' + user_id + '/messages', {
             type: type,
             messages_id: messages_id,
             other_user_id: other_user_id,
@@ -407,7 +407,7 @@ export class UserServices {
                             group_id, 
                             success, 
                             failure) {
-        this.instance.patch('/1/users/:user_id/messages', {
+        this.instance.patch('/1/users/' + user_id + '/messages', {
             messages_id: messages_id,
             other_user_id: other_user_id,
             group_id: group_id,
@@ -423,7 +423,7 @@ export class UserServices {
     }
 
     static deleteUserSimpleMessages(user_id, other_user_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/messages/simple/:other_user_id', {
+        this.instance.delete('/1/users/' + user_id + '/messages/simple/:other_user_id', {
             user_id: user_id,
             other_user_id: other_user_id,
         })
@@ -436,7 +436,7 @@ export class UserServices {
     }
 
     static deleteUserGroupMessages(user_id, group_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/messages/group/:group_id', {
+        this.instance.delete('/1/users/' + user_id + '/messages/group/:group_id', {
             user_id: user_id,
             group_id: group_id,
         })
@@ -449,7 +449,7 @@ export class UserServices {
     }
 
     static getUserPosts(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/posts', {
+        this.instance.get('/1/users/' + user_id + '/posts', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -461,7 +461,7 @@ export class UserServices {
     } 
 
     static addUserPost(user_id, post_id, success, failure) {
-        this.insatnce.post('/1/users/:user_id/posts', {
+        this.insatnce.post('/1/users/' + user_id + '/posts', {
             post_id: post_id,
         }, {
             user_id: user_id,
@@ -475,7 +475,7 @@ export class UserServices {
     }
 
     static delUserPost(user_id, post_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/posts/:post_id', {
+        this.instance.delete('/1/users/' + user_id + '/posts/:post_id', {
             user_id: user_id,
             post_id: post_id,
         })
@@ -488,7 +488,7 @@ export class UserServices {
     }
 
     static getUserLikedPosts(user_id, success, failure) {
-        this.instance.get('/1/users/:user_id/likedposts', {
+        this.instance.get('/1/users/' + user_id + '/likedposts', {
             user_id: user_id,
         })
         .then((response) => {success(response)})
@@ -500,7 +500,7 @@ export class UserServices {
     }
 
     static addUserLikedPost(user_id, post_id, success, failure) {
-        this.instance.post('/1/users/:user_id/likedposts', {
+        this.instance.post('/1/users/' + user_id + '/likedposts', {
             post_id: post_id,
         }, {
             user_id: user_id,
@@ -514,7 +514,7 @@ export class UserServices {
     }
 
     static delUserLikedPost(user_id, post_id, success, failure) {
-        this.instance.delete('/1/users/:user_id/likedposts/:post_id', {
+        this.instance.delete('/1/users/' + user_id + '/likedposts/:post_id', {
             user_id: user_id,
             post_id: post_id,
         })

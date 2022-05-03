@@ -9,6 +9,8 @@ import { SignTop } from './SignTop';
 import { User, UserSex } from '../../../model/objects/User';
 import { UserServices } from '../../../model/services/UserServices';
 
+import Cookies from 'js-cookie';
+
 export class SignUp extends React.Component {
 
     constructor(props) {
@@ -153,7 +155,8 @@ export class SignUp extends React.Component {
                                     UserServices.createUser(this.state.user,
                                         (response) => {
                                             if (response.status === 200) {
-                                                const user_id = response.data._id;
+                                                const user_id = Cookies.get('user_id');
+                                                // const user_id = response.data._id;
                                                 this.props.setUser(user_id);
                                             } else {
                                                 const errorMessage = (

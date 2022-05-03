@@ -1,14 +1,24 @@
 import React from "react";
 import { PostEdit } from "../posts/PostEdit";
 import { PostViewList } from "../posts/PostViewList";
-import { StoriePreviewList } from "../stories/StoriePreviewList";
+//import { StoriePreviewList } from "../stories/StoriePreviewList";
 
 export class FeedContentHome extends React.Component {
 
     render() {
+        /**
+        let storiesContent = (
+            <div className='feed-content-storie-preview-list-container'>
+                <div className='feed-content-home-main-title'>
+                    <span>Stories</span>
+                </div>
+                <StoriePreviewList user={this.props.user} stories={this.props.stories} />
+            </div>
+        );
+        */
+
         return (
             <div className='feed-content-item feed-content-home'>
-
                 <div className='feed-content-home-left'>
                     <div className='feed-content-home-left-item'>
                         <div 
@@ -52,12 +62,6 @@ export class FeedContentHome extends React.Component {
                     <div className='feed-content-home-main-main'>
                         <div className='feed-content-post-edit-container'>
                             <PostEdit user={this.props.user} />
-                        </div>
-                        <div className='feed-content-storie-preview-list-container'>
-                            <div className='feed-content-home-main-title'>
-                                <span>Stories</span>
-                            </div>
-                            <StoriePreviewList user={this.props.user} stories={this.props.stories} />
                         </div>
                         <div className='feed-content-post-view-list-container'>
                             <div className='feed-content-home-main-title'>

@@ -18,13 +18,17 @@ export class FeedContentUpdateProfil extends React.Component {
         switch(this.state.page) {
             case 1: // update password
                 content = (
-                    <UserUpdatePasswordView user={this.props.user} />
+                    <UserUpdatePasswordView 
+                        user={this.props.user} 
+                        handleProfil={this.props.handleProfil} />
                 );
                 break;
 
             case 2: // update status
                 content = (
-                    <UserUpdateStatusView user={this.props.user} />
+                    <UserUpdateStatusView 
+                        user={this.props.user}
+                        handleProfil={this.props.handleProfil} />
                 );
                 break;
 
@@ -46,7 +50,9 @@ export class FeedContentUpdateProfil extends React.Component {
 
             default: // update profil
                 content = (
-                    <UserUpdateProfilView user={this.props.user} />
+                    <UserUpdateProfilView 
+                        user={this.props.user} 
+                        handleProfil={this.props.handleProfil} />
                 );
         }
 

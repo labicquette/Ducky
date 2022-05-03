@@ -34,7 +34,7 @@ export class PollEditor extends React.Component {
                             </label>
                             <select
                                 className='poll-editor-timer-content-item-select'>
-                                {days.map(i => <option value={i}>{i}</option>)}
+                                {days.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
                         <div className='poll-editor-timer-content-item'>
@@ -43,7 +43,7 @@ export class PollEditor extends React.Component {
                             </label>
                             <select
                                 className='poll-editor-timer-content-item-select'>
-                                {hours.map(i => <option value={i}>{i}</option>)}
+                                {hours.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
                         <div className='poll-editor-timer-content-item'>
@@ -52,7 +52,7 @@ export class PollEditor extends React.Component {
                             </label>
                             <select
                                 className='poll-editor-timer-content-item-select'>
-                                {minutes.map(i => <option value={i}>{i}</option>)}
+                                {minutes.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
                     </div>

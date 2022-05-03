@@ -30,6 +30,8 @@ export class User {
         this.names = this.firstname + ' ' + this.lastname;
         this.sex = sex;
         this.profil_picture_src = profil_picture_src;
+        if (!profil_picture_src)
+            this.profil_picture_src = "http://dummyimage.com/190x100.png/ff4444/ffffff";
         this.phone = phone;
         this.mail = mail;
         this.city = city;
@@ -70,8 +72,9 @@ export class User {
         let user = new User();
         for (let att in userObject) {
             user[att] = userObject[att];
-            user.names = userObject.firstname + ' ' + userObject.lastname;
         }
+        if (userObject._id) user.id = userObject._id;
+        user.names = userObject.firstname + ' ' + userObject.lastname;
         return user;
     }
 

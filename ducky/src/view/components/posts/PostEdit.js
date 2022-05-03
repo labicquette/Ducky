@@ -9,27 +9,9 @@ export class PostEdit extends React.Component {
     constructor(props) {
         super(props);
 
-        // TODO: test
-        let post = new Post();
-        post.media.push(
-            new Media(null, MediaType.video, 
-                    ('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'))
-        );
-        post.media.push(
-            new Media(null, MediaType.image, 
-                    ('http://dummyimage.com/116x100.png/cc0000/ffffff'))
-        );
-        post.media.push(
-            new Media(null, MediaType.audio, 
-                    ('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'))
-        );
-        post.media.push(
-            new Media(null, MediaType.image, 
-                    ('http://dummyimage.com/211x100.png/5fa2dd/ffffff'))
-        );
-
         this.state = {
-            post: post,
+            post: new Post(),
+            media: [],
             pollFlag: false,
             postFlag: false,
             postButtonFlag: 'active',
@@ -122,6 +104,8 @@ export class PostEdit extends React.Component {
                                             )(img);
                                             reader.readAsDataURL(file);
                                             m.img = img;
+                                            m.src = img.file;
+                                            m.id = media.length;
                                             media.push(m);
                                         }
                                         this.setState({media: media});

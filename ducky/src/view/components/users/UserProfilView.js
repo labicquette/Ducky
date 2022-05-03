@@ -108,11 +108,11 @@ export class UserProfilView extends React.Component {
                                 <span>Publications</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{0}</span>
+                                <span className='value'>{this.props.followersLength}</span>
                                 <span>Abonnés</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{0}</span>
+                                <span className='value'>{this.props.followersLength}</span>
                                 <span>Abonnements</span>
                             </div>
                         </div>

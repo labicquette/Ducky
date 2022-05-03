@@ -6,13 +6,16 @@ export class NotificationView extends React.Component {
         return (
             <div className='notification-view-container'>
                 <img
-                    src={require('../../../ressources/profil_test.png')}
+                    src={this.props.notification.image}
                     className='notification-view-image'
-                    alt='' />
+                    alt='Notification' />
                 <div className='notification-view-content'>
-                    <div>
-                        Ben Kabongo a aimé votre nouvelle photo
-                    </div>
+                    <span className='notification-view-title' >
+                        {this.props.notification.title}
+                    </span>
+                    <span className='notification-view-description'>
+                        {this.props.notification.description}
+                    </span>
                 </div>
             </div>
         );

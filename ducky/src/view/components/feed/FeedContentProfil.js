@@ -10,7 +10,10 @@ export class FeedContentProfil extends React.Component {
                     user={this.props.user} 
                     me={this.props.me}
                     posts={this.props.posts}
-                    handleUpdateProfil={this.props.handleUpdateProfil} />
+                    followersLength={this.props.user.followers.length}
+                    followingsLength={this.props.user.followings.length}
+                    handleUpdateProfil={this.props.handleUpdateProfil} 
+                    handleFriends={this.props.handleFriends} />
             </div>
         );
     }
