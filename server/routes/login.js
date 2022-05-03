@@ -60,7 +60,7 @@ if(req.path== '/1/users'  && req.method == 'POST'){
     }
 }
 else{
-if(req.path == '/1/users/:user_id/logout'){
+if(req.path == '/1/users/logout'){
     db.users.update({_id: req.cookies.user_id},{$set :{online: false}},function(err){
         if(err){
             res.send(err)

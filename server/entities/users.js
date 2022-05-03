@@ -131,7 +131,7 @@ class Users{
                 if(err){
                     reject(err);
                 }else{
-                    resolve("OK");
+                    resolve();
                 }
             });
         });

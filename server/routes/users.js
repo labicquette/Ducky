@@ -42,7 +42,7 @@ router.patch("/:userid", (req, res)=>{
     //requete bd patch 
     if(req.cookies.user_id === req.params.userid){
         db.users.update(req.params.userid, req.body)
-        .then((user)=> res.sendStatus(201).send(user))
+        .then((user)=> res.sendStatus(201).send("OK"))
         .catch((error) => res.send(error));
     }else{
         res.status(403).send("You cannot modify another user")
