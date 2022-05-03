@@ -127,7 +127,7 @@ class Users{
     
     update(userid, body){
         return new Promise((resolve, reject)=> {
-            this.db.users.update({_id: userid}, {$set :body},{}, function(err){
+            this.db.users.update({_id: userid}, {$set :body},{}, function(err, numAffected, affectedDocuments, upsert){
                 if(err){
                     reject(err);
                 }else{
