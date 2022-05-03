@@ -13,11 +13,15 @@ router.get("", (req, res) => {
 
 router.post("", (req,res)  => {
     db.posts.create(req.body)
-    .then((post) => res.status(201).send(post))
+    .then((post) => res.status(200).send(post))
     .catch((error) => res.send(error))
 });
 
-
+router.get("/all", (req, res) => {
+    db.posts.getAll()
+    .then((posts) => res.status(200).send(posts))
+    .catch((error) => res.send(error))
+})
 
 router.get("/by/user/:user_id", (req,res) => {
     db.posts.getPostsByUser(req.params.user_id)
@@ -49,14 +53,14 @@ router.delete("/:post_id/likes", (req,res) => {
 
 router.delete("/:postid",(req,res)=>{
     db.posts.delete(req.body)
-    .then((post) => res.status(201).send(post))
+    .then((post) => res.status(200).send(post))
     .catch((error) => res.send(error))
 })
 
 router.patch("/:postid", (req, res)=>{
     //requete bd patch 
     db.posts.update(req.params.postid, req.body)
-    .then((post) => res.status(201).send(post))
+    .then((post) => res.status(200).send(post))
     .catch((error) => res.send(error))
 });
 
@@ -68,7 +72,7 @@ router.get("/:post_id/likes", (req,res)=>{
 
 router.get("/:postid", (req, res) => {
     db.posts.getPostById(req.params.postid)
-        .then((post) => res.status(201).send(post))
+        .then((post) => res.status(200).send(post))
         .catch((error) => res.send(error))
 });
 

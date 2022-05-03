@@ -13,6 +13,12 @@ router.get("", (req, res) => {
     .catch((error) => res.send(error));
 });
 
+router.get("/all", (req, res) => {
+    db.users.getAll()
+    .then((user) => res.send(user))
+    .catch((error) => res.send(error))
+})
+
 router.get("/me", (req, res) => {
     db.users.getUserById({_id : req.cookies.user_id})
     .then((user) => res.status(201).send(user))
