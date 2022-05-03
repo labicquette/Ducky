@@ -94,7 +94,7 @@ if(req.path == '/1/users/login') {
                 return;
             }
             if(user !== [] && user !== null){
-                console.log(user)
+                
                 if((user.password === password)){
                     db.users.update({_id: user._id}, {$set : {online : true}}, {},function(err){
                         if(err){
@@ -105,6 +105,7 @@ if(req.path == '/1/users/login') {
                     req.session.userId = user._id
                     res.cookie("user_id", user._id, {expire: 360000 + Date.now()})
                     req.session.regenerate(function(err){
+                        console.log(user)
                         if(err){
                             res.status(500).send("error at setting cookies");
                             return;
