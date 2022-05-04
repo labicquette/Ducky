@@ -203,12 +203,12 @@ class Users{
 
     addFollowing(body, user_id){
         return new Promise((resolve, reject) => {
-            this.db.users.update({_id: user_id}, {$push : {followings: {"following_id": body.following_id, time: body.time }}},{},function(err){
+            this.db.users.update({_id: user_id}, {$push : {followings: {following_id: body.following_id, time: body.time }}},{},function(err){
                 if(err){
                     reject(err)
                 }
             })
-            this.db.users.update({_id: body.following_id}, {$push: {followers:{"follower_id": user_id, time: body.time}}},{}, function(err2){
+            this.db.users.update({_id: body.following_id}, {$push: {followers:{follower_id: user_id, time: body.time}}},{}, function(err2){
                 if(err2){
                     reject(err2)
                 }else{
