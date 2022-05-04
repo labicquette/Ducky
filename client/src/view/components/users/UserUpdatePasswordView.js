@@ -95,6 +95,7 @@ export class UserUpdatePasswordView extends React.Component {
                                 user.password = this.state.newpassword;
                                 UserServices.updateUser(user, 
                                     (response) => {
+                                        this.props.handleSetUser(user.id);
                                         this.props.handleProfil();
                                     },
                                     (error) => {

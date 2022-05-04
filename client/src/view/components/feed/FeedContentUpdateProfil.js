@@ -20,6 +20,7 @@ export class FeedContentUpdateProfil extends React.Component {
                 content = (
                     <UserUpdatePasswordView 
                         user={this.props.user} 
+                        handleSetUser={this.props.handleSetUser}
                         handleProfil={this.props.handleProfil} />
                 );
                 break;
@@ -28,6 +29,7 @@ export class FeedContentUpdateProfil extends React.Component {
                 content = (
                     <UserUpdateStatusView 
                         user={this.props.user}
+                        handleSetUser={this.props.handleSetUser}
                         handleProfil={this.props.handleProfil}
                         handleLogOut={this.props.handleLogOut} />
                 );
@@ -52,7 +54,8 @@ export class FeedContentUpdateProfil extends React.Component {
             default: // update profil
                 content = (
                     <UserUpdateProfilView 
-                        user={this.props.user} 
+                        user={this.props.user}
+                        handleSetUser={this.props.handleSetUser} 
                         handleProfil={this.props.handleProfil} />
                 );
         }

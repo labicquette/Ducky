@@ -108,6 +108,7 @@ export default class App extends React.Component {
 				<div className='feed'>
 					<Feed 
 						user={this.state.user} 
+						handleSetUser={(user_id) => this.setUser(user_id)}
 						handleLogOut={() => this.handleLogOut()}/>
 				</div>
 			);

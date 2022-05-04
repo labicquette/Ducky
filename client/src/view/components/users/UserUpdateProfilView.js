@@ -249,6 +249,7 @@ export class UserUpdateProfilView extends React.Component {
                             user.biography = this.state.biography.trim();
                             UserServices.updateUser(user, 
                                 (response) => {
+                                    this.props.handleSetUser(user.id);
                                     this.props.handleProfil();
                                 },
                                 (error) => {
