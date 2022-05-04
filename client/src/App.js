@@ -27,7 +27,7 @@ export default class App extends React.Component {
 	setUser(user_id) {
 		UserServices.getUser(user_id,
 			(response) => {
-				if (response.status === 201) {
+				if (response.status === 200) {
 					const userObject = response.data;
 					let user = User.fromJSON(userObject);
 					this.setState({ user: user, connected: true });

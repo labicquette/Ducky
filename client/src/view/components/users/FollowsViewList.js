@@ -1,5 +1,6 @@
 import React from "react";
 import { FollowerViewItem } from "./FollowerViewItem";
+import { FollowingViewItem } from "./FollowingViewItem";
 
 export class FollowsViewList extends React.Component {
 
@@ -15,10 +16,14 @@ export class FollowsViewList extends React.Component {
         let followListContent;
 
         // followers
-        if (this.state.onglet === 2) { 
+        if (this.state.onglet === 1) { 
             followListContent = this.props.followers.map(
                 follower => (
-                    <FollowerViewItem key={follower.id} follower={follower} />
+                    <FollowerViewItem 
+                        key={follower.id} 
+                        user={this.props.user}
+                        follower={follower}
+                        active={true} />
                 )
             );
         } 
@@ -27,7 +32,11 @@ export class FollowsViewList extends React.Component {
         else {
             followListContent = this.props.followings.map(
                 following => (
-                    <FollowerViewItem key={following.id} follower={following} />
+                    <FollowingViewItem 
+                        key={following.id} 
+                        user={this.props.user}
+                        following={following}
+                        active={true} />
                 )
             )
         }
@@ -43,7 +52,6 @@ export class FollowsViewList extends React.Component {
                         }
                         onClick={() => {
                             this.setState({ onglet: 1 });
-                            alert(this.state.onglet);
                         }}>
                         <span className='follows-view-list-title-value'>
                             {this.props.followers.length}
@@ -57,7 +65,6 @@ export class FollowsViewList extends React.Component {
                         }
                         onClick={() => {
                             this.setState({ onglet: 2 });
-                            alert(this.state.onglet);
                         }}>    
                         <span className='follows-view-list-title-value'>
                             {this.props.followings.length}
