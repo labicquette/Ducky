@@ -24,7 +24,7 @@ class Posts{
                 if(err){
                     reject(err);
                 }else{
-                    resolve(posts)
+                    resolve(posts);
                 }
             })
         })
