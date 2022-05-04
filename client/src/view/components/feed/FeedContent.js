@@ -12,6 +12,7 @@ import { Messages, MessagesStatus, MessageType } from "../../../model/objects/Me
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 import { FeedContentStatistics } from "./FeedContentStatistics";
+import { UserServices } from "../../../model/services/UserServices";
 
 export class FeedContent extends React.Component {
 
