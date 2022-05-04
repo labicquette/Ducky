@@ -100,6 +100,12 @@ router.delete("/:user_id/followers/:follower_id", (req,res)=> {
     .catch((err) => res.status(500).send(err))
 })
 
+router.delete("/:user_id/followings/:follower_id", (req,res)=> {
+    
+    db.users.delFollowing(req.params.user_id, req.params.follower_id)
+    .then((response) => res.status(200).send(response))
+    .catch((err) => res.status(500).send(err))
+})
 
 return router
 }
