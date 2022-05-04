@@ -207,9 +207,9 @@ class Users{
                 if(err){
                     reject(err)
                 }else{
-                    this.db.users.update({_id: body.following_id}, {$push: {followers:{follower_id: user_id, time: body.time}}},{}, function(err){
-                        if(err){
-                            reject(err)
+                    this.db.users.update({_id: body.following_id}, {$push: {followers:{follower_id: user_id, time: body.time}}},{}, function(err2){
+                        if(err2){
+                            reject(err2)
                         }else{
                             resolve("OK")
                         }

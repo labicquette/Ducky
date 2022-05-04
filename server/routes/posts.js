@@ -19,7 +19,7 @@ router.post("", (req,res)  => {
 
 router.get("/all", (req, res) => {
     db.posts.getAll()
-    .then((posts) => res.status(200).send(posts))
+    .then((posts) => res.send(posts))
     .catch((error) => res.send(error))
 })
 
