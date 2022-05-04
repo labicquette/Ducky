@@ -5,13 +5,15 @@ class Users{
     }
 
     getAll(){
-        this.db.users.find({}, function(err, user){
-            if (err){
-                reject(err);
-            } else {
-                resolve(user);
-            }
-        })
+        return new Promise((resolve, reject) => 
+            this.db.users.find({}, function(err, user){
+                if (err){
+                    reject(err);
+                } else {
+                    resolve(user);
+                }
+            })
+        );
     }
 
     getFullUser(body){
