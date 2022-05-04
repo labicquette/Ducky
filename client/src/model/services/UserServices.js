@@ -70,6 +70,16 @@ export class UserServices {
         .then(() => {});
     }
 
+    static getAllUsers(success, failure) {
+        this.instance.get('/1/users/all')
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
     static getUsers(users_ids, success, failure) {
         this.instance.get('/1/users', {
             users_ids: users_ids.join(','),

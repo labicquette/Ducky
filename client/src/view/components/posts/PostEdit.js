@@ -3,14 +3,19 @@ import { PollEditor } from "../poll/PollEditor";
 import { Media, MediaType } from "../../../model/objects/Media";
 import { Post } from "../../../model/objects/Post";
 import { MediaEdit } from "../media/MediaEdit";
+import { PostServices } from "../../../model/services/PostServices";
+import { UserServices } from "../../../model/services/UserServices";
 
 export class PostEdit extends React.Component {
 
     constructor(props) {
         super(props);
 
+        let post = new Post();
+        post.user_id = this.props.user.id;
+
         this.state = {
-            post: new Post(),
+            post: post,
             media: [],
             pollFlag: false,
             postFlag: false,
@@ -24,6 +29,11 @@ export class PostEdit extends React.Component {
             pollContent = (
                 <PollEditor 
                     timer={true} 
+                    handleSetPoll={(poll) => {
+                        let post = this.state.post;
+                        post.polls[0] = poll;
+                        this.setState({post: post})
+                    }}
                     handleDelete={(e) => {
                         e.preventDefault();
                         this.setState({ pollFlag : false });
@@ -75,6 +85,11 @@ export class PostEdit extends React.Component {
                             cols={40}
                             wrap='hard'
                             placeholder='Quoi de neuf ?'
+                            onChange={(e) => {
+                                let post = this.state.post;
+                                post.text = e.target.value;
+                                this.setState({post: post});
+                            }}
                             >
                         </textarea>
                     </div>
@@ -159,7 +174,8 @@ export class PostEdit extends React.Component {
                                     src={require('../../../ressources/icons/poll.png')}
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        this.setState({ pollFlag: true});
+                                        // TODO: set true 
+                                        this.setState({ pollFlag: false});
                                     }} />
                             </div>
                             <div className='post-edit-action-icon'>
@@ -181,7 +197,18 @@ export class PostEdit extends React.Component {
                                     }
                                     type='button'
                                     value='Publier'
-                                    onClick={this.props.onClick} />
+                                    onClick={() => {
+                                        let post = this.state.post;
+                                        console.log(post);
+                                        PostServices.createPost(post, 
+                                            (response) => {
+                                                console.log(response);
+                                            },
+                                            (error) => {
+                                                console.log(error);
+                                            }
+                                        );
+                                    }} />
                             </div>
                         </div>
                     </div>

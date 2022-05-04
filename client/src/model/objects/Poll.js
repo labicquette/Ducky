@@ -47,7 +47,7 @@ export class Poll {
     }
 
     updateProporitionsItems() {
-        votes_count = 0;
+        let votes_count = 0;
         for (let item of this.items)
             votes_count += item.votes.length;
 

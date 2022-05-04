@@ -52,7 +52,8 @@ export class Feed extends React.Component {
                     handleProfil={() => this.setContentId('profil')}
                     handleUpdateProfil={() => this.setContentId('profil-update')}
                     handleFriends={() => this.setContentId('friends')}
-                    handleOtherProfil={() => this.setContentId('other-profil')} 
+                    handleOtherProfil={() => this.setContentId('other-profil')}
+                    handleSetUser={this.props.handleSetUser} 
                     handleSetOtherUser={(otherUser) => this.setOtherUser(otherUser)}
                     handleLogOut={() => this.props.handleLogOut()} />
             </div>

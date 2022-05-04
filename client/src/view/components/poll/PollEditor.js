@@ -1,4 +1,5 @@
 import React from "react";
+import { Poll } from "../../../model/objects/Poll";
 
 export class PollEditor extends React.Component {
 
@@ -11,10 +12,31 @@ export class PollEditor extends React.Component {
             item2: '',
             item3: '',
             item4: '', 
+
+            days: 0,
+            hours: 0,
+            minutes: 5,
         }
 
         this.titleMaxLength = 50;
         this.itemMaxLength = 30;
+
+        this.setPoll.bind(this);
+    }
+
+    setPoll() {
+        let poll = new Poll();
+        poll.title = this.state.title;
+        poll.creation_time = new Date();
+        if (this.props.timer) {
+            let closing_time = new Date();
+            closing_time.setDate(closing_time.getDate() + this.state.days);
+            closing_time = closing_time.getTime();
+            closing_time += 1000 * 60 * this.state.minutes +
+                1000 * 60 * 60 * this.state.hours;
+            poll.closing_time = new Date(closing_time);
+        }
+        this.props.handleSetPoll(poll);
     }
 
     render() {
@@ -29,29 +51,32 @@ export class PollEditor extends React.Component {
                     <h4>Durée du sondage</h4>
                     <div className='poll-editor-timer-content-items'>
                         <div className='poll-editor-timer-content-item'>
-                            <label for='poll-editor-timer-content-item-label'>
+                            <label htmlFor='poll-editor-timer-content-item-label'>
                                 Jour :
                             </label>
                             <select
-                                className='poll-editor-timer-content-item-select'>
+                                className='poll-editor-timer-content-item-select'
+                                onChange={(e) => {this.setState({days: e.target.value})}}>
                                 {days.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
                         <div className='poll-editor-timer-content-item'>
-                            <label for='poll-editor-timer-content-item-label'>
+                            <label htmlFor='poll-editor-timer-content-item-label'>
                                 Heures :
                             </label>
                             <select
-                                className='poll-editor-timer-content-item-select'>
+                                className='poll-editor-timer-content-item-select'
+                                onChange={(e) => {this.setState({hours: e.target.value})}}>
                                 {hours.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
                         <div className='poll-editor-timer-content-item'>
-                            <label for='poll-editor-timer-content-item-label'>
+                            <label htmlFor='poll-editor-timer-content-item-label'>
                                 Minutes :
                             </label>
                             <select
-                                className='poll-editor-timer-content-item-select'>
+                                className='poll-editor-timer-content-item-select'
+                                onChange={(e) => {this.setState({minutes: e.target.value})}}>
                                 {minutes.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
