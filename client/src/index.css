@@ -485,6 +485,8 @@ body {
 	position: fixed;
 	top: 10vh;
 	left: 15vw;
+	overflow-y: scroll;
+	overflow-x: none;
 }
 
 .feed-content-home-left-item {
@@ -1131,6 +1133,11 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.feed-content-home-suggestion-list-container
+.follow-view-item-names {
+	max-width: 80px;
 }
 
 .follow-view-item-image {

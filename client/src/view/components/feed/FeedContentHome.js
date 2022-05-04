@@ -50,11 +50,17 @@ export class FeedContentHome extends React.Component {
 
         UserServices.getAllUsers(
             (response) => {
-                console.log('Users');
-                console.log(response.data);
+                if (response.status === 200) {
+                    let users = [];
+                    for (let userObject of response.data) {
+                        let user = User.fromJSON(userObject);
+                        users.push(user);
+                    }
+                    this.setState({suggestions: users});
+                }
             },
             (error) => {
-                
+
             }
         )
     }
@@ -123,10 +129,6 @@ export class FeedContentHome extends React.Component {
                     <div className='feed-content-home-left-item'>
                         <h4>Suggestions</h4>
                         {suggestionsContent}
-                        <input
-                            className='feed-content-home-left-action-button'
-                            type='button'
-                            value='Voir plus de suggestion' />
                     </div>
                 </div>
                 <div className='feed-content-home-main'>
