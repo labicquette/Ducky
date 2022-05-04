@@ -68,8 +68,8 @@ router.patch("/:userid", (req, res)=>{
 router.delete("/:userid", (req, res) => {
     if(req.cookies.user_id === req.params.userid){
     db.users.delete(req.params.userid)
-    .then((status) => res.send(status))
-    .catch((error) => res.send(error));
+    .then((status) => res.sendStatus(200,status))
+    .catch((error) => res.status(500).send(error));
     }else{res.status(403).send("You cannot delete another user")}
 });
 

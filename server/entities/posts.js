@@ -172,9 +172,9 @@ class Posts{
         });
     }
 
-    delete(body){
+    delete(postid){
         return new Promise((resolve, reject)=> {
-            this.db.posts.update({_id: body.postid}, deleted=true,{}, function(err,post){
+            this.db.posts.remove({_id: postid},{}, function(err,post){
                 if(err){
                     reject(err)
                 }else{
