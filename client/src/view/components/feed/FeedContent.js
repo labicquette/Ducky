@@ -190,8 +190,8 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentHome 
                         user={this.props.user}
-                        stories={[1,2,3,4,5]} 
-                        posts={postsList.slice(0, 20)}
+                        stories={[]} 
+                        posts={this.props.user.posts}
                         handleProfil={this.props.handleProfil} />
                 );
         }

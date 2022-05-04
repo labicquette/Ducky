@@ -96,6 +96,16 @@ export class PostServices {
         .then(() => {});
     }
 
+    static getAllPosts(success, failure) {
+        this.instance.get('/1/posts/all')
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
     static getPosts(posts_ids, success, failure) {
         this.instance.get('/1/posts/', {
             posts_ids: posts_ids.join(','),

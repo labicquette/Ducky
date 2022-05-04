@@ -1,9 +1,31 @@
 import React from "react";
+import { PostServices } from "../../../model/services/PostServices";
 import { PostEdit } from "../posts/PostEdit";
 import { PostViewList } from "../posts/PostViewList";
 //import { StoriePreviewList } from "../stories/StoriePreviewList";
 
 export class FeedContentHome extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            posts: this.props.posts,
+        }
+
+        PostServices.getAllPosts(
+            (response) => {
+                console.log('Chargement des posts');
+                console.log(response);
+                if (response.status === 200) {
+                    console.log(response.data)
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts');
+            }
+        )
+    }
 
     render() {
         /**
@@ -67,7 +89,7 @@ export class FeedContentHome extends React.Component {
                             <div className='feed-content-home-main-title'>
                                 <span>Publications</span>
                             </div>
-                            <PostViewList posts={this.props.posts}/>
+                            <PostViewList posts={this.state.posts}/>
                         </div>
                     </div>
                 </div>
