@@ -1,4 +1,5 @@
 import React from "react";
+import { UserServices } from "../../../model/services/UserServices";
 
 export class FollowerViewItem extends React.Component {
 
@@ -6,7 +7,7 @@ export class FollowerViewItem extends React.Component {
         super(props);
 
         this.state = {
-            active: true,
+            active: this.props.active,
         };
     }
 
@@ -28,33 +29,66 @@ export class FollowerViewItem extends React.Component {
                 <div className='follow-view-item-actions'>
                     <input
                         className={
-                            (this.props.active) ? 
+                            (!this.state.active) ? 
                             'follow-view-item-action-item follow-view-item-action-item-negative' : 
                             'follow-view-item-action-item follow-view-item-action-item-positive'
                         }
                         type='button'
-                        value={(this.props.active) ? "S'abonner" : "Abonné(e)"} 
-                        onClick={() => {alert(this.state.active)}}/>
-                </div>
-                <div className='follow-view-item-menu-container'>
-                    <span>...</span>
-                    <div className='follow-view-item-menu-content'>
-                        <div 
-                            className='follow-view-item-menu-item'
-                            onClick={() => {alert('Supprimer')}}>
-                            <span>Supprimer</span>
-                        </div>
-                        <div 
-                            className='follow-view-item-menu-item'
-                            onClick={() => {alert('Signaler')}}>
-                            <span>Signaler</span>
-                        </div>
-                        <div 
-                            className='follow-view-item-menu-item'
-                            onClick={() => {alert('Bloquer')}}>
-                            <span>Bloquer</span>
-                        </div>
-                    </div>
+                        value={(!this.state.active) ? "S'abonner" : "Abonné(e)"} 
+                        onClick={() => {
+                            let active = !this.state.active;
+                            if (!this.state.active) {
+                                UserServices.addFollowing(
+                                    this.props.user.id,
+                                    this.props.follower.id,
+                                    (response) => {
+                                        if (response.status === 200) {
+                                            this.setState({active: active});
+                                        }
+                                        else {
+                                            console.log(response);
+                                        }
+                                    },
+                                    (error) => {
+                                    }
+                                );
+                            }
+                            else {
+                                UserServices.delFollowing(
+                                    this.props.user.id,
+                                    this.props.follower.id,
+                                    (response) => {
+                                        if (response.status === 200) {
+                                            this.setState({active: active});
+                                        }
+                                        else {
+                                            console.log(response);
+                                        }
+                                    },
+                                    (error) => {
+                                    }
+                                );
+                            }
+                            this.setState({active: active});
+                        }}/>
+                    <input
+                        className={ 
+                            'follow-view-item-action-item follow-view-item-action-item-red'
+                        }
+                        type='button'
+                        value='Supprimer' 
+                        onClick={() => {
+                            UserServices.delFollower(
+                                this.props.user.id,
+                                this.props.follower.id,
+                                (response) => {
+                                    console.log(response);
+                                },
+                                (error) => {
+                                    console.log(error);
+                                }
+                            )
+                        }}/>
                 </div>
             </div>
         );

@@ -42,6 +42,7 @@ export class Post {
         for (let att in postObject) {
             post[att] = postObject[att];
         }
+        if (postObject._id) post.id = postObject._id;
         return post;
     }
 }

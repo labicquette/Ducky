@@ -1108,6 +1108,7 @@ body {
 	align-items: center;
 	width: 100%;
 	padding: 10px 10px 10px 10px;
+	cursor: pointer;
 }
 
 .follows-view-list-title-select {
@@ -1158,11 +1159,17 @@ body {
 	display: none;
 }
 
+.follow-view-item-actions {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 .follow-view-item-action-item {
 	border-radius: 8px;
 	border: none;
 	padding: 10px 10px 10px 10px;
-	margin: 10px 10px 10px 10px;
+	margin: 10px 5px 10px 5px;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -1177,10 +1184,14 @@ body {
 }
 
 .follow-view-item-action-item-negative {
-	color: white;
-	background-color: black;
+	color: black;
+	background-color: lightblue;
 }
 
+.follow-view-item-action-item-red {
+	color: red;
+	background-color: rgba(80, 80, 80, .1)
+}
 
 
 .feed-content-profil {

@@ -4,7 +4,6 @@ import { Media, MediaType } from "../../../model/objects/Media";
 import { Post } from "../../../model/objects/Post";
 import { MediaEdit } from "../media/MediaEdit";
 import { PostServices } from "../../../model/services/PostServices";
-import { UserServices } from "../../../model/services/UserServices";
 
 export class PostEdit extends React.Component {
 

@@ -15,6 +15,7 @@ export class FeedContentFriends extends React.Component {
                 </div>
                 <div className='feed-content-friends-main'>
                     <FollowsViewList 
+                        user={this.props.user}
                         followers={this.props.followers} 
                         followings={this.props.followings} />
                 </div>

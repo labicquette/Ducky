@@ -1,7 +1,11 @@
 import React from "react";
+import { Post } from "../../../model/objects/Post";
+import { User } from "../../../model/objects/User";
 import { PostServices } from "../../../model/services/PostServices";
+import { UserServices } from "../../../model/services/UserServices";
 import { PostEdit } from "../posts/PostEdit";
 import { PostViewList } from "../posts/PostViewList";
+import { FollowingViewItem } from "../users/FollowingViewItem";
 //import { StoriePreviewList } from "../stories/StoriePreviewList";
 
 export class FeedContentHome extends React.Component {
@@ -11,18 +15,46 @@ export class FeedContentHome extends React.Component {
 
         this.state = {
             posts: this.props.posts,
+            suggestions: [],
         }
 
         PostServices.getAllPosts(
             (response) => {
-                console.log('Chargement des posts');
-                console.log(response);
                 if (response.status === 200) {
-                    console.log(response.data)
+                    let posts = [];
+                    for (let postObject of response.data) {
+                        let post = Post.fromJSON(postObject);
+                        UserServices.getUser(post.user_id,
+                            (response) => {
+                                if (response.status === 200) {
+                                    const userObject = response.data;
+                                    post.user = User.fromJSON(userObject);
+                                    posts.push(post);
+                                    this.setState({posts: posts});
+                                }
+                                else {
+                                    console.log('post :', post.id, 'cant load user :', post.user_id);
+                                }
+                            },
+                            (error) => {
+                                console.log('post :', post.id, 'cant load user :', post.user_id);
+                            }
+                        );
+                    }
                 }
             },
             (error) => {
                 console.log('Impossible de charger les posts');
+            }
+        )
+
+        UserServices.getAllUsers(
+            (response) => {
+                console.log('Users');
+                console.log(response.data);
+            },
+            (error) => {
+                
             }
         )
     }
@@ -38,6 +70,28 @@ export class FeedContentHome extends React.Component {
             </div>
         );
         */
+
+        let suggestionsContent = null;
+        if (this.state.suggestions.length === 0) {
+            suggestionsContent = (
+                <div className='feed-content-home-suggestion-list-container'>
+                    Aucune suggestion
+                </div>
+            );
+        }
+        else {
+            suggestionsContent = (
+                <div className='feed-content-home-suggestion-list-container'>
+                    {this.state.suggestions.map(following => (
+                        <FollowingViewItem
+                            key={following.id}
+                            user={this.props.user}
+                            following={following}
+                            active={false} />
+                    ))}
+                </div>
+            )
+        }
 
         return (
             <div className='feed-content-item feed-content-home'>
@@ -68,9 +122,7 @@ export class FeedContentHome extends React.Component {
                     </div>
                     <div className='feed-content-home-left-item'>
                         <h4>Suggestions</h4>
-                        <div className='feed-content-home-suggestion-list-container'>
-                            Aucune suggestion
-                        </div>
+                        {suggestionsContent}
                         <input
                             className='feed-content-home-left-action-button'
                             type='button'
