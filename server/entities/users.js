@@ -4,6 +4,16 @@ class Users{
         this.db = db
     }
 
+    getAll(){
+        this.db.users.find({},{}, function(err, user){
+            if (err){
+                reject(err);
+            } else {
+                resolve(user);
+            }
+        })
+    }
+
     getFullUser(body){
         return new Promise((resolve, reject) => {
             if(body.userid == undefined){
