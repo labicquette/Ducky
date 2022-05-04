@@ -118,13 +118,26 @@ export class FeedContentHome extends React.Component {
                     </div>
                     <div className='feed-content-home-left-item'>
                         <h4>Statistiques</h4>
-                        <div>
-                            Aucune statistiques
+                        <div className='feed-content-home-statistics-container'>
+                            <div className='feed-content-home-statistics-item'>
+                                <span>{this.props.user.posts.length}</span>
+                                Publications
+                            </div>
+                            <div className='feed-content-home-statistics-item'>
+                                <span>{this.props.user.followers.length}</span>
+                                Abonné(e)s
+                            </div>
+                            <div className='feed-content-home-statistics-item'>
+                                <span>{this.props.user.followings.length}</span>
+                                Abonnements
+                            </div>
+                            
                         </div>
                         <input
                             className='feed-content-home-left-action-button'
                             type='button'
-                            value='Afficher les statistiques' />
+                            value='Afficher les statistiques'
+                            onClick={this.props.handleStatistics} />
                     </div>
                     <div className='feed-content-home-left-item'>
                         <h4>Suggestions</h4>
