@@ -11,6 +11,7 @@ import { Message } from "../../../model/objects/Message";
 import { Messages, MessagesStatus, MessageType } from "../../../model/objects/Messages";
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
+import { FeedContentStatistics } from "./FeedContentStatistics";
 
 export class FeedContent extends React.Component {
 
@@ -181,6 +182,10 @@ export class FeedContent extends React.Component {
                 break;
 
             case 'statistics':
+                content = (
+                    <FeedContentStatistics
+                        user={this.props.user} />
+                );
                 break;
 
             case 'parameters':
@@ -192,7 +197,8 @@ export class FeedContent extends React.Component {
                         user={this.props.user}
                         stories={[]} 
                         posts={this.props.user.posts}
-                        handleProfil={this.props.handleProfil} />
+                        handleProfil={this.props.handleProfil}
+                        handleStatistics={this.props.handleStatistics} />
                 );
         }
         return (
