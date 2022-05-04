@@ -52,9 +52,9 @@ router.delete("/:post_id/likes", (req,res) => {
 
 
 router.delete("/:postid",(req,res)=>{
-    db.posts.delete(req.body)
-    .then((post) => res.status(200).send(post))
-    .catch((error) => res.send(error))
+    db.posts.delete(req.params.postid)
+    .then((post) => res.sendStatus(200, post))
+    .catch((error) => res.status(500).send(error))
 })
 
 router.patch("/:postid", (req, res)=>{
