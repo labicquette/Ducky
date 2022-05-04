@@ -20,7 +20,7 @@ class Posts{
 
     getAll(){
         return new Promise((resolve, reject)=> {
-            this.db.posts.find({}, {}, function(err, posts){
+            this.db.posts.find({}, function(err, posts){
                 if(err){
                     reject(err);
                 }else{
@@ -32,7 +32,7 @@ class Posts{
 
     getPostById(postid){
         return new Promise((resolve, reject)=> {
-            this.db.posts.findOne({_id:body.postid}, {
+            this.db.posts.findOne({_id:postid}, {
                 reports:0,
                 banished_reason:0
             },function(err,post){

@@ -35,7 +35,7 @@ if(req.path === '/1/users'  && req.method === 'POST'){
                 newUser.posts_by = []
                 newUser.mentionnedPosts = []
                 newUser.followers = []
-                newUser.following = []
+                newUser.followings = []
  
                 db.users.findOne({username: username},function(err,user){
                     if(user!==null){
