@@ -51,6 +51,9 @@ export class FeedContentHome extends React.Component {
         UserServices.getAllUsers(
             (response) => {
                 if (response.status === 200) {
+
+                    UserServices.getFollowings(this)
+
                     let users = [];
                     for (let userObject of response.data) {
                         let user = User.fromJSON(userObject);
@@ -131,7 +134,7 @@ export class FeedContentHome extends React.Component {
                                 <span>{this.props.user.followings.length}</span>
                                 Abonnements
                             </div>
-                            
+
                         </div>
                         <input
                             className='feed-content-home-left-action-button'
