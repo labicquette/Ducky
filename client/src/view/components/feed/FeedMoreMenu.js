@@ -5,14 +5,14 @@ export class FeedMoreMenu extends React.Component {
     render() {
         return (
             <div className='feed-more-menu'>
-                <div className='feed-more-menu-item'
+                {/**<div className='feed-more-menu-item'
                     onClick={this.props.handleSuggestions}>
                     <img
                         src={require('../../../ressources/icons/friends.png')}
                         className='feed-more-menu-item-image' 
                         alt='Suggestions'/>
                     <span>Suggestions</span>
-                </div>
+                </div>*/}
                 <div className='feed-more-menu-item'
                     onClick={this.props.handleStatistics}>
                     <img
