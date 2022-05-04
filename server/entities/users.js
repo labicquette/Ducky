@@ -5,7 +5,7 @@ class Users{
     }
 
     getAll(){
-        this.db.users.find({},{}, function(err, user){
+        this.db.users.find({}, function(err, user){
             if (err){
                 reject(err);
             } else {
@@ -96,10 +96,38 @@ class Users{
         });
     }
 
-    getUsers(listids){
+    getUsersByUsernames(usernames){
         return new Promise((resolve, reject)=>{
             //usernames = ["username1","username2","username3"]
-            this.db.users.find({username : {$in : listids}}, {
+            this.db.users.find({username : {$in : usernames}}, {
+                _id:1,
+            username:1,
+            firstname:1, 
+            lastname:1, 
+            sex:1, 
+            profil_picture_src:1,
+            phone:1, 
+            mail:1, 
+            city:1,
+            country:1,
+            birthday:1, 
+            biography:1,
+            creation_time:1
+            }, function(err, users){
+                if(err){
+                    reject(err);
+                }else{
+                    resolve(users);
+                }
+            });
+        });
+    }
+
+
+    getUsersByIds(listids){
+        return new Promise((resolve, reject)=>{
+            //usernames = ["username1","username2","username3"]
+            this.db.users.find({_id : {$in : listids}}, {
                 _id:1,
             username:1,
             firstname:1, 
@@ -149,7 +177,7 @@ class Users{
 
     getFollowers(user_id){
         return new Promise((resolve, reject)=> {
-            this.db.users.find({_id: user_id},{1:followers}, function(err, followers){
+            this.db.users.findOne({_id: user_id},{followers:1, _id:0}, function(err, followers){
                 if(err){
                     reject(err)
                 }else{
@@ -161,7 +189,7 @@ class Users{
 
     getFollowings(user_id){
         return new Promise((resolve, reject)=> {
-            this.db.users.find({_id: user_id},{1:followings}, function(err, followings){
+            this.db.users.findOne({_id: user_id},{followings:1, _id:0}, function(err, followings){
                 if(err){
                     reject(err)
                 }else{

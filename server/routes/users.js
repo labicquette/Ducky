@@ -6,11 +6,21 @@ let router = express.Router();
 
 
 router.get("", (req, res) => {
-    let ids = req.query.listid
-    const listIds = ids.split(",")
-    db.users.getUsers(listIds)
-    .then((users) => res.send(users))
-    .catch((error) => res.send(error));
+    if(req.query.listid){
+        let ids = req.query.listid
+        const listIds = ids.split(",")
+        console.log(listIds)
+        db.users.getUsersByIds(listIds)
+        .then((users) => res.send(users))
+        .catch((error) => res.send(error));
+    }else{
+        let ids = req.query.usernames
+        const listIds = ids.split(",")
+        console.log(listIds)
+        db.users.getUsersByUsernames(listIds)
+        .then((users) => res.send(users))
+        .catch((error) => res.send(error));
+    }
 });
 
 router.get("/all", (req, res) => {
@@ -20,25 +30,25 @@ router.get("/all", (req, res) => {
 })
 
 router.get("/me", (req, res) => {
-    db.users.getUserById({_id : req.cookies.user_id})
-    .then((user) => res.status(201).send(user))
+    db.users.getUserById({userid : req.cookies.user_id})
+    .then((user) => res.status(200).send(user))
     .catch((error) => res.send(error))
 })
 
 router.get("/by/username/:username", (req, res) =>{
     db.users.getUserByUsername({username: req.params.username})
-    .then((user) => res.status(201).send(user))
+    .then((user) => res.status(200).send(user))
     .catch((error) => res.send(error));
 });
 
 router.get("/:userid", (req, res) =>{
     if(req.cookies.user_id === req.params.userid){
         db.users.getFullUser({userid: req.params.userid})
-        .then((user) => res.status(201).send(user))
+        .then((user) => res.status(200).send(user))
         .catch((error) => res.send(error));
     }else{
         db.users.getUserById({userid: req.params.userid})
-        .then((user) => res.status(201).send(user))
+        .then((user) => res.status(200).send(user))
         .catch((error) => res.send(error));   
     }
 });
@@ -66,26 +76,27 @@ router.delete("/:userid", (req, res) => {
 
 router.get("/:user_id/followers", (req, res) => {
     db.users.getFollowers(req.params.user_id)
-    .then((followers) => res.status(201).send(followers))
+    .then((followers) => res.status(200).send(followers))
     .catch((err) => res.status(500).send(err))
 })
 
 router.get("/:user_id/followings", (req, res) => {
     db.users.getFollowings(req.params.user_id)
-    .then((followings) => res.status(201).send(followings))
+    .then((followings) => res.status(200).send(followings))
     .catch((err) => res.status(500).send(err))
 })
 
 router.post("/:user_id/followings",(req, res)=> {
     db.users.addFollowing(req.body,req.params.user_id)
-    .then((follow) => res.status(201).send(follow))
+    .then((follow) => res.status(200).send(follow))
     .catch((err) => res.status(500).send(err))
 })
 
 
 router.delete("/:user_id/followers/:follower_id", (req,res)=> {
+    
     db.users.delFollower(req.params.user_id, req.params.follower_id)
-    .then((response) => res.status(201).send(response))
+    .then((response) => res.status(200).send(response))
     .catch((err) => res.status(500).send(err))
 })
 
