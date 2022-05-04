@@ -224,6 +224,28 @@ class Users{
             this.db.users.update({_id: user_id}, {$pull :{followers : {follower_id : follower_id}}},{}, function(err){
                 if(err){
                     reject(err)
+                }
+            })
+            this.db.users.update({_id: follower_id }, {$pull :{followings : {following_id : user_id}}},{}, function(err){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve("OK")
+                }
+            })
+        })
+    }
+
+    delFollowing(user_id, following_id){
+        return new Promise((resolve, reject) => {
+            this.db.users.update({_id: user_id}, {$pull :{followings : {following_id : following_id}}},{}, function(err){
+                if(err){
+                    reject(err)
+                }
+            })
+            this.db.users.update({_id: following_id}, {$pull :{followers : {follower_id : user_id}}},{}, function(err){
+                if(err){
+                    reject(err)
                 }else{
                     resolve("OK")
                 }
