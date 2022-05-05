@@ -130,7 +130,29 @@ export class PostServices {
         .then(() => {});     
     }
 
-    //static getPostsBy();
+    static getPostsByMentionnedUsers(users_ids, success, failure) {
+        this.instance.get('/1/posts/by', {
+            mentionned_users_ids: users_ids.join(',')
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
+    static getPostsByHashtags(hashtags, success, failure) {
+        this.instance.get('/1/posts/by', {
+            hashtags: hashtags.join(',')
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
 
     static getPostLkes(post_id, success, failure) {
         this.instance.get('/1/posts/' + post_id + '/likes', {

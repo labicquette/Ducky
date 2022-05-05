@@ -1,4 +1,7 @@
 import React from "react";
+import { Post } from "../../../model/objects/Post";
+import { PostServices } from "../../../model/services/PostServices";
+import { UserServices } from "../../../model/services/UserServices";
 import { PostViewList } from "../posts/PostViewList";
 
 export class UserProfilView extends React.Component {
@@ -8,10 +11,80 @@ export class UserProfilView extends React.Component {
 
         this.state = {
             page: 0,
-            posts: this.props.posts,
-            mentionnedPosts: this.props.mentionnedPosts,
-            likedPosts: this.props.likedPosts,
+            posts: [],
+            mentionnedPosts: [],
+            likedPosts: [],
+            followersLength: 0,
+            follwingsLength: 0,
         };
+
+        UserServices.getFollowers(
+            this.props.user.id, 
+            (response) => {
+                if (response.status === 200) {
+                    this.setState({followersLength: response.data.followers.length});
+                }
+                else {
+                    console.log('Liste de followers inaccessible !');
+                }
+            },
+            (error) => {
+                console.log('Liste de followers inaccessible !');
+            }
+        );
+
+        UserServices.getFollowings(
+            this.props.user.id, 
+            (response) => {
+                if (response.status === 200) {
+                    this.setState({followingsLength: response.data.followings.length});
+                }
+                else {
+                    console.log('Liste de followings inaccessible !');
+                }
+            },
+            (error) => {
+                console.log('Liste de followings inaccessible !');
+            }
+        );
+
+
+        PostServices.getPostsByUser(
+            this.props.user.id,
+            (response) => {
+                if (response.status === 200) {
+                    let posts = [];
+                    for (let postObject of response.data) {
+                        let post = Post.fromJSON(postObject);
+                        post.user = this.props.user;
+                        // TODO: get replies to and replies
+                        posts.push(post);
+                        this.setState({posts: posts});
+                    }
+                }
+                else {
+                    console.log('Impossible de charger les posts !');
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts !');
+            }
+        );
+
+        PostServices.getPostsByMentionnedUsers(
+            [this.props.user.id],
+            (response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                }
+                else {
+                    console.log('Impossible de charger les posts de mention !');
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts de mention !');
+            }
+        )
     }
 
     render() {
@@ -104,15 +177,15 @@ export class UserProfilView extends React.Component {
                         </div>
                         <div className='user-profil-view-header-infos-counters'>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.props.posts.length}</span>
+                                <span className='value'>{this.state.posts.length}</span>
                                 <span>Publications</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.props.followersLength}</span>
+                                <span className='value'>{this.state.followersLength}</span>
                                 <span>Abonnés</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.props.followersLength}</span>
+                                <span className='value'>{this.state.follwingsLength}</span>
                                 <span>Abonnements</span>
                             </div>
                         </div>

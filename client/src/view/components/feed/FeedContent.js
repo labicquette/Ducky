@@ -12,7 +12,6 @@ import { Messages, MessagesStatus, MessageType } from "../../../model/objects/Me
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 import { FeedContentStatistics } from "./FeedContentStatistics";
-import { UserServices } from "../../../model/services/UserServices";
 
 export class FeedContent extends React.Component {
 
@@ -173,9 +172,7 @@ export class FeedContent extends React.Component {
             case 'friends':
                 content = (
                     <FeedContentFriends 
-                        user={this.props.user}
-                        followers={usersList.slice(0, 50)} 
-                        followings={usersList.slice(50, 100)} />
+                        user={this.props.user} />
                 );
                 break;
 

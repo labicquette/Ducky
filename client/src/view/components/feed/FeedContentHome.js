@@ -16,7 +16,7 @@ export class FeedContentHome extends React.Component {
         this.state = {
             posts: this.props.posts,
             suggestions: [],
-        }
+        };
 
         PostServices.getAllPosts(
             (response) => {
@@ -51,9 +51,6 @@ export class FeedContentHome extends React.Component {
         UserServices.getAllUsers(
             (response) => {
                 if (response.status === 200) {
-
-                    UserServices.getFollowings(this)
-
                     let users = [];
                     for (let userObject of response.data) {
                         let user = User.fromJSON(userObject);
