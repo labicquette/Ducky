@@ -229,14 +229,6 @@ body {
 	width: 100%;
 }
 
-.post-edit-actions-text {
-
-}
-
-.post-edit-action-text {
-
-}
-
 .post-edit-action-text-button {
 	padding: 10px 20px 10px 20px;
 	border-radius: 20px;
@@ -261,10 +253,6 @@ body {
 	opacity: .9;
 }
 
-
-.feed {
-	
-}
 
 .feed-more-menu {
 	display: none;
@@ -383,7 +371,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	padding: 1% 2% 1% 2%;
-	border: 1px solid lightblue;
+	border-bottom: 2px solid lightblue;
 	background-color: rgba(248, 248, 248, 1);
 }
 
@@ -475,9 +463,6 @@ body {
 	font-size: 15px;
 }
 
-.feed-content-home-main-main {
-	
-}
 
 .feed-content-home-left {
 	width: 20vw;
@@ -485,6 +470,11 @@ body {
 	position: fixed;
 	top: 10vh;
 	left: 15vw;
+	height: 80vh;
+}
+
+.feed-content-home-suggestion-list-container {
+	height: 60vh;
 	overflow-y: scroll;
 	overflow-x: none;
 }
@@ -534,15 +524,20 @@ body {
 	opacity: .7;
 }
 
-
-.feed-content-storie-preview-list-container {
+.feed-content-home-infos {
+	color: black;
+	background-color: lightblue;
+	font-size: 11px;
 }
 
-
-
-.storie-preview-list-container {
-	
+.feed-content-home-infos a {
+	margin: 0px 3px 0px 3px;
 }
+
+.feed-content-home-infos a, .feed-content-home-infos a:visited {
+	color: black;
+}
+
 
 .storie-preview-list {
 	display: flex;
@@ -654,9 +649,6 @@ body {
 	flex-direction: column;
 }
 
-.post-view-content-content-header {
-
-}
 
 .post-view-content-content-header-user-infos {
 	cursor: pointer;
@@ -704,17 +696,6 @@ body {
 	padding-right: 3px;
 }
 
-.post-view-content-content-body {
-
-}
-
-.post-view-content-content-body-text {
-
-}
-
-.post-view-content-content-body-media-container {
-
-}
 
 .post-view-content-content-body-post-replyto-container {
 	width: 100%;
@@ -762,14 +743,6 @@ body {
 	font-weight: 700;
 }
 
-.post-view-replies-preview {
-
-}
-
-
-.feed-content-messages {
-
-}
 
 .feed-content-messages-main,
 .feed-content-stories-main {
@@ -805,9 +778,6 @@ body {
 	width: 150px;
 }
 
-.feed-content-messages-empty span,
-.feed-content-stories-empty span {
-}
 
 .feed-content-messages-empty-button,
 .feed-content-stories-empty-button {
@@ -981,8 +951,6 @@ body {
 	padding: 10px 10px 10px 10px;
 }
 
-.message-edit-container {
-}
 
 .message-edit-text {
 	height: 7vh;
@@ -1031,13 +999,6 @@ body {
 	width: 100%;
 }
 
-.message-edit-actions-text {
-
-}
-
-.message-edit-action-text {
-
-}
 
 .message-edit-action-text-button {
 	padding: 5px 10px 5px 10px;
@@ -1145,12 +1106,14 @@ body {
 	height: 50px;
 	border-radius: 50%;
 	margin-right: 5px;
+	cursor: pointer;
 }
 
 .follow-view-item-names {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	cursor: pointer;
 }
 
 .follow-view-item-names-names {
@@ -1443,8 +1406,6 @@ body {
 	font-family: inherit;
 }
 
-.user-update-profil-view-content-item2-info {
-}
 
 .user-update-profil-view-error {
 	text-align: center;
@@ -1531,9 +1492,6 @@ body {
 	width: 100px;
 }
 
-.poll-editor-timer-content-item-label {
-	
-}
 
 .poll-editor-timer-content-item-select {
 	padding: 10px 10px 10px 10px;

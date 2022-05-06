@@ -12,9 +12,23 @@ import { Messages, MessagesStatus, MessageType } from "../../../model/objects/Me
 import { Stories } from "../../../model/objects/Stories";
 import { FeedContentUpdateProfil } from "./FeedContentUpdateProfil";
 import { FeedContentStatistics } from "./FeedContentStatistics";
-import { UserServices } from "../../../model/services/UserServices";
 
 export class FeedContent extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            otherUser: null,
+        };
+
+        this.setOtherUser.bind(this);
+    }
+
+    setOtherUser(otherUser) {
+        this.setState({otherUser: otherUser});
+        this.props.handleOtherProfil();
+    }
 
     render() {
         // Test
@@ -134,17 +148,15 @@ export class FeedContent extends React.Component {
                     <FeedContentMessages 
                         user={this.props.user}
                         messagesList={messagesList}
-                        handleSetOtherUser={this.props.handleSetOtherUser} />
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
                 break;
 
             case 'profil':
-                let postsUser = postsList.filter(post => post.user_id === this.props.user.id);
                 content = (
                     <FeedContentProfil 
                         user={this.props.user}
                         me={true}
-                        posts={postsUser}
                         handleUpdateProfil={this.props.handleUpdateProfil} />
                 );
                 break;
@@ -152,11 +164,9 @@ export class FeedContent extends React.Component {
             case 'other-profil':
                 content = (
                     <FeedContentProfil 
-                        user={this.props.user}
-                        me={true}
-                        posts={postsUser}
-                        handleUpdateProfil={this.props.handleUpdateProfil}
-                        handleFriends={this.props.handleFriends} />
+                        user={this.state.otherUser}
+                        currentUser={this.props.user}
+                        me={false} />
                 );
                 break;
 
@@ -174,8 +184,7 @@ export class FeedContent extends React.Component {
                 content = (
                     <FeedContentFriends 
                         user={this.props.user}
-                        followers={usersList.slice(0, 50)} 
-                        followings={usersList.slice(50, 100)} />
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
                 break;
 
@@ -199,7 +208,8 @@ export class FeedContent extends React.Component {
                         stories={[]} 
                         posts={this.props.user.posts}
                         handleProfil={this.props.handleProfil}
-                        handleStatistics={this.props.handleStatistics} />
+                        handleStatistics={this.props.handleStatistics}
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
         }
         return (
