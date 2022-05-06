@@ -1,6 +1,3 @@
-const { time } = require("console");
-const { resolve } = require("path");
-
 class Posts{
     constructor(db){
         this.db = db
@@ -134,31 +131,30 @@ class Posts{
         })
     }
 
-
-    create(body){
+    create(userid, body){
         return new Promise((resolve, reject) => {
-            var post = body 
-            post.user_id = req.cookies.user_id
+            let post = body 
+            post.user_id = userid
             post.banished = false;
             post.deleted = false;
-            post.likes = [];
-            post.shares = [];
+            post.likes = []
+            post.shares = []
             post.views = []
             post.reports = []
             post.time = Date.now()
             
-            this.db.posts.insert(post, function(err, post){
+            
+            this.db.posts.insert(post, function(err, posted){
                 if(err){
-                    reject(err);
+                    reject(err)
                 }else{
-                    this.db.users.update({_id: body.mentionned_users_ids},{$push : {mentionnedPosts : post._id}},{multi : true},function(){})
-                    resolve(post)
+                    resolve(posted)  
                 }
             })
-
-            //additional requests : notifications, insertion in user database
         })
     }
+
+
 
     update(postid, body){
         return new Promise((resolve, reject)=> {

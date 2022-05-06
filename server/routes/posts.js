@@ -12,15 +12,17 @@ router.get("", (req, res) => {
 });
 
 router.post("", (req,res)  => {
-    db.posts.create(req.body)
-    .then((post) => res.status(200).send(post))
-    .catch((error) => res.send(error))
+    db.posts.create(req.cookies.user_id, req.body)
+    .then((post) => db.users.updateMentionnedPosts(post,req.body.mentionned_users_ids)
+                    .then((status) => res.status(200).send(status))
+                    .catch((error2) => res.status(500).send(error2)))
+    .catch((error) => res.status(500).send(error))
 });
 
 router.get("/all", (req, res) => {
     db.posts.getAll()
     .then((posts) => res.send(posts))
-    .catch((error) => res.send(error))
+    .catch((error) => res.status(500).send(error))
 })
 
 router.get("/by/user/:user_id", (req,res) => {

@@ -253,6 +253,21 @@ class Users{
         })
     }
 
+    updateMentionnedPosts(post, mentionned_users_ids){
+        return new Promise((resolve,reject) =>{
+        this.db.users.update({_id: {$in :mentionned_users_ids}},{$push : {mentionnedPosts : post._id}},{multi : true},function(err2, nbPosts){
+            if(err2){
+                reject(err2)
+            }else{
+                console.log(nbPosts)
+                resolve("OK")
+                }
+            
+            
+        })
+        })
+    }
+
 
 }   
 
