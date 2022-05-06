@@ -8,6 +8,7 @@ export class FollowerViewItem extends React.Component {
 
         this.state = {
             active: this.props.active,
+            delete: false,
         };
     }
 
@@ -76,18 +77,20 @@ export class FollowerViewItem extends React.Component {
                             'follow-view-item-action-item follow-view-item-action-item-red'
                         }
                         type='button'
-                        value='Supprimer' 
+                        value={(!this.state.delete) ? 'Supprimer' : 'Supprimé(e)'} 
                         onClick={() => {
-                            UserServices.delFollower(
-                                this.props.user.id,
-                                this.props.follower.id,
-                                (response) => {
-                                    console.log(response);
-                                },
-                                (error) => {
-                                    console.log(error);
-                                }
-                            )
+                            if (!this.state.delete) {
+                                UserServices.delFollower(
+                                    this.props.user.id,
+                                    this.props.follower.id,
+                                    (response) => {
+                                        this.setState({delete: true});
+                                    },
+                                    (error) => {
+                                        //console.log(error);
+                                    }
+                                );
+                            }
                         }}/>
                 </div>
             </div>

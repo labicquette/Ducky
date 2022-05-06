@@ -17,8 +17,11 @@ export class FollowingViewItem extends React.Component {
                 <img
                     src={this.props.following.profil_picture_src}
                     className='follow-view-item-image'
-                    alt={this.props.following.names} />
-                <div className='follow-view-item-names'>
+                    alt={this.props.following.names}
+                    onClick={() => this.props.handleSetOtherUser()} />
+                <div 
+                    className='follow-view-item-names'
+                    onClick={() => this.props.handleSetOtherUser()}>
                     <span className='follow-view-item-names-names'>
                         {this.props.following.names}
                     </span>

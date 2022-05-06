@@ -10,7 +10,6 @@ export class Feed extends React.Component {
             search: '',
             contentId: 'home', 
             user: this.props.user,
-            otherUser: null
         };
 
         this.handleSearchBarChange.bind(this);
@@ -24,10 +23,6 @@ export class Feed extends React.Component {
 
     setContentId(id) {
         this.setState({contentId: id});
-    }
-
-    setOtherUser(otherUser) {
-        this.setState({otherUser: otherUser});
     }
 
     render() {
@@ -53,10 +48,9 @@ export class Feed extends React.Component {
                     handleUpdateProfil={() => this.setContentId('profil-update')}
                     handleFriends={() => this.setContentId('friends')}
                     handleOtherProfil={() => this.setContentId('other-profil')}
+                    handleStatistics={() => this.setContentId('statistics')}
                     handleSetUser={this.props.handleSetUser} 
-                    handleSetOtherUser={(otherUser) => this.setOtherUser(otherUser)}
-                    handleLogOut={() => this.props.handleLogOut()}
-                    handleStatistics={() => this.setContentId('statistics')} />
+                    handleLogOut={this.props.handleLogOut} />
             </div>
         );
     }

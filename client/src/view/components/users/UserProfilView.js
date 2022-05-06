@@ -142,15 +142,6 @@ export class UserProfilView extends React.Component {
                         type='button'
                         value='Abonné(e)'
                         />
-                    <div className='user-profil-view-header-infos-action-menu-container'>
-                        <span>...</span>
-                        <div className='user-profil-view-header-infos-action-menu-content'>
-                            <ul>
-                                <li>Signaler</li>
-                                <li>Bloquer</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
 
             );
@@ -185,7 +176,7 @@ export class UserProfilView extends React.Component {
                                 <span>Abonnés</span>
                             </div>
                             <div className='user-profil-view-header-infos-counters-item'>
-                                <span className='value'>{this.state.follwingsLength}</span>
+                                <span className='value'>{this.state.followingsLength}</span>
                                 <span>Abonnements</span>
                             </div>
                         </div>

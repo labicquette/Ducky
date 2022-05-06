@@ -48,21 +48,33 @@ export class FeedContentHome extends React.Component {
             }
         )
 
-        UserServices.getAllUsers(
+        UserServices.getFollowings(
+            this.props.user.id,
             (response) => {
                 if (response.status === 200) {
-                    let users = [];
-                    for (let userObject of response.data) {
-                        let user = User.fromJSON(userObject);
-                        users.push(user);
-                    }
-                    this.setState({suggestions: users});
+                    let followings = response.data.followings.map(f => f.following_id);
+                    UserServices.getAllUsers(
+                        (response) => {
+                            if (response.status === 200) {
+                                let users = [];
+                                for (let userObject of response.data) {
+                                    let user = User.fromJSON(userObject);
+                                    if (user.id !== this.props.user.id && !followings.includes(user.id))
+                                        users.push(user);
+                                }
+                                this.setState({suggestions: users});
+                            }
+                        },
+                        (error) => {
+            
+                        }
+                    )
                 }
             },
             (error) => {
 
             }
-        )
+        );
     }
 
     render() {
@@ -93,7 +105,8 @@ export class FeedContentHome extends React.Component {
                             key={following.id}
                             user={this.props.user}
                             following={following}
-                            active={false} />
+                            active={false}
+                            handleSetOtherUser={() => this.props.handleSetOtherUser(following)} />
                     ))}
                 </div>
             )
@@ -117,31 +130,23 @@ export class FeedContentHome extends React.Component {
                         </div>
                     </div>
                     <div className='feed-content-home-left-item'>
-                        <h4>Statistiques</h4>
-                        <div className='feed-content-home-statistics-container'>
-                            <div className='feed-content-home-statistics-item'>
-                                <span>{this.props.user.posts.length}</span>
-                                Publications
-                            </div>
-                            <div className='feed-content-home-statistics-item'>
-                                <span>{this.props.user.followers.length}</span>
-                                Abonné(e)s
-                            </div>
-                            <div className='feed-content-home-statistics-item'>
-                                <span>{this.props.user.followings.length}</span>
-                                Abonnements
-                            </div>
-
-                        </div>
-                        <input
-                            className='feed-content-home-left-action-button'
-                            type='button'
-                            value='Afficher les statistiques'
-                            onClick={this.props.handleStatistics} />
-                    </div>
-                    <div className='feed-content-home-left-item'>
                         <h4>Suggestions</h4>
                         {suggestionsContent}
+                    </div>
+                    <div className='feed-content-home-left-item feed-content-home-infos'>
+                        © 2022 DUCKY  <br />
+                        Par
+                        <a
+                        target='_blank' rel="noopener noreferrer"
+                        href='https://www.linkedin.com/in/ben-kabongo-3179421a7?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B3kOBXx3DSIKVNQWVGIHg6w%3D%3D'>
+                            Ben kabongo
+                        </a>
+                        <span>et</span>
+                        <a
+                        target='_blank' rel="noopener noreferrer"
+                        href='https://www.linkedin.com/in/th%C3%A9o-charlot-638a23218?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BDGwRMhYcR%2BGNubkSCja9xw%3D%3D'>
+                            Théo Charlot
+                        </a>
                     </div>
                 </div>
                 <div className='feed-content-home-main'>
