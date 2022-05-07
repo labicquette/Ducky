@@ -1459,6 +1459,7 @@ body {
 .user-update-profil-view-content-item-text {
 	height: 20px;
 	width: 100%;
+	max-width: 360px;
 	border: 1px solid lightblue;
 	border-radius: 7px;
 	font-size: 14px;
@@ -1488,7 +1489,6 @@ body {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	margin-top: 5px;
 }
 
 .user-update-profil-view-button {
@@ -1496,6 +1496,7 @@ body {
 	border: none;
 	padding: 10px 10px 10px 10px;
 	font-weight: bold;
+	margin-top: 5px;
 	margin-right: 10px;
 	cursor: pointer;
 }
