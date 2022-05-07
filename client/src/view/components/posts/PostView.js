@@ -55,8 +55,8 @@ export class PostView extends React.Component {
         PostServices.getPostsByReply(
             this.props.post.id,
             (response) => {
+                console.log('>>>>><<<<', response);
                 if (response.status === 200) {
-                    console.log('>>>>><<<<', response);
                     let replies = [];
                     for (let replyObject of response.data) {
                         let reply = Post.fromJSON(replyObject);
