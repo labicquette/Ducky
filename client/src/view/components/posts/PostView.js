@@ -3,6 +3,9 @@ import { PostServices } from "../../../model/services/PostServices";
 import { formatISODate } from "../../../model/utils";
 import { PostEdit } from "./PostEdit";
 import { UserProfilPreview } from "../users/UserProfilPreview";
+import { Post } from "../../../model/objects/Post";
+import { UserServices } from "../../../model/services/UserServices";
+import { User } from "../../../model/objects/User";
 
 export class PostView extends React.Component {
 
@@ -11,10 +14,42 @@ export class PostView extends React.Component {
 
         let like = (this.props.post.likes.map(like => like.user_id).includes(this.props.user.id));
         this.state = {
+            reply_to: null,
             like: like,
             likeLength: this.props.post.likes.length,
             replyEditFlag: false,
         };
+
+        if (!this.props.isReply) {
+            if (this.props.post.reply_to_id) {
+                PostServices.getPost(
+                    this.props.post.reply_to_id,
+                    (response) => {
+                        if (response.status === 200) {
+                            let reply_to = Post.fromJSON(response.data);
+                            UserServices.getUser(
+                                reply_to.user_id,
+                                (response) => {
+                                    if (response.status === 200) {
+                                        let user = User.fromJSON(response.data);
+                                        reply_to.user = user;
+                                        this.setState({reply_to: reply_to});
+                                    }
+                                },
+                                (error) => {
+                                }
+                            );
+                        }
+                        else {
+                            console.log('Impossible de charger le post de base !')
+                        }
+                    },
+                    (error) => {
+                        console.log('Impossible de charger le post de base !')
+                    }   
+                );
+            }
+        }
     }
 
     render() {
@@ -83,10 +118,13 @@ export class PostView extends React.Component {
 
         if (!this.props.isReply) {
 
-            if (this.props.post.reply_to) {
+            if (this.state.reply_to) {
                 postReplyToContent = (
                     <div className='post-view-content-content-body-post-replyto-container'>        
-                        <PostView post={this.props.post.reply_to} isReply={true}/>
+                        <PostView 
+                            post={this.state.reply_to} 
+                            isReply={true} 
+                            user={this.props.user} />
                     </div>
                 );
             }
