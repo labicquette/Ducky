@@ -109,11 +109,11 @@ class Posts{
 
     addPostLike(body, postid){
         return new Promise((resolve, reject) => {
-            this.db.posts.update({_id: postid},{$push:{ likes:{user_id: body.user_id, time:body.time}}}, function(err, like){
+            this.db.posts.update({_id: postid},{$push:{ likes:{user_id: body.user_id, time:body.time}}},{}, function(err){
                 if(err){
                     reject(err)
                 }else{
-                    resolve(like)
+                    resolve("ok")
                 }
             })
         })

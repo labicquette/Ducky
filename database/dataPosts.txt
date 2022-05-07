@@ -1,6 +1,0 @@
-{"$$deleted":true,"_id":"McM7oAKa4JIDhX9l"}
-{"$$deleted":true,"_id":"4Hkrh8DsOwaDlEH1"}
-{"$$deleted":true,"_id":"RlS0zDHICfMxJYVB"}
-{"$$deleted":true,"_id":"ZTmjHWa0ttFWy1Fh"}
-{"$$deleted":true,"_id":"JbikyYrads9rei4O"}
-{"user_id":"SCDxV0h1C4IN2qZ1","text":"text of the post","location":"The moon","media":["media1","media2","media3"],"hashtags":["hashtag1","hashtag2"],"mentionned_users_ids":["SCDxV0h1C4IN2qZ1"],"_id":"1iGrG7wSwdLUbgSY","likes":[{"user_id":"PsyeeONHrHLZ1W2L","time":"2022-05-07T12:43:13.084Z"}]}
