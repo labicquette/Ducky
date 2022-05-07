@@ -580,7 +580,6 @@ body {
 	border-top: 1px solid lightblue;
 	padding: 10px 20px 10px 20px;
 	transition: transform .5s;
-	width: 100%;
 }
 
 .post-view-reply-container {
@@ -706,10 +705,10 @@ body {
 
 .post-view-actions-bar {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	width: 100%;
-	border-top: 1px solid lightblue;
 }
+
 
 .post-view-action-item {
 	display: flex;

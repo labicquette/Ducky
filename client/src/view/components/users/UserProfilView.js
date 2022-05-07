@@ -47,8 +47,27 @@ export class UserProfilView extends React.Component {
                 console.log('Liste de followings inaccessible !');
             }
         );
+        
+        PostServices.getPostsByMentionnedUsers(
+            [this.props.user.id],
+            (response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                }
+                else {
+                    console.log('Impossible de charger les posts de mention !');
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts de mention !');
+            }
+        );
 
+        this.updateFeed.bind(this);
+        this.updateFeed();
+    }
 
+    updateFeed() {
         PostServices.getPostsByUser(
             this.props.user.id,
             (response) => {
@@ -70,21 +89,6 @@ export class UserProfilView extends React.Component {
                 console.log('Impossible de charger les posts !');
             }
         );
-
-        PostServices.getPostsByMentionnedUsers(
-            [this.props.user.id],
-            (response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                }
-                else {
-                    console.log('Impossible de charger les posts de mention !');
-                }
-            },
-            (error) => {
-                console.log('Impossible de charger les posts de mention !');
-            }
-        )
     }
 
     render() {
@@ -147,6 +151,11 @@ export class UserProfilView extends React.Component {
             );
         }
 
+        let user = this.props.user;
+        if (this.props.currentUser) {
+            user = this.props.currentUser;
+        }
+
         return (
             <div className='user-profil-view-container'>
                 <div className='user-profil-view-header'>
@@ -203,7 +212,11 @@ export class UserProfilView extends React.Component {
                         </div>
                     </div>
                     <div className='user-profil-view-content-body'>
-                        <PostViewList posts={posts} />
+                        <PostViewList 
+                            user={user} 
+                            posts={posts}
+                            updateFeed={() => this.updateFeed()} 
+                            handleSetOtherUser={this.props.handleSetOtherUser}/>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { PostServices } from "../../../model/services/PostServices";
 import { formatISODate } from "../../../model/utils";
 import { UserProfilPreview } from "../users/UserProfilPreview";
 
@@ -7,8 +8,10 @@ export class PostView extends React.Component {
     constructor(props) {
         super(props);
 
+        let like = (this.props.post.likes.map(like => like.user_id).includes(this.props.user.id));
         this.state = {
-            like: this.props.like
+            like: like,
+            likeLength: this.props.post.likes.length,
         }
     }
 
@@ -74,6 +77,7 @@ export class PostView extends React.Component {
         let postReplyToContent = null;
         let actionsBarContent = null;
         let replyContent = null;
+        let deletePostContent = null;
 
         if (!this.props.isReply) {
 
@@ -85,8 +89,38 @@ export class PostView extends React.Component {
                 );
             }
 
+            if (this.props.user && this.props.user.id === this.props.post.user_id) {
+                deletePostContent = (
+                    <div className='post-view-action-item'>
+                        <div className={
+                            'post-view-action-image-container ' +
+                            'post-view-action-image-container-red'
+                            }>
+                            <input
+                                className='post-view-action-item-image'
+                                type='image'
+                                alt='Supprimer'
+                                title='Supprimer'
+                                src={require('../../../ressources/icons/delete.png')}
+                                onClick={() => {
+                                    PostServices.deletePost(this.props.post.id,
+                                        (response) => {
+                                            if (response.status === 200)
+                                                this.props.updateFeed();
+                                        },
+                                        (error) => {
+                                            console.log('Post non supprimé !');
+                                        }
+                                    );
+                                }} />
+                        </div>
+                    </div>
+                );
+            }
+
             actionsBarContent = (
                 <div className='post-view-actions-bar'>
+
                     <div className='post-view-action-item'>
                         <div className={
                             'post-view-action-image-container ' +
@@ -97,10 +131,46 @@ export class PostView extends React.Component {
                                 type='image'
                                 alt='Liker'
                                 title='Liker'
-                                src={require('../../../ressources/icons/like_red.png')} />
+                                src={
+                                    (this.state.like) ?
+                                    require('../../../ressources/icons/like_red.png'):
+                                    require('../../../ressources/icons/like.png')
+                                }
+                                onClick={
+                                    () => {
+                                        if (!this.state.like) {
+                                            PostServices.addPostLike(
+                                                this.props.post.id,
+                                                this.props.user.id,
+                                                (response) => {
+                                                    if (response.status === 200) {
+                                                        let likeLength = this.state.likeLength;
+                                                        likeLength++;
+                                                        this.setState({like: true, likeLength: likeLength});
+                                                    }
+                                                },
+                                                (error) => {}
+                                            )
+                                        }
+                                        else {
+                                            PostServices.delPostLike(
+                                                this.props.post.id,
+                                                this.props.user.id,
+                                                (response) => {
+                                                    if (response.status === 200) {
+                                                        let likeLength = this.state.likeLength;
+                                                        likeLength--;
+                                                        this.setState({like: false, likeLength: likeLength});
+                                                    }
+                                                },
+                                                (error) => {}
+                                            )
+                                        }
+                                    }
+                                } />
                         </div>
                         <span className='post-view-action-item-name'>
-                            {this.props.post.likes.length}
+                            {this.state.likeLength}
                         </span>
                     </div>
 
@@ -136,7 +206,9 @@ export class PostView extends React.Component {
                         <span className='post-view-action-item-name'>
                             {this.props.post.shares.length}
                         </span>
-                    </div>      
+                    </div>  
+                    
+                    {deletePostContent}
 
                 </div>
             );
@@ -162,7 +234,9 @@ export class PostView extends React.Component {
                         'post-view-reply-container'}> 
                 {postPrologueContent}
                 <div className='post-view-content'>
-                    <div className='post-view-content-user-profile-picture'>
+                    <div 
+                        className='post-view-content-user-profile-picture'
+                        onClick={() => {this.props.handleSetOtherUser(this.props.post.user)}}>
                         <img
                             src={this.props.post.user.profil_picture_src}
                             alt={this.props.post.user.names}
@@ -172,10 +246,14 @@ export class PostView extends React.Component {
                     <div className='post-view-content-content'>
                         <div className='post-view-content-content-header'>
                             <div className='post-view-content-content-header-user-infos'>
-                                <div className='post-view-content-content-header-user-infos-names'>
+                                <div 
+                                    className='post-view-content-content-header-user-infos-names'
+                                    onClick={() => {this.props.handleSetOtherUser(this.props.post.user)}}>
                                     {this.props.post.user.names}
                                 </div>
-                                <div className='post-view-content-content-header-user-infos-username'>
+                                <div 
+                                    className='post-view-content-content-header-user-infos-username'
+                                    onClick={() => {this.props.handleSetOtherUser(this.props.post.user)}}>
                                     {'@' + this.props.post.user.username}
                                     {userProfilPreviewContent}
                                 </div>

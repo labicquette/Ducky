@@ -84,6 +84,7 @@ export class PostEdit extends React.Component {
                             cols={40}
                             wrap='hard'
                             placeholder='Quoi de neuf ?'
+                            value={this.state.post.text}
                             onChange={(e) => {
                                 let post = this.state.post;
                                 post.text = e.target.value;
@@ -201,10 +202,12 @@ export class PostEdit extends React.Component {
                                         console.log(post);
                                         PostServices.createPost(post, 
                                             (response) => {
-                                                console.log(response);
+                                                let post = new Post();
+                                                post.user_id = this.state.post.user_id;
+                                                this.setState({post: post});
+                                                this.props.updateFeed();
                                             },
                                             (error) => {
-                                                console.log(error);
                                             }
                                         );
                                     }} />
