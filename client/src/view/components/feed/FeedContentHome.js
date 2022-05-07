@@ -62,21 +62,11 @@ export class FeedContentHome extends React.Component {
                                 if (response.status === 200) {
                                     const userObject = response.data;
                                     post.user = User.fromJSON(userObject);
-                                    /**
-                                    if (post.reply_to_id) {
-                                        PostServices.getPost(
-
-                                        );
-                                    }
-                                    else {
-                                    */
-                                        posts.push(post);
-                                        posts.sort(
-                                            (p1, p2) => new Date(p2.creation_time) - new Date(p1.creation_time)
-                                        );
-                                        this.setState({posts: posts});
-                                    
-                                    
+                                    posts.push(post);
+                                    posts.sort(
+                                        (p1, p2) => new Date(p2.time) - new Date(p1.time)
+                                    );
+                                    this.setState({posts: posts});    
                                 }
                                 else {
                                     console.log('post :', post.id, 'cant load user :', post.user_id);
