@@ -80,15 +80,16 @@ export class PostEdit extends React.Component {
                     <div className='post-edit-text-container'>
                         <textarea 
                             className='post-edit-text'
-                            rows={5}
+                            rows={(this.props.replyTo) ? 3 : 5}
                             cols={40}
                             wrap='hard'
-                            placeholder='Quoi de neuf ?'
+                            placeholder={(this.props.placeholder) ? this.props.placeholder : 'Quoi de neuf ?'}
                             value={this.state.post.text}
                             onChange={(e) => {
                                 let post = this.state.post;
                                 post.text = e.target.value;
-                                this.setState({post: post});
+                                let postFlag = (post.text.trim().length > 0);
+                                this.setState({post: post, postFlag: postFlag});
                             }}
                             >
                         </textarea>
@@ -198,14 +199,18 @@ export class PostEdit extends React.Component {
                                     type='button'
                                     value='Publier'
                                     onClick={() => {
+                                        if (!this.state.postFlag)
+                                            return;
                                         let post = this.state.post;
-                                        console.log(post);
+                                        post.reply_to_id = this.props.replyTo;
                                         PostServices.createPost(post, 
                                             (response) => {
-                                                let post = new Post();
-                                                post.user_id = this.state.post.user_id;
-                                                this.setState({post: post});
-                                                this.props.updateFeed();
+                                                if (response.status === 200) {
+                                                    let post = new Post();
+                                                    post.user_id = this.state.post.user_id;
+                                                    this.setState({post: post});
+                                                    this.props.updateFeed();
+                                                }
                                             },
                                             (error) => {
                                             }

@@ -183,7 +183,7 @@ export class PostServices {
     }
 
     static delPostLike(post_id, user_id, success, failure) {
-        this.instance.delete('/1/posts/' + post_id + '/likes/' + user_id, {
+        this.instance.delete('/1/posts/' + post_id + '/likes/', {
             post_id: post_id,
             user_id: user_id,
         })

@@ -162,7 +162,8 @@ export class FeedContent extends React.Component {
                     <FeedContentProfil 
                         user={this.props.user}
                         me={true}
-                        handleUpdateProfil={this.props.handleUpdateProfil} />
+                        handleUpdateProfil={this.props.handleUpdateProfil}
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
                 break;
 
