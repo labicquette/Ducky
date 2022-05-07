@@ -134,7 +134,7 @@ class Posts{
 
     getPostByReply(post_id){
         return new Promise((resolve, reject) => {
-            this.db.posts.find({reply_to_id: post_id}, {}, function(err, posts){
+            this.db.posts.find({reply_to_id: post_id}, function(err, posts){
                 if(err){
                     reject(err)
                 }else{
