@@ -14,8 +14,8 @@ router.get("", (req, res) => {
 router.post("", (req,res)  => {
     db.posts.create(req.cookies.user_id, req.body)
     .then((post) => db.users.updateMentionnedPosts(post,req.body.mentionned_users_ids)
-                    .then((status) => res.status(200).send(status))
-                    .catch((error2) => res.status(500).send(error2)))
+        .then((status) => res.status(200).send(status))
+        .catch((error2) => res.status(500).send(error2)))
     .catch((error) => res.status(500).send(error))
 });
 
