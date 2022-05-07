@@ -31,6 +31,13 @@ router.get("/by/user/:user_id", (req,res) => {
     .catch((error) => res.send(error))
 })
 
+router.get("/by/reply/:post_id", (req, res) => {
+    db.posts.getPostByReply(req.params.post_id)
+    .then((posts) => res.send(posts))
+    .catch((error) => res.send(error))
+})
+
+
 
 router.get("/by", (req,res)  => {
     db.posts.getPostsBy(req.query)

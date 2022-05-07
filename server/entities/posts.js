@@ -131,6 +131,20 @@ class Posts{
         })
     }
 
+
+    getPostByReply(post_id){
+        return new Promise((resolve, reject) => {
+            this.db.posts.find({reply_to_id: post_id}, {}, function(err, posts){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(posts)
+                }
+            })
+        })
+    }
+
+
     create(userid, body){
         return new Promise((resolve, reject) => {
             let post = body 
@@ -142,6 +156,9 @@ class Posts{
             post.views = []
             post.reports = []
             post.time = Date.now()
+            if(!post.reply_to_id){
+                post.reply_to_id = null
+            }
             
             
             this.db.posts.insert(post, function(err, posted){
