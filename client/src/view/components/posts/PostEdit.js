@@ -16,6 +16,9 @@ export class PostEdit extends React.Component {
         this.state = {
             post: post,
             media: [],
+            mediaFlag: false,
+            mediaType: '',
+            mediaURL: '',
             pollFlag: false,
             postFlag: false,
             postButtonFlag: 'active',
@@ -68,6 +71,47 @@ export class PostEdit extends React.Component {
             );
         }
 
+        let addMediaContent = null;
+        if (this.state.mediaFlag) {
+            addMediaContent = (
+                <div className='post-edit-add-media-container'>
+                    <span>{this.state.mediaType} :</span>
+                    <input 
+                        className='post-edit-add-media-input'
+                        type='text'
+                        value={this.state.mediaURL}
+                        placeholder='URL du média'
+                        onChange={(e) => {this.setState({mediaURL: e.target.value.trim()})}} />
+                    <input 
+                        className='post-edit-add-media-button'
+                        type='button'
+                        value='Ajouter le média'
+                        onClick={() => {
+                            if (this.state.mediaURL.trim().length === 0)
+                                return;
+                            let mediaType = MediaType.image;
+                            if (this.state.mediaType === 'Audio')
+                                mediaType = MediaType.audio;
+                            else if (this.state.mediaType === 'Vidéo') 
+                                mediaType = MediaType.video;
+                            let m = new Media(-1, mediaType, this.state.mediaURL);
+                            let media = this.state.media;
+                            media.push(m);
+                            let post = this.state.post;
+                            post.media = media;
+                            this.setState({post: post, mediaURL: ''});
+                        }} />
+                    <input
+                        className='post-edit-add-media-close-button'
+                        type='button'
+                        value='X'
+                        onClick={() => {
+                            this.setState({mediaFlag: false});
+                        }} />
+                </div>
+            );
+        }
+
         return (
             <div className='post-edit-container'>
                 <div className='post-edit-profil'>
@@ -95,48 +139,18 @@ export class PostEdit extends React.Component {
                         </textarea>
                     </div>
                     {moreContent}
+                    {addMediaContent}
                     <div className='post-edit-actions-bar'>
                         <div className='post-edit-actions-icons'>
                             <div className='post-edit-action-icon'>
-                                <input
-                                    className='post-edit-action-icon-file'
-                                    id='post-edit-action-icon-file-image'
-                                    type='file'
-                                    accept='images'
-                                    onChange={(e) => {
-                                        let media = this.state.media;
-                                        let input = document.getElementById('post-edit-action-icon-file-image');
-                                        for (let file of input.files) {
-                                            let m = new Media(null, MediaType.image, e.target.result);    
-                                            let img = document.createElement('img');
-                                            img.file = file;
-                                            let reader = new FileReader();
-                                            reader.onload = (
-                                                function(aImg) {
-                                                    return function(e) { 
-                                                        aImg.src = e.target.result; 
-                                                    }; 
-                                                }
-                                            )(img);
-                                            reader.readAsDataURL(file);
-                                            m.img = img;
-                                            m.src = img.file;
-                                            m.id = media.length;
-                                            media.push(m);
-                                        }
-                                        this.setState({media: media});
-                                        console.log(this.state.media);
-                                    }} />
                                 <input 
                                     className='post-edit-action-icon-image'
                                     type='image'
                                     alt='Image'
                                     title='Image'
                                     src={require('../../../ressources/icons/image.png')}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        let input = document.getElementById('post-edit-action-icon-file-image');
-                                        input.click();
+                                    onClick={() => {
+                                        this.setState({mediaFlag: true, mediaType: 'Image', mediaURL: ''});
                                     }} />
                             </div>
                             <div className='post-edit-action-icon'>
@@ -146,7 +160,9 @@ export class PostEdit extends React.Component {
                                     alt='Vidéo'
                                     title='Vidéo'
                                     src={require('../../../ressources/icons/video.png')}
-                                    onClick={this.props.onClick} />
+                                    onClick={() => {
+                                        this.setState({mediaFlag: true, mediaType: 'Vidéo', mediaURL: ''});
+                                    }} />
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
@@ -155,7 +171,9 @@ export class PostEdit extends React.Component {
                                     alt='Audio'
                                     title='Audio'
                                     src={require('../../../ressources/icons/audio.png')}
-                                    onClick={this.props.onClick} />
+                                    onClick={() => {
+                                        this.setState({mediaFlag: true, mediaType: 'Audio', mediaURL: ''});
+                                    }} />
                             </div>
                             <div className='post-edit-action-icon'>
                                 <input 
@@ -208,7 +226,9 @@ export class PostEdit extends React.Component {
                                                 if (response.status === 200) {
                                                     let post = new Post();
                                                     post.user_id = this.state.post.user_id;
-                                                    this.setState({post: post});
+                                                    post.text = '';
+                                                    post.media = [];
+                                                    this.setState({post: post, mediaFlag: false, mediaURL: ''});
                                                     this.props.updateFeed();
                                                 }
                                             },

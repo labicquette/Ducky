@@ -1,11 +1,12 @@
 import React from "react";
 import { PostServices } from "../../../model/services/PostServices";
-import { formatISODate } from "../../../model/utils";
+import { formatISODateTime } from "../../../model/utils";
 import { PostEdit } from "./PostEdit";
 import { UserProfilPreview } from "../users/UserProfilPreview";
 import { Post } from "../../../model/objects/Post";
 import { UserServices } from "../../../model/services/UserServices";
 import { User } from "../../../model/objects/User";
+import { MediaView } from "../media/MediaView";
 
 export class PostView extends React.Component {
 
@@ -55,7 +56,6 @@ export class PostView extends React.Component {
         PostServices.getPostsByReply(
             this.props.post.id,
             (response) => {
-                console.log('>>>>><<<<', response);
                 if (response.status === 200) {
                     let replies = [];
                     for (let replyObject of response.data) {
@@ -109,7 +109,7 @@ export class PostView extends React.Component {
             </div>
         );
         
-        let time = formatISODate(new Date(this.props.post.time));
+        let time = formatISODateTime(new Date(this.props.post.time));
         let postTimeContent = (
             <div className='post-view-content-content-post-infos-item'>
                 <span>{time}</span>
@@ -135,14 +135,20 @@ export class PostView extends React.Component {
         if (this.props.post.media.length > 0) {
             postMediaContent = (
                 <div className='post-view-content-content-body-media-container'>
-
+                    {
+                        this.props.post.media.map(
+                            m => (
+                                <MediaView key={m} media={m} />
+                            )
+                        )
+                    }
                 </div>
             );
         }
     
         let postReplyToContent = null;
         let actionsBarContent = null;
-        let replyContent = null;
+        let repliesContent = null;
         let deletePostContent = null;
 
         if (!this.props.isReply) {
@@ -153,7 +159,8 @@ export class PostView extends React.Component {
                         <PostView 
                             post={this.state.reply_to} 
                             isReply={true} 
-                            user={this.props.user} />
+                            user={this.props.user}
+                            handleSetOtherUser={this.props.handleSetOtherUser} />
                     </div>
                 );
             }
@@ -288,9 +295,20 @@ export class PostView extends React.Component {
                 </div>
             );
 
-            replyContent = (
-                <div className='post-view-reply-container'>
-
+            repliesContent = (
+                <div className='post-view-replies-container'>
+                    {
+                        this.state.replies.map(
+                            reply => (
+                                <PostView 
+                                    key={reply.id}
+                                    post={reply} 
+                                    isReply={true} 
+                                    user={this.props.user}
+                                    handleSetOtherUser={this.props.handleSetOtherUser} />
+                            )
+                        )
+                    }
                 </div>
             );
 
@@ -329,7 +347,6 @@ export class PostView extends React.Component {
                             src={this.props.post.user.profil_picture_src}
                             alt={this.props.post.user.names}
                             className='post-view-content-user-profile-picture-image' />
-                        {userProfilPreviewContent}
                     </div>
                     <div className='post-view-content-content'>
                         <div className='post-view-content-content-header'>
@@ -343,14 +360,12 @@ export class PostView extends React.Component {
                                     className='post-view-content-content-header-user-infos-username'
                                     onClick={() => {this.props.handleSetOtherUser(this.props.post.user)}}>
                                     {'@' + this.props.post.user.username}
-                                    {userProfilPreviewContent}
                                 </div>
-                            </div>
-                            {userProfilPreviewContent}
-                            <div className='post-view-content-content-header-post-infos'>
-                                {postLocationContent}
-                                {postAudienceContent}
-                                {postTimeContent}
+                                <div className='post-view-content-content-header-post-infos'>
+                                    {/*postLocationContent}
+                                    {postAudienceContent}*/}
+                                    {postTimeContent}
+                                </div>
                             </div>
                         </div>
                         <div className='post-view-content-content-body'>
@@ -363,7 +378,7 @@ export class PostView extends React.Component {
                         </div>
                     </div>
                 </div>
-                {replyContent}
+                {repliesContent}
             </div>
         );
     }

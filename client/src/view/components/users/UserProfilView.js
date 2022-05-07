@@ -16,12 +16,19 @@ export class UserProfilView extends React.Component {
             likedPosts: [],
             followersLength: 0,
             follwingsLength: 0,
+            active: false,
         };
 
         UserServices.getFollowers(
             this.props.user.id, 
             (response) => {
                 if (response.status === 200) {
+                    if (!this.props.me) {
+                        let active = response.data.followers
+                            .map(f => f.follower_id)
+                            .includes(this.props.currentUser.id);
+                        this.setState({active: active});
+                    }
                     this.setState({followersLength: response.data.followers.length});
                 }
                 else {
@@ -144,7 +151,35 @@ export class UserProfilView extends React.Component {
                     <input
                         className='user-profil-view-header-infos-action-item'
                         type='button'
-                        value='Abonné(e)'
+                        value={(this.state.active) ? 'Abonné(e)' : 'S\'abonner'}
+                        onClick={
+                            () => {
+                                if (this.state.active) {
+                                    UserServices.delFollowing(
+                                        this.props.currentUser.id,
+                                        this.props.user.id,
+                                        (response) => {
+                                            if (response.status === 200)
+                                                this.setState({active: false});
+                                        },
+                                        (error) => {
+                                        }
+                                    );
+                                }
+                                else {
+                                    UserServices.addFollowing(
+                                        this.props.currentUser.id,
+                                        this.props.user.id,
+                                        (response) => {
+                                            if (response.status === 200)
+                                                this.setState({active: true});
+                                        },
+                                        (error) => {
+                                        }
+                                    );
+                                }
+                            }
+                        }
                         />
                 </div>
 

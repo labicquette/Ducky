@@ -156,6 +156,55 @@ body {
 	position: relative;
 }
 
+.post-edit-add-media-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 10px 0 10px 0;
+}
+
+.post-edit-add-media-input {
+	height: 20px;
+	width: 50%;
+	border: 1px solid lightblue;
+	border-radius: 7px;
+	font-size: 14px;
+	padding: 1% 2% 1% 2%;
+	margin-left: 10px;
+	outline: none;
+	background: none;
+	background-color: white;
+}
+
+.post-edit-add-media-button {
+	border-radius: 8px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.post-edit-add-media-button:hover {
+	background-color: lightblue;
+}
+
+.post-edit-add-media-close-button {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	border: none;
+	padding: 10px 10px 10px 10px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.post-edit-add-media-close-button:hover {
+	background-color: pink;
+}
+
 .post-edit-profil {
 	margin: 0px 10px 0px 10px;
 }
@@ -641,8 +690,8 @@ body {
 
 .post-view-content-user-profile-picture-image {
 	border-radius: 50%;
-	width: 60px;
-	height: 60px;
+	width: 40px;
+	height: 40px;
 	cursor: pointer;
 }	
 
@@ -650,8 +699,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	margin-left: 5px;
 }
 
+
+.post-view-content-content-header {
+	margin: 0;
+}
 
 .post-view-content-content-header-user-infos {
 	cursor: pointer;
@@ -670,21 +724,21 @@ body {
 }
 
 .post-view-content-content-header-user-infos-username {
-	font-weight: bold;
+	font-weight: 400;
 }
 
 .post-view-content-content-header-post-infos {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	margin: 0px 3px 0px 3px;
+	margin-left: 3px;
 }
 
 .post-view-content-content-post-infos-item {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	font-size: 14px;
+	font-weight: 100;
 }
 
 .post-view-content-content-post-infos-item-image {
@@ -697,6 +751,12 @@ body {
 .post-view-content-content-post-infos-item span {
 	padding-left: 3px;
 	padding-right: 3px;
+}
+
+.post-view-content-content-body-media-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin: 10px 0px 10px 0px;
 }
 
 
@@ -1567,4 +1627,16 @@ body {
 	outline: none;
 	width: 100%;
 	text-align: center;
+}
+
+
+.media-view-content {
+	border-radius: 10px;
+	border: none;
+	margin: 5px 5px 5px 5px;
+}
+
+.media-view-image {
+	width: 100%;
+	height: 100%;;
 }
