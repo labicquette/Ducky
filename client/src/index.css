@@ -580,6 +580,7 @@ body {
 	border-top: 1px solid lightblue;
 	padding: 10px 20px 10px 20px;
 	transition: transform .5s;
+	width: 100%;
 }
 
 .post-view-reply-container {
@@ -635,6 +636,7 @@ body {
 .post-view-content {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
 }
 
 .post-view-content-user-profile-picture-image {
@@ -647,6 +649,7 @@ body {
 .post-view-content-content {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 
@@ -1295,6 +1298,11 @@ body {
 	font-weight: bold;
 	font-size: 14px;
 	margin-top: 20px;
+}
+
+.user-profil-view-content-body {
+	width: 100%;
+	margin-top: 10px;
 }
 
 
