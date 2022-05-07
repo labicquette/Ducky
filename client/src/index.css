@@ -153,6 +153,7 @@ body {
 	padding: 10px 10px 10px 10px;
 	display: flex;
 	flex-direction: row;
+	position: relative;
 }
 
 .post-edit-profil {
@@ -237,7 +238,7 @@ body {
 	font-weight: bold;
 	border: none;
 	position: absolute;
-	right: 2vw;
+	right: 10px;
 	color: white;
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { PostServices } from "../../../model/services/PostServices";
 import { formatISODate } from "../../../model/utils";
+import { PostEdit } from "./PostEdit";
 import { UserProfilPreview } from "../users/UserProfilPreview";
 
 export class PostView extends React.Component {
@@ -12,7 +13,8 @@ export class PostView extends React.Component {
         this.state = {
             like: like,
             likeLength: this.props.post.likes.length,
-        }
+            replyEditFlag: false,
+        };
     }
 
     render() {
@@ -184,7 +186,13 @@ export class PostView extends React.Component {
                                 type='image'
                                 alt='Répondre'
                                 title='Répondre'
-                                src={require('../../../ressources/icons/comment.png')} />
+                                src={require('../../../ressources/icons/comment.png')}
+                                onClick={
+                                    () => {
+                                        const replyEditFlag = this.state.replyEditFlag;
+                                        this.setState({replyEditFlag: !replyEditFlag});
+                                    }
+                                } />
                         </div>
                         <span className='post-view-action-item-name'>
                             {this.props.post.replies.length}
@@ -226,6 +234,19 @@ export class PostView extends React.Component {
                 <UserProfilPreview user={this.props.post.user} />
             </div>
         );
+
+        let replyPostEditContent = null;
+        if (this.state.replyEditFlag) {
+            replyPostEditContent = (
+                <div>
+                    <PostEdit 
+                        replyTo={this.props.post.id}
+                        user={this.props.user} 
+                        placeholder='Tapez votre réponse ...'
+                        updateFeed={this.props.updateFeed}/>
+                </div>
+            );
+        }
 
         return (
             <div className={
@@ -270,7 +291,8 @@ export class PostView extends React.Component {
                             {postPollContent}
                             {postMediaContent}
                             {postReplyToContent}   
-                            {actionsBarContent}                         
+                            {actionsBarContent} 
+                            {replyPostEditContent}                        
                         </div>
                     </div>
                 </div>
