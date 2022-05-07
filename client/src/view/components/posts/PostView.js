@@ -15,6 +15,7 @@ export class PostView extends React.Component {
         let like = (this.props.post.likes.map(like => like.user_id).includes(this.props.user.id));
         this.state = {
             reply_to: null,
+            replies: [],
             like: like,
             likeLength: this.props.post.likes.length,
             replyEditFlag: false,
@@ -50,6 +51,34 @@ export class PostView extends React.Component {
                 );
             }
         }
+
+        PostServices.getPostsByReply(
+            this.props.post.id,
+            (response) => {
+                if (response.status === 200) {
+                    console.log('>>>>><<<<', response);
+                    let replies = [];
+                    for (let replyObject of response.data) {
+                        let reply = Post.fromJSON(replyObject);
+                        UserServices.getUser(
+                            reply.user_id,
+                            (response) => {
+                                if (response.status === 200) {
+                                    let user = User.fromJSON(response.data);
+                                    reply.user = user;
+                                    replies.push(reply);
+                                    this.setState({replies: replies});
+                                }
+                            },
+                            (error) => {
+                            }
+                        );
+                    }
+                }
+            },
+            (error) => {
+            }
+        )
     }
 
     render() {
