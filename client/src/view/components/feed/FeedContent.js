@@ -26,8 +26,13 @@ export class FeedContent extends React.Component {
     }
 
     setOtherUser(otherUser) {
-        this.setState({otherUser: otherUser});
-        this.props.handleOtherProfil();
+        if (otherUser.id !== this.props.user.id) {
+            this.setState({otherUser: otherUser});
+            this.props.handleOtherProfil();
+        }
+        else {
+            this.props.handleProfil();
+        }
     }
 
     render() {
@@ -157,7 +162,8 @@ export class FeedContent extends React.Component {
                     <FeedContentProfil 
                         user={this.props.user}
                         me={true}
-                        handleUpdateProfil={this.props.handleUpdateProfil} />
+                        handleUpdateProfil={this.props.handleUpdateProfil}
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
                 break;
 
@@ -166,7 +172,9 @@ export class FeedContent extends React.Component {
                     <FeedContentProfil 
                         user={this.state.otherUser}
                         currentUser={this.props.user}
-                        me={false} />
+                        me={false}
+                        handleUpdateProfil={this.props.handleUpdateProfil}
+                        handleSetOtherUser={(otherUser) => {this.setOtherUser(otherUser)}} />
                 );
                 break;
 

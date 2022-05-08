@@ -35,6 +35,7 @@ router.get("/me", (req, res) => {
     .catch((error) => res.send(error))
 })
 
+
 router.get("/by/username/:username", (req, res) =>{
     db.users.getUserByUsername({username: req.params.username})
     .then((user) => res.status(200).send(user))

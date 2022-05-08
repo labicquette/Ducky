@@ -16,12 +16,19 @@ export class UserProfilView extends React.Component {
             likedPosts: [],
             followersLength: 0,
             follwingsLength: 0,
+            active: false,
         };
 
         UserServices.getFollowers(
             this.props.user.id, 
             (response) => {
                 if (response.status === 200) {
+                    if (!this.props.me) {
+                        let active = response.data.followers
+                            .map(f => f.follower_id)
+                            .includes(this.props.currentUser.id);
+                        this.setState({active: active});
+                    }
                     this.setState({followersLength: response.data.followers.length});
                 }
                 else {
@@ -47,8 +54,27 @@ export class UserProfilView extends React.Component {
                 console.log('Liste de followings inaccessible !');
             }
         );
+        
+        PostServices.getPostsByMentionnedUsers(
+            [this.props.user.id],
+            (response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                }
+                else {
+                    console.log('Impossible de charger les posts de mention !');
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts de mention !');
+            }
+        );
 
+        this.updateFeed.bind(this);
+        this.updateFeed();
+    }
 
+    updateFeed() {
         PostServices.getPostsByUser(
             this.props.user.id,
             (response) => {
@@ -70,21 +96,6 @@ export class UserProfilView extends React.Component {
                 console.log('Impossible de charger les posts !');
             }
         );
-
-        PostServices.getPostsByMentionnedUsers(
-            [this.props.user.id],
-            (response) => {
-                if (response.status === 200) {
-                    console.log(response);
-                }
-                else {
-                    console.log('Impossible de charger les posts de mention !');
-                }
-            },
-            (error) => {
-                console.log('Impossible de charger les posts de mention !');
-            }
-        )
     }
 
     render() {
@@ -140,11 +151,44 @@ export class UserProfilView extends React.Component {
                     <input
                         className='user-profil-view-header-infos-action-item'
                         type='button'
-                        value='Abonné(e)'
+                        value={(this.state.active) ? 'Abonné(e)' : 'S\'abonner'}
+                        onClick={
+                            () => {
+                                if (this.state.active) {
+                                    UserServices.delFollowing(
+                                        this.props.currentUser.id,
+                                        this.props.user.id,
+                                        (response) => {
+                                            if (response.status === 200)
+                                                this.setState({active: false});
+                                        },
+                                        (error) => {
+                                        }
+                                    );
+                                }
+                                else {
+                                    UserServices.addFollowing(
+                                        this.props.currentUser.id,
+                                        this.props.user.id,
+                                        (response) => {
+                                            if (response.status === 200)
+                                                this.setState({active: true});
+                                        },
+                                        (error) => {
+                                        }
+                                    );
+                                }
+                            }
+                        }
                         />
                 </div>
 
             );
+        }
+
+        let user = this.props.user;
+        if (this.props.currentUser) {
+            user = this.props.currentUser;
         }
 
         return (
@@ -203,7 +247,11 @@ export class UserProfilView extends React.Component {
                         </div>
                     </div>
                     <div className='user-profil-view-content-body'>
-                        <PostViewList posts={posts} />
+                        <PostViewList 
+                            user={user} 
+                            posts={posts}
+                            updateFeed={() => this.updateFeed()} 
+                            handleSetOtherUser={this.props.handleSetOtherUser}/>
                     </div>
                 </div>
             </div>

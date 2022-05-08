@@ -9,7 +9,9 @@ export class FeedContentProfil extends React.Component {
                 <UserProfilView 
                     user={this.props.user} 
                     currentUser={this.props.currentUser}
-                    me={this.props.me} />
+                    me={this.props.me}
+                    handleUpdateProfil={this.props.handleUpdateProfil}
+                    handleSetOtherUser={this.props.handleSetOtherUser} />
             </div>
         );
     }

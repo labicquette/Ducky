@@ -18,36 +18,6 @@ export class FeedContentHome extends React.Component {
             suggestions: [],
         };
 
-        PostServices.getAllPosts(
-            (response) => {
-                if (response.status === 200) {
-                    let posts = [];
-                    for (let postObject of response.data) {
-                        let post = Post.fromJSON(postObject);
-                        UserServices.getUser(post.user_id,
-                            (response) => {
-                                if (response.status === 200) {
-                                    const userObject = response.data;
-                                    post.user = User.fromJSON(userObject);
-                                    posts.push(post);
-                                    this.setState({posts: posts});
-                                }
-                                else {
-                                    console.log('post :', post.id, 'cant load user :', post.user_id);
-                                }
-                            },
-                            (error) => {
-                                console.log('post :', post.id, 'cant load user :', post.user_id);
-                            }
-                        );
-                    }
-                }
-            },
-            (error) => {
-                console.log('Impossible de charger les posts');
-            }
-        )
-
         UserServices.getFollowings(
             this.props.user.id,
             (response) => {
@@ -75,6 +45,44 @@ export class FeedContentHome extends React.Component {
 
             }
         );
+
+        this.updateFeed.bind(this);
+        this.updateFeed();
+    }
+
+    updateFeed() {
+        PostServices.getAllPosts(
+            (response) => {
+                if (response.status === 200) {
+                    let posts = [];
+                    for (let postObject of response.data) {
+                        let post = Post.fromJSON(postObject);
+                        UserServices.getUser(post.user_id,
+                            (response) => {
+                                if (response.status === 200) {
+                                    const userObject = response.data;
+                                    post.user = User.fromJSON(userObject);
+                                    posts.push(post);
+                                    posts.sort(
+                                        (p1, p2) => new Date(p2.time) - new Date(p1.time)
+                                    );
+                                    this.setState({posts: posts});    
+                                }
+                                else {
+                                    console.log('post :', post.id, 'cant load user :', post.user_id);
+                                }
+                            },
+                            (error) => {
+                                console.log('post :', post.id, 'cant load user :', post.user_id);
+                            }
+                        );
+                    }
+                }
+            },
+            (error) => {
+                console.log('Impossible de charger les posts');
+            }
+        )
     }
 
     render() {
@@ -155,13 +163,19 @@ export class FeedContentHome extends React.Component {
                     </div>
                     <div className='feed-content-home-main-main'>
                         <div className='feed-content-post-edit-container'>
-                            <PostEdit user={this.props.user} />
+                            <PostEdit 
+                                user={this.props.user} 
+                                updateFeed={() => this.updateFeed()}/>
                         </div>
                         <div className='feed-content-post-view-list-container'>
                             <div className='feed-content-home-main-title'>
                                 <span>Publications</span>
                             </div>
-                            <PostViewList posts={this.state.posts}/>
+                            <PostViewList 
+                                user={this.props.user}
+                                posts={this.state.posts}
+                                updateFeed={() => this.updateFeed()}
+                                handleSetOtherUser={this.props.handleSetOtherUser}/>
                         </div>
                     </div>
                 </div>

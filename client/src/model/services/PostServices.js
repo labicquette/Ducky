@@ -130,6 +130,18 @@ export class PostServices {
         .then(() => {});     
     }
 
+    static getPostsByReply(reply_to_id, success, failure) {
+        this.instance.get('/1/posts/by/reply/' + reply_to_id, {
+            reply_to_id: reply_to_id,
+        })
+        .then((response) => {success(response)})
+        .catch((error) => {
+            this.consoleError(error);
+            failure(error);
+        })
+        .then(() => {});
+    }
+
     static getPostsByMentionnedUsers(users_ids, success, failure) {
         this.instance.get('/1/posts/by', {
             mentionned_users_ids: users_ids.join(',')
@@ -183,7 +195,7 @@ export class PostServices {
     }
 
     static delPostLike(post_id, user_id, success, failure) {
-        this.instance.delete('/1/posts/' + post_id + '/likes/' + user_id, {
+        this.instance.delete('/1/posts/' + post_id + '/likes/', {
             post_id: post_id,
             user_id: user_id,
         })

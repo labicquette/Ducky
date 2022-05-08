@@ -8,6 +8,7 @@ export class UserUpdateProfilView extends React.Component {
         super(props);
 
         this.state = {
+            profil_url: '',
             profil_picture_src: this.props.user.profil_picture_src,
             lastname: this.props.user.lastname,
             firstname: this.props.user.firstname,
@@ -50,10 +51,25 @@ export class UserUpdateProfilView extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <input
+                        className='user-update-profil-view-content-item-text'
+                        type='text'
+                        value={this.state.profil_url}
+                        placeholder='URL de la photo de profil'
+                        name='profilpicture'
+                        id='profilpicture'
+                        onChange={(e) => {
+                            e.preventDefault();
+                            this.setState({ profil_url : e.target.value });
+                        }} />
                     <input 
                         className='user-update-profil-view-button'
                         type='button'
-                        value='Modifier la photo de profil' />
+                        value='Modifier la photo de profil'
+                        onClick={() => {
+                            let url = this.state.profil_url;
+                            this.setState({profil_picture_src: url});
+                        }} />
                 </div>
                 <div className='user-update-profil-view-content'>
                     <div className='user-update-profil-view-content-item'>

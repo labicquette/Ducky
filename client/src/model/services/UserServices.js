@@ -138,7 +138,8 @@ export class UserServices {
             city: user.city,
             country: user.country,
             birthday: user.birthday, 
-            biography: user.biography
+            biography: user.biography,
+            profil_picture_src: user.profil_picture_src
         }, {
             user_id: user.id,
         })
