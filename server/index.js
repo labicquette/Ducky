@@ -16,7 +16,6 @@ const Users = require("./entities/users");
 
 const session = require("express-session");
 var cookieParser = require("cookie-parser");
-
 var NedbStore = require('nedb-session-store')(session);
 
 const db = {} 
@@ -70,10 +69,6 @@ app.use("/1/posts", posts(dbInterface));
 
 
 
-
-
-
-
 app.listen(port, err => {
   if(err){
     return console.log("ERROR index", err);
@@ -84,4 +79,4 @@ app.listen(port, err => {
 app.on('close', () => {
 });
 
-
+exports.default = app;
