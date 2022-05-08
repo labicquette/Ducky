@@ -269,7 +269,7 @@ export class PostView extends React.Component {
                                 } />
                         </div>
                         <span className='post-view-action-item-name'>
-                            {this.props.post.replies.length}
+                            {this.state.replies.length}
                         </span>
                     </div>      
 
