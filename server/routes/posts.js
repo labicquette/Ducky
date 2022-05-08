@@ -4,7 +4,7 @@ function initRouter(db){
 let router = express.Router();
 
 router.get("", (req, res) => {
-    let ids = req.query.postsids
+    let ids = req.query.listid
     const postsids = ids.split(",")
     db.posts.getPosts(postsids)
     .then((users) => res.send(users))

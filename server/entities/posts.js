@@ -5,7 +5,7 @@ class Posts{
 
     getPosts(body){
         return new Promise((resolve, reject)=> {
-            this.db.posts.find({_id: {$in : body.posts}}, {reports: 0, banished_reason:0}, function(err, posts){
+            this.db.posts.find({_id: {$in : body}}, {reports: 0, banished_reason:0}, function(err, posts){
                 if(err){
                     reject(err);
                 }else{

@@ -1,0 +1,499 @@
+{
+	"info": {
+		"_postman_id": "68157875-dfd6-4314-9799-ee9fc0e5b67a",
+		"name": "Ducky",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/posts",
+			"item": [
+				{
+					"name": "/:postid",
+					"item": [
+						{
+							"name": "getPost",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}posts/eTVx7Vzv1JwTsFKR",
+									"host": [
+										"{{URL}}posts"
+									],
+									"path": [
+										"eTVx7Vzv1JwTsFKR"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deletePost",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}posts/eTVx7Vzv1JwTsFKR",
+									"host": [
+										"{{URL}}posts"
+									],
+									"path": [
+										"eTVx7Vzv1JwTsFKR"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modifyPost",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"text\": \"modified text\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}posts/eTVx7Vzv1JwTsFKR",
+									"host": [
+										"{{URL}}posts"
+									],
+									"path": [
+										"eTVx7Vzv1JwTsFKR"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getListPosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}posts?listid=x7rzFRTqJsAwX60f,nF6G5AFKR7Nii857",
+							"host": [
+								"{{URL}}posts"
+							],
+							"query": [
+								{
+									"key": "listid",
+									"value": "x7rzFRTqJsAwX60f,nF6G5AFKR7Nii857"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\" : \"uY9UbdOwK6S1QlCx\",\n    \"text\" : \"text of the post\",\n    \"location\" : \"The moon\",\n    \"media\" : [\"media1\", \"media2\", \"media3\"],\n    \"hashtags\" : [\"hashtag1\", \"hashtag2\"],\n    \"mentionned_users_ids\" : [\"uY9UbdOwK6S1QlCx\",\"R9lnaTwYYbtVxzpU\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}posts",
+							"host": [
+								"{{URL}}posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPostsByReply",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/users",
+			"item": [
+				{
+					"name": "/:userid",
+					"item": [
+						{
+							"name": "getUserById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "connect.sid",
+										"value": "s%3AIaTtRpWLvBLDZWo6uuow6OB66mLillGQ.A5DqXgrj33wlpnosUv%2BQVewGw9XoWxJn7CBY%2Bafyzc4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}users/50LnCMhLNGYXa09J",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"50LnCMhLNGYXa09J"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}users/8duONSGvTWNXdli9",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"8duONSGvTWNXdli9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modifyUser",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sex\": \"yay\",\n    \"blabla\": \"yes\",\n    \"addingMore\": \"more\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}users/8duONSGvTWNXdli9",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"8duONSGvTWNXdli9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Follow",
+					"item": [
+						{
+							"name": "getFollowers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}users/50LnCMhLNGYXa09J/followers",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"50LnCMhLNGYXa09J",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addFollowing",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"following_id\": \"R9lnaTwYYbtVxzpU\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}users/uY9UbdOwK6S1QlCx/followings",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"uY9UbdOwK6S1QlCx",
+										"followings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFollowings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}users/50LnCMhLNGYXa09J/followings",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"50LnCMhLNGYXa09J",
+										"followings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delFollowers",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}users/uY9UbdOwK6S1QlCx/followers/R9lnaTwYYbtVxzpU",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"uY9UbdOwK6S1QlCx",
+										"followers",
+										"R9lnaTwYYbtVxzpU"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delFollowings",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}users/uY9UbdOwK6S1QlCx/followings/R9lnaTwYYbtVxzpU",
+									"host": [
+										"{{URL}}users"
+									],
+									"path": [
+										"uY9UbdOwK6S1QlCx",
+										"followings",
+										"R9lnaTwYYbtVxzpU"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}users?listid=Km3sls2TahTKccA4,SCDxV0h1C4IN2qZ1",
+							"host": [
+								"{{URL}}users"
+							],
+							"query": [
+								{
+									"key": "listid",
+									"value": "Km3sls2TahTKccA4,SCDxV0h1C4IN2qZ1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByUsername",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}users/by/username/pipo",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"by",
+								"username",
+								"pipo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}users/me",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}users/all",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/login",
+			"item": [
+				{
+					"name": "getLogin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"pipo\",\n    \"username\": \"pipo\",\n    \"email\": \"pipo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}users/login",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\" : \"labicqwer\",\n\"username\": \"labic\",\n\"password\" : \"password\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}users",
+							"host": [
+								"{{URL}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}users/logout",
+							"host": [
+								"{{URL}}users"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
